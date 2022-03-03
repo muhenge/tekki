@@ -9,9 +9,7 @@ class Users::SessionsController < Devise::SessionsController
       render json: { success: false, response: 'Invalid credentials! Verify again' }, status: 401
     end
   end
-  
   def respond_to_on_destroy
     render json: { message: 'logged out successfully!', }
   end
-
 end

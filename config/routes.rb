@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'posts/index'
+  get 'posts/create'
+  get 'posts/show'
   devise_for :users,
   path: '',
   path_names: {
@@ -10,4 +13,5 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+  resources :posts, only: [:create]
 end
