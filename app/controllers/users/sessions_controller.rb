@@ -1,15 +1,19 @@
 class Users::SessionsController < Devise::SessionsController
+  respond_to :json
   private
-
   def respond_with(resource, _opts = {})
-  
-    if resource.id != nil
-      render json: { success: true, user: resource,token: current_token, response: 'Authentication successfully' }, status: 201
-    else
-      render json: { success: false, response: 'Invalid credentials! Verify again' }, status: 401
-    end
+    render json: {user:resource, token:current_token, message: 'Logged in successifully.' }, status: :ok
   end
+
+  # def log_out_success
+  #   render json: { message: "Logged out." }, status: :ok
+  # end
+  # def log_out_failure
+  #   render json: { message: "Logged out failure."}, status: :unauthorized
+  # end
+
   def respond_to_on_destroy
-    render json: { message: 'logged out successfully!', }
+    # current_user ? log_out_success : log_out_failure
+    head :no_content
   end
 end

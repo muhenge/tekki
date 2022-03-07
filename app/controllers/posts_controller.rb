@@ -3,8 +3,14 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :show, :destory, :vote]
   respond_to :json
   def index
+    @posts = Post.all.includes(:user, :comments, :likes, :career, :following).most_recent
+    render json: {
+      posts:@posts
+    }
   end
+  def show
 
+  end
   def create
     @post = current_user.posts.build(post_params)
     if  @post.save
@@ -24,9 +30,8 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title,:content)
+    params.require(:post).permit(:title,:content,:comment_id,:image,:user_slug, :created_at, :skill_id, :career_id)
   end
-
 
   def set_post
     @post = Post.find(params[:id])

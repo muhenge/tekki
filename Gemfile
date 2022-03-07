@@ -27,7 +27,14 @@ gem 'devise'
 gem 'devise-jwt'
 gem 'rack-cors'
 gem 'dotenv-rails', groups: [:development, :test]
-
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
+gem 'link_thumbnailer'
+gem 'acts_as_votable'
+gem 'aws-sdk', '~> 3.0', '>= 3.0.1', require: false 
+gem 'trix'
+gem 'friendly_id', '~> 5.4.0'
+gem 'public_suffix'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
