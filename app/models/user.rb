@@ -7,7 +7,8 @@ class User < ApplicationRecord
   friendly_id :username, use: :slugged
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable    
+         :recoverable, :rememberable, :validatable,
+         :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
   belongs_to :career
   has_many :posts
   has_one_attached :avatar
@@ -17,6 +18,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships
   has_many :comments, dependent: :destroy
   has_many :skills, dependent: :destroy
+  validates :email, format: URI::MailTo::EMAIL_REGEXP
   def follow(user)
     active_relationships.create(followed_id: user.id)
   end

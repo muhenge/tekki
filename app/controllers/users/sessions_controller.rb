@@ -2,7 +2,7 @@ class Users::SessionsController < Devise::SessionsController
   respond_to :json
   private
   def respond_with(resource, _opts = {})
-    render json: {user:resource, token:current_token, message: 'Logged in successifully.' }, status: :ok
+    render json: {user:resource, token: current_token, message: 'Logged in successifully.' }, status: :ok
   end
 
   # def log_out_success
