@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_05_040702) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_13_110802) do
   create_table "careers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "field"
     t.datetime "created_at", null: false
@@ -86,6 +86,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_05_040702) do
     t.integer "skill_id"
     t.text "about"
     t.text "bio"
+    t.integer "career_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true

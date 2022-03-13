@@ -9,9 +9,9 @@ class Post < ApplicationRecord
   scope :most_recent, -> { order(created_at: :desc) }
   # validates :content_length { |post| post.errors.add(:content, "is too long (maximum is #{Post::CONTENT_MAX_LENGTH} characters)") if post.content.length > Post::CONTENT_MAX_LENGTH }
 
-  def liked_by?(user)
-    likes.where(user_id: user.id).exists?
-  end
+  # def liked_by?(user)
+  #   likes.where(user_id: user.id).exists?
+  # end
 
   # def self.search(search)
   #   where("title LIKE ? OR content LIKE ?", "%#{search}%", "%#{search}%")

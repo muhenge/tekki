@@ -3,9 +3,9 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :show, :destory, :vote]
   respond_to :json
   def index
-    @posts = Post.all.includes(:user, :comments, :likes, :career, :following).most_recent
+    posts = Post.all.includes(:user, :comments, :career).most_recent
     render json: {
-      posts:@posts
+      posts:posts
     }
   end
   def show
