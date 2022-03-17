@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :show, :destory, :vote]
   respond_to :json
   def index
-    posts = Post.all.includes(:user, :comments, :career).most_recent
+    posts = Post.all.includes(:user, :comments, :likes, :career).most_recent
     render json: {
       posts:posts
     }
@@ -25,7 +25,25 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
+  def update
+    @post.update(post_params)
+    
+  end
+
+  def vote
+    if !current_user.liked? @post
+      @post.liked_by current_user
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js { render layout: false }
+      end
+    elsif current_user.liked? @post
+      @post.unliked_by current_user
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js { render layout: false }
+      end
+    end
   end
 
   private

@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  get 'posts/index'
-  get 'posts/create'
-  get 'posts/show'
+  get 'careers/index'
+
   devise_for :users,
   path: '',
   path_names: {
@@ -13,6 +12,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+
   resources :posts, only: [:create]
   get 'relationships/create'
   get 'relationships/destroy'
@@ -24,11 +24,13 @@ Rails.application.routes.draw do
   resources :skills do
     resources :users
   end
+
   resources :users, only: [:show], param: :slug
   resources :users, only: %i[show index], param: :slug do 
     resources :posts
     resources :skills, only: %i[create]
   end
+
   resources :comments do 
     resources :users
     resources :posts
@@ -37,7 +39,9 @@ Rails.application.routes.draw do
   authenticated :user do
     root 'posts#index', as: :authenticated_root
   end
+
   resources :users, only: [:index]
+
   resources :posts do
     resources :users
     resources :careers
@@ -47,6 +51,8 @@ Rails.application.routes.draw do
       put "like" => "posts#vote"
     end
   end
+
+  resources :careers, only: [:index]
 
   resources :relationships, only: [:create, :destroy] do
     resources :users
