@@ -1,13 +1,12 @@
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
   def create
-    @user = User.find(params[:followed_id])
-    
-    current_user.follow(@user)
+    user = User.find(params[:followed_id])
+    current_user.follow(user)
     render json: {
-      message:`You are now connected with #{@user.username.capitalize!}`
+      message:`You are now connected with #{user.username.capitalize!}`
     }
-    puts @user
+    
   end
 
   def destroy
