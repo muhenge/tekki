@@ -1,21 +1,20 @@
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
   def create
-    user = User.find(params[:followed_id])
-    current_user.follow(user)
+    @user = User.find(params[:followed_id])
+    current_user.follow(@user)
     render json: {
-      message:`You are now connected with #{user.username.capitalize!}`
+      message:`You are now connected with #{@user.username}`
     }
     
   end
 
   def destroy
     @user = Relationship.find(params[:id]).followed
-        current_user.unfollow(@user)
-        respond_to do |format|
-            format.html { redirect_back fallback_location: user_path(@user) }
-            format.js
-        end
+    current_user.unfollow(@user)
+    render json: {
+      message:`Connection with #{@user.username.capitalize!} removed`
+    }
   end
   private
 
