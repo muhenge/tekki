@@ -4,8 +4,8 @@ class RelationshipsController < ApplicationController
     user = User.find(params[:followed_id])
     current_user.follow(user)
     render json: {
-      message:`You are now connected with #{user.username.capitalize!}`
-    }
+      message: 'Connected'
+    },status: :ok
     
   end
 
