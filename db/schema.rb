@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_15_084539) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_13_110802) do
   create_table "careers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "field"
     t.datetime "created_at", null: false
@@ -50,12 +50,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_15_084539) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "career_id"
-    t.integer "comment_id"
-    t.integer "skill_id"
-<<<<<<< HEAD
-=======
-    t.integer "user_id"
->>>>>>> Posts
     t.integer "cached_votes_total", default: 0
     t.integer "cached_votes_score", default: 0
     t.integer "cached_votes_up", default: 0
@@ -63,8 +57,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_15_084539) do
     t.integer "cached_weighted_score", default: 0
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
-<<<<<<< HEAD
-=======
+    t.integer "comment_id"
+    t.integer "skill_id"
+    t.integer "user_id"
   end
 
   create_table "relationships", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -75,7 +70,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_15_084539) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
->>>>>>> Posts
   end
 
   create_table "skills", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
