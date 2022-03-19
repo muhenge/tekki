@@ -4,19 +4,19 @@ class RelationshipsController < ApplicationController
     user = User.find(params[:followed_id])
     current_user.follow(user)
     render json: {
-      message: 'Connected'
+      message: "Relationship created"
     },status: :ok
     
   end
 
   def destroy
     @user = Relationship.find(params[:id]).followed
-        current_user.unfollow(@user)
-        respond_to do |format|
-            format.html { redirect_back fallback_location: user_path(@user) }
-            format.js
-        end
+    current_user.unfollow(@user)
+    render json: {
+      message:"Relationship destroyed"
+    }
   end
+  
   private
 
     def user_params
