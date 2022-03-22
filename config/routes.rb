@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'careers/index'
+  
 
   devise_for :users,
   path: '',
@@ -17,10 +17,9 @@ Rails.application.routes.draw do
   get 'relationships/create'
   get 'relationships/destroy'
   get 'transit/home'
-  # devise_for :users, controllers:{ registrations: 'registrations' } do
-  #   get '/users/sign_out' => 'devise/sessions#destroy'
-  # end
 
+  namespace :api, defaults: { format: :json } do
+    get 'careers/index'
   resources :skills do
     resources :users
   end
@@ -61,4 +60,7 @@ Rails.application.routes.draw do
   get "/:user_slug/connections", to: "users#user_connections", as: "user_connections"
   get "/current_user_skills", to: "users#current_user_skills"
   root :to => "welcome#home"
+  end
+
+  
 end

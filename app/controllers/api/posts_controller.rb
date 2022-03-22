@@ -1,9 +1,8 @@
-class PostsController < ApplicationController
+class Api::PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update edit destroy vote]
   before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :show, :destory, :vote]
   respond_to :json
   def index
-    puts likes
     posts = Post.all.includes(:user, :comments, :career).most_recent
     render json: {
       posts:posts
@@ -12,7 +11,7 @@ class PostsController < ApplicationController
   def show
     render json: {
       post: @post,
-      comments: @posts.comments
+      comments: @post.comments
     }
   end
   def create
@@ -54,7 +53,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:title,:content,:comment_id,:image,:user_slug, :created_at, :skill_id, :career_id)
+    params.require(:post).permit(:title,:content, :image,:user_slug, :created_at, :skill_id, :career_id)
   end
 
   def set_post
