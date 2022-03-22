@@ -1,17 +1,8 @@
 class SkillsController < ApplicationController
   before_action :set_skill, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[create edit]
-  #before_action :current_user, only: %i[create edit]
-  # GET /skills or /skills.json
-  def index
-    @skills = Skill.all
-  end
 
-  # GET /skills/1 or /skills/1.json
-  def show
-  end
 
-  # GET /skills/new
   def new
     @skill = current_user.skills.build(skill_params)
   end
@@ -31,7 +22,7 @@ class SkillsController < ApplicationController
       end
   end
 
-  # PATCH/PUT /skills/1 or /skills/1.json
+
   def update
       if @skill.update(skill_params)
         redirect_to user_path(current_user), notice:"Skill updated"

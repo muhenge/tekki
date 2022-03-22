@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @users = User.all.includes(:following,:followers)
+    @users = User.all.includes(:following,:followers,:skills,:career)
     render json: {
       users:@users
     }
@@ -15,11 +15,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user_following = @user.following
-    @user_follow = @user.followers 
-    @skill = Skill.new
-    @user_skills = @user.skills
-    @user_posts = @user.posts.most_recent.limit(5)
+    render json: {
+      user:@user,
+      followers:@user.followers,
+      following:@user.following,
+      posts:@user.posts
+    }
   end
 
   private
@@ -29,6 +30,6 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = params[:id] ? User.friendly.find(params[:id]) : User.friendly.find_by_slug(params[:slug]) || current_user
+    @user = params[:id] ? User.includes(:followers,:following,:posts).friendly.find(params[:id]) : User.includes(:followers,:following,:posts).friendly.find_by_slug(params[:slug]) || current_user
   end
 end
