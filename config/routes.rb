@@ -23,11 +23,12 @@ Rails.application.routes.draw do
   resources :skills do
     resources :users
   end
-
+  post '/skills', to: 'skills#create'
+  
   resources :users, only: [:show], param: :slug
   resources :users, only: %i[show index], param: :slug do 
     resources :posts
-    resources :skills, only: %i[create]
+    resources :skills, only: %i[show]
   end
 
   resources :comments do 

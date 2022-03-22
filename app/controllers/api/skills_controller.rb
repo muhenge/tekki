@@ -1,4 +1,4 @@
-class SkillsController < ApplicationController
+class Api::SkillsController < ApplicationController
   before_action :set_skill, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[create edit]
 
@@ -13,12 +13,18 @@ class SkillsController < ApplicationController
 
   # POST /skills or /skills.json
   def create
-    @skill = current_user.skills.build(skill_params)
-    
-      if @skill.save
-        redirect_to edit_user_registration_path, notice:"Skill added successfully"
+    skill = current_user.skills.build(skill_params)
+    all_skills = []
+      if skill.save
+        all_skills.push(skill)
+        render json: {
+          skills: all_skills,
+          message:"Skills saved"
+        }, status: :ok
       else
-       redirect_to edit_user_registration_path, alert:"Failed, check if skill level is provided"
+        render json: {
+          message:"An error occurs, skills not saved"
+        }
       end
   end
 
@@ -45,6 +51,6 @@ class SkillsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def skill_params
-      params.permit(:name, :level, :user_id, :user_slug)
+      params.permit(:name, :level)
     end
 end

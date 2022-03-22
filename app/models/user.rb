@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships
   has_many :comments, dependent: :destroy
   has_many :skills, dependent: :destroy
+  accepts_nested_attributes_for :skills
   validates :email, format: URI::MailTo::EMAIL_REGEXP
   def follow(user)
     active_relationships.create(followed_id: user.id)
