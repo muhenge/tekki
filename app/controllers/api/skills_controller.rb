@@ -14,11 +14,9 @@ class Api::SkillsController < ApplicationController
   # POST /skills or /skills.json
   def create
     skill = current_user.skills.build(skill_params)
-    all_skills = []
       if skill.save
-        all_skills.push(skill)
         render json: {
-          skills: all_skills,
+          skill: skill,
           message:"Skills saved"
         }, status: :ok
       else
@@ -28,19 +26,23 @@ class Api::SkillsController < ApplicationController
       end
   end
 
-
   def update
-      if @skill.update(skill_params)
-        redirect_to user_path(current_user), notice:"Skill updated"
+      if current_user.skills.update(skill_params)
+        render json: {
+          skill: @skill,
+        }, status: :ok
       else
-        redirect_to user_path(current_user), alert:"Failed"
+        render json: {
+          message:"An error occurs, skills not saved"
+        }
       end
   end
 
-  # DELETE /skills/1 or /skills/1.json
   def destroy
     @skill.destroy
-    redirect_to user_path(current_user), notice:"#{current_user.skills.name} deleted"
+    render json: {
+      message:"Skill deleted"
+    }, status: :ok
   end
 
   private
@@ -51,6 +53,6 @@ class Api::SkillsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def skill_params
-      params.permit(:name, :level)
+      params.require(:skill).permit(:name, :level)
     end
 end
