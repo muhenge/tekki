@@ -6,7 +6,7 @@ class Users::SessionsController < Devise::SessionsController
   def respond_with(resource, _opts = {})
     user = User.find_by_email(sign_in_params[:email])
     if user && user.valid_password?(sign_in_params[:password])
-      render json: {user: user, token: current_token, message: 'Logged in successifully.' }, status: :ok
+      render json: {message: 'Logged in successifully.', token: current_token, data: user }, status: :ok
     else
       render json: {error: 'Invalid email or password.'}, status: :unauthorized
     end

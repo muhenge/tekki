@@ -1,0 +1,10 @@
+---
+openapi: 3.0.1
+info:
+  title: API
+paths: {}
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com

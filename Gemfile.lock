@@ -1304,6 +1304,7 @@ GEM
     devise-jwt (0.9.0)
       devise (~> 4.0)
       warden-jwt_auth (~> 0.6)
+    diff-lcs (1.5.0)
     digest (3.1.0)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
@@ -1344,6 +1345,8 @@ GEM
     iso8601 (0.9.1)
     jmespath (1.6.0)
     json (2.6.1)
+    json-schema (2.8.1)
+      addressable (>= 2.4)
     jwt (2.3.0)
     link_thumbnailer (3.4.0)
       activesupport (>= 3.0)
@@ -1431,6 +1434,36 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rspec-core (3.11.0)
+      rspec-support (~> 3.11.0)
+    rspec-expectations (3.11.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.11.0)
+    rspec-mocks (3.11.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.11.0)
+    rspec-rails (5.1.1)
+      actionpack (>= 5.2)
+      activesupport (>= 5.2)
+      railties (>= 5.2)
+      rspec-core (~> 3.10)
+      rspec-expectations (~> 3.10)
+      rspec-mocks (~> 3.10)
+      rspec-support (~> 3.10)
+    rspec-support (3.11.0)
+    rswag (2.5.1)
+      rswag-api (= 2.5.1)
+      rswag-specs (= 2.5.1)
+      rswag-ui (= 2.5.1)
+    rswag-api (2.5.1)
+      railties (>= 3.1, < 7.1)
+    rswag-specs (2.5.1)
+      activesupport (>= 3.1, < 7.1)
+      json-schema (~> 2.2)
+      railties (>= 3.1, < 7.1)
+    rswag-ui (2.5.1)
+      actionpack (>= 3.1, < 7.1)
+      railties (>= 3.1, < 7.1)
     ruby-ll (2.1.2)
       ansi
       ast
@@ -1481,6 +1514,9 @@ DEPENDENCIES
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.2, >= 7.0.2.2)
+  rspec-rails
+  rswag
+  rswag-specs
   trix
   tzinfo-data
 

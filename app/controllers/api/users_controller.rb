@@ -5,12 +5,14 @@ class Api::UsersController < ApplicationController
   def index
     @users = User.all.includes(:following,:followers,:skills,:career)
     render json: {
+      success: true,
       users:@users,
     }, status: :ok
   end
 
   def show
     render json: {
+      success:true,
       message:"User found",
       user:@user,
       career:@user.career,
