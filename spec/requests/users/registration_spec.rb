@@ -5,7 +5,7 @@ RSpec.describe 'users/registration', type: :request do
     post "Create an user" do
       tags "Users"
       consumes "application/json"
-      parameter 
+       
       parameter name: :user, in: :body, schema: {
         type: :object,
         properties: {

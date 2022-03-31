@@ -1470,6 +1470,9 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     strscan (3.0.1)
+    swagger-docs (0.2.9)
+      activesupport (>= 3)
+      rails (>= 3)
     thor (1.2.1)
     timeout (0.2.0)
     trix (0.10.1)
@@ -1517,6 +1520,7 @@ DEPENDENCIES
   rspec-rails
   rswag
   rswag-specs
+  swagger-docs
   trix
   tzinfo-data
 

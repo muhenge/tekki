@@ -2,6 +2,14 @@ class Api::PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update edit destroy vote]
   before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :show, :destory, :vote]
   respond_to :json
+
+  swagger_controller :posts, 'Posts'
+
+  swagger_api :index do
+    summary 'Returns all posts'
+    notes 'Notes...'
+  end
+  
   def index
     posts = Post.all.includes(:user, :comments, :career).most_recent
     render json: {

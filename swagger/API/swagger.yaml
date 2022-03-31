@@ -2,7 +2,46 @@
 openapi: 3.0.1
 info:
   title: API
-paths: {}
+paths:
+  "/api/signup":
+    post:
+      summary: Create an user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: Signed up successfully
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+                password_confirmation:
+                  type: string
+                username:
+                  type: string
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                bio:
+                  type: text
+                about:
+                  type: text
+                career_id:
+                  type: integer
+              required:
+              - email
+              - password
+              - career_id
 servers:
 - url: https://{defaultHost}
   variables:
