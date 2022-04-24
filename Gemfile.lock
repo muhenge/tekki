@@ -1501,6 +1501,9 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    yaml_db (0.7.0)
+      rails (>= 3.0)
+      rake (>= 0.8.7)
     zeitwerk (2.5.4)
 
 PLATFORMS
@@ -1530,6 +1533,7 @@ DEPENDENCIES
   swagger-docs
   trix
   tzinfo-data
+  yaml_db
 
 RUBY VERSION
    ruby 3.0.3p157

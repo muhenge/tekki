@@ -1,0 +1,267 @@
+
+---
+ar_internal_metadata:
+  columns:
+  - key
+  - value
+  - created_at
+  - updated_at
+  records: 
+  - - environment
+    - development
+    - 2022-04-24 09:32:41.228371000 Z
+    - 2022-04-24 09:32:41.228371000 Z
+
+---
+careers:
+  columns:
+  - id
+  - field
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - Applications architect
+    - 2022-04-24 09:40:57.417757000 Z
+    - 2022-04-24 09:40:57.417757000 Z
+  - - 2
+    - Artificial intelligence and machine learning engineer
+    - 2022-04-24 09:40:57.563969000 Z
+    - 2022-04-24 09:40:57.563969000 Z
+  - - 3
+    - Back-end web developer
+    - 2022-04-24 09:40:57.715286000 Z
+    - 2022-04-24 09:40:57.715286000 Z
+  - - 4
+    - Big Data Developer
+    - 2022-04-24 09:40:57.872303000 Z
+    - 2022-04-24 09:40:57.872303000 Z
+  - - 5
+    - Cloud computing engineer
+    - 2022-04-24 09:40:57.999390000 Z
+    - 2022-04-24 09:40:57.999390000 Z
+  - - 6
+    - Computer science professor
+    - 2022-04-24 09:40:58.149835000 Z
+    - 2022-04-24 09:40:58.149835000 Z
+  - - 7
+    - Computer scientist or computer science researcher
+    - 2022-04-24 09:40:58.360429000 Z
+    - 2022-04-24 09:40:58.360429000 Z
+  - - 8
+    - Cybersecurity
+    - 2022-04-24 09:40:58.500283000 Z
+    - 2022-04-24 09:40:58.500283000 Z
+  - - 9
+    - Data scientist
+    - 2022-04-24 09:40:58.744409000 Z
+    - 2022-04-24 09:40:58.744409000 Z
+  - - 10
+    - Database administrator
+    - 2022-04-24 09:40:58.867726000 Z
+    - 2022-04-24 09:40:58.867726000 Z
+  - - 11
+    - Desktop Developer
+    - 2022-04-24 09:40:59.020057000 Z
+    - 2022-04-24 09:40:59.020057000 Z
+  - - 12
+    - DevOps Engineer
+    - 2022-04-24 09:40:59.182436000 Z
+    - 2022-04-24 09:40:59.182436000 Z
+  - - 13
+    - Embedded Developer
+    - 2022-04-24 09:40:59.370368000 Z
+    - 2022-04-24 09:40:59.370368000 Z
+  - - 14
+    - Engineering manager
+    - 2022-04-24 09:40:59.487584000 Z
+    - 2022-04-24 09:40:59.487584000 Z
+  - - 15
+    - Front-end web developer
+    - 2022-04-24 09:40:59.573262000 Z
+    - 2022-04-24 09:40:59.573262000 Z
+  - - 16
+    - Full-stack web developer
+    - 2022-04-24 09:40:59.690067000 Z
+    - 2022-04-24 09:40:59.690067000 Z
+  - - 17
+    - Games developer
+    - 2022-04-24 09:40:59.798514000 Z
+    - 2022-04-24 09:40:59.798514000 Z
+  - - 18
+    - 'IT consultant '
+    - 2022-04-24 09:40:59.922775000 Z
+    - 2022-04-24 09:40:59.922775000 Z
+  - - 19
+    - Information security
+    - 2022-04-24 09:41:00.006660000 Z
+    - 2022-04-24 09:41:00.006660000 Z
+  - - 20
+    - Information security analyst
+    - 2022-04-24 09:41:00.123591000 Z
+    - 2022-04-24 09:41:00.123591000 Z
+  - - 21
+    - Information technology specialist
+    - 2022-04-24 09:41:00.291644000 Z
+    - 2022-04-24 09:41:00.291644000 Z
+  - - 22
+    - Mobile application designer or developer
+    - 2022-04-24 09:41:00.465253000 Z
+    - 2022-04-24 09:41:00.465253000 Z
+  - - 23
+    - Mobile developer
+    - 2022-04-24 09:41:00.642437000 Z
+    - 2022-04-24 09:41:00.642437000 Z
+  - - 24
+    - Multimedia programmer
+    - 2022-04-24 09:41:00.733903000 Z
+    - 2022-04-24 09:41:00.733903000 Z
+  - - 25
+    - Network architect
+    - 2022-04-24 09:41:00.882627000 Z
+    - 2022-04-24 09:41:00.882627000 Z
+  - - 26
+    - Product manager
+    - 2022-04-24 09:41:01.026433000 Z
+    - 2022-04-24 09:41:01.026433000 Z
+  - - 27
+    - Research and development (R&D) scientist
+    - 2022-04-24 09:41:01.131111000 Z
+    - 2022-04-24 09:41:01.131111000 Z
+  - - 28
+    - Security Engineer
+    - 2022-04-24 09:41:01.300213000 Z
+    - 2022-04-24 09:41:01.300213000 Z
+  - - 29
+    - Software business analyst
+    - 2022-04-24 09:41:01.408819000 Z
+    - 2022-04-24 09:41:01.408819000 Z
+  - - 30
+    - Software developer
+    - 2022-04-24 09:41:01.509074000 Z
+    - 2022-04-24 09:41:01.509074000 Z
+  - - 31
+    - Software engineer
+    - 2022-04-24 09:41:01.609262000 Z
+    - 2022-04-24 09:41:01.609262000 Z
+  - - 32
+    - Software quality assurance
+    - 2022-04-24 09:41:01.701114000 Z
+    - 2022-04-24 09:41:01.701114000 Z
+  - - 33
+    - Software tester
+    - 2022-04-24 09:41:01.809834000 Z
+    - 2022-04-24 09:41:01.809834000 Z
+  - - 34
+    - Systems analyst
+    - 2022-04-24 09:41:01.920510000 Z
+    - 2022-04-24 09:41:01.920510000 Z
+  - - 35
+    - Technical writer
+    - 2022-04-24 09:41:02.090332000 Z
+    - 2022-04-24 09:41:02.090332000 Z
+  - - 36
+    - User interface designer
+    - 2022-04-24 09:41:02.246646000 Z
+    - 2022-04-24 09:41:02.246646000 Z
+  - - 37
+    - information systems manager
+    - 2022-04-24 09:41:02.469675000 Z
+    - 2022-04-24 09:41:02.469675000 Z
+
+---
+posts:
+  columns:
+  - id
+  - title
+  - content
+  - created_at
+  - updated_at
+  - career_id
+  - cached_votes_total
+  - cached_votes_score
+  - cached_votes_up
+  - cached_votes_down
+  - cached_weighted_score
+  - cached_weighted_total
+  - cached_weighted_average
+  - skill_id
+  - user_id
+  records: 
+  - - 1
+    - poeple are great ipsum
+    - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+      irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+      nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+      qui officia deserunt mollit anim id est laborum.
+    - 2022-04-24 09:47:28.749510000 Z
+    - 2022-04-24 09:47:28.749510000 Z
+    - 2
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0.0
+    - 
+    - 1
+  - - 2
+    - poeple are great ipsum other
+    - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+      incididunt ut suki labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+      eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+      in culpa qui officia deserunt mollit anim id est laborum.
+    - 2022-04-24 09:57:52.744312000 Z
+    - 2022-04-24 09:57:52.744312000 Z
+    - 22
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0.0
+    - 
+    - 1
+
+---
+users:
+  columns:
+  - id
+  - email
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - created_at
+  - updated_at
+  - firstname
+  - lastname
+  - username
+  - slug
+  - skill_id
+  - about
+  - bio
+  - career_id
+  records: 
+  - - 1
+    - people@yahoo.com
+    - "$2a$12$C0.5z7MFoUZpo4f0WZTsxObkT3pgQURagfY6aajgPJjTYeLmXXOXO"
+    - 
+    - 
+    - 
+    - 2022-04-24 09:43:55.530968000 Z
+    - 2022-04-24 09:43:55.530968000 Z
+    - fname
+    - " ast"
+    - people
+    - people
+    - 
+    - 
+    - 
+    - 2

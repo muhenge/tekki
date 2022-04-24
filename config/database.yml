@@ -49,9 +49,7 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
   adapter: postgresql
+  database: tekki_production
   pool: 5
   timeout: 5000
-  database: tekki_production
-  password: <%= ENV["TEKKI_DATABASE_PASSWORD"] %>
