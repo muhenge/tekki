@@ -2,59 +2,55 @@
 # <span class="text-center"> API documentation </span>
 
 <strong>base_url</strong> : ```https://huza.herokuapp.com/api/```
+## Authentication
 
-## Endpoint references:
+### Endpoint:
 <strong>```POST```</strong> ```{base_url}/signup```
 <strong>```POST```</strong> ```{base_url}/login```
 
 <hr>
 
-### Authentication
 #### sign up
 
-<strong>```POST```</strong> ```{base_url}/signup```
+> <strong>```POST:```</strong> ```{base_url}/signup```
 
-<strong>Body</strong>
+##### Body parameters:
+
+```text
+  email : string,
+  username : string,
+  firstname : string,
+  lastname : string,
+  career_id: integer
+  password : string,
+  confirm_password : string
+  bio:text,
+  about:text
+```
+##### Body sample:
+
 ```json
 {
-  "user:": {
-        "email":"example@email.com",
-        "username":"example",
-        "firstname":"fname",
-        "lastname":"lname",
-        "career_id":2,
-        "bio":"bio sample",
-        "about":"about sample",
-        "password":"password sample",
+    "user": {
+        "email":"string",
+        "username":"string",
+        "firstname":"string",
+        "lastname":"string",
+        "career_id": 1,
+        "bio":"text",
+        "about":"text",
+        "password":"password",
         "password_confirmation":"password sample"
     }
 }
 ```
-<strong>Response</strong>
-```json
-{
-  "success": true,
-  "user": {
-    "id": 2,
-    "email": "example@example.com",
-    "created_at": "2022-04-24T15:38:37.415Z",
-    "updated_at": "2022-04-24T15:38:37.415Z",
-    "firstname": "fname",
-    "lastname": "lname",
-    "username": "example",
-    "slug": "example",
-    "skill_id": "",
-    "about": "about sample",
-    "bio": "bio sample",
-    "career_id": 2
-  },
-  "response": "Authentication successfully"
-}
-```
-<hr>
+
 #### sign in 
 
-<strong>```POST```</strong> ```{base_url}/login```
+> <strong>```POST```</strong> ```{base_url}/login```
+
+##### Body sample:
+
 
 ```json
 {
@@ -64,7 +60,7 @@
     }
 }
 ```
-<strong>Response</strong>
+<strong>Response sample</strong>
 
 ```json
 {
