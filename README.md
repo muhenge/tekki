@@ -8,6 +8,7 @@
 <strong>```POST```</strong> ```{base_url}/login```
 
 <hr>
+
 ### Authentication
 #### sign up
 
