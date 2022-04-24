@@ -5,7 +5,7 @@
 ## Authentication
 
 ### Endpoint:
-<strong>```POST```</strong> ```{base_url}/signup```
+<strong>```POST```</strong> ```{base_url}/signup```<br>
 <strong>```POST```</strong> ```{base_url}/login```
 
 <hr>
