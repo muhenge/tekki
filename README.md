@@ -6,8 +6,11 @@
 ## Endpoint references:
 <strong>```POST```</strong> ```{base_url}/signup```
 <strong>```POST```</strong> ```{base_url}/login```
+
+<hr>
 ### Authentication
 #### sign up
+
 <strong>```POST```</strong> ```{base_url}/signup```
 
 <strong>Body</strong>
@@ -47,7 +50,10 @@
   "response": "Authentication successfully"
 }
 ```
+<hr>
 #### sign in 
+
+<strong>```POST```</strong> ```{base_url}/login```
 
 ```json
 {
