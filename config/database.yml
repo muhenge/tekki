@@ -54,5 +54,4 @@ production:
   pool: 5
   timeout: 5000
   database: tekki_production
-  username: tekki
   password: <%= ENV["TEKKI_DATABASE_PASSWORD"] %>
