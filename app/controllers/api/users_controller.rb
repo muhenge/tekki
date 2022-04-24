@@ -6,7 +6,7 @@ class Api::UsersController < ApplicationController
     @users = User.all.includes(:following,:followers,:skills,:career)
     render json: {
       success: true,
-      users:@users,
+      users: @users,
     }, status: :ok
   end
 

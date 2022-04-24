@@ -5,13 +5,13 @@ class Api::PostsController < ApplicationController
 
   
   def index
+    puts current_user.slug
     posts = Post.all.includes(:user, :comments, :career).where(career_id: current_user.career_id).most_recent
     render json: {
-      posts:posts
+      posts:posts,
+      user_posts: current_user.posts.includes(:user,:comments,:career).most_recent
     }
   end
-
-
 
   def show
     render json: {

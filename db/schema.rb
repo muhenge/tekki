@@ -85,7 +85,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_12_100957) do
     t.integer "cached_weighted_score", default: 0
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
-    t.integer "comment_id"
     t.integer "skill_id"
     t.integer "user_id"
   end

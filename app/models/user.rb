@@ -31,4 +31,12 @@ class User < ApplicationRecord
   def following?(user)
     following.include?(user)
   end
+
+  def get_image_url
+    url_for(self.avatar)
+  end
+
+  def get_image_url
+    url_for(self.avatar)
+  end
 end
