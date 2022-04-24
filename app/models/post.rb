@@ -13,6 +13,10 @@ class Post < ApplicationRecord
     likes.where(user_id: user.id).exists?
   end
 
+  def user_career_posts
+    self.where(career_id: current_user.career_id).most_recent
+  end
+
   def self.search(search)
     where("title LIKE ? OR content LIKE ?", "%#{search}%", "%#{search}%")
   end

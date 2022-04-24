@@ -3,19 +3,16 @@ class Api::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :show, :destory, :vote]
   respond_to :json
 
-  swagger_controller :posts, 'Posts'
-
-  swagger_api :index do
-    summary 'Returns all posts'
-    notes 'Notes...'
-  end
   
   def index
-    posts = Post.all.includes(:user, :comments, :career).most_recent
+    posts = Post.all.includes(:user, :comments, :career).where(career_id: current_user.career_id).most_recent
     render json: {
       posts:posts
     }
   end
+
+
+
   def show
     render json: {
       post: @post,
@@ -31,7 +28,7 @@ class Api::PostsController < ApplicationController
       }, status: :created
     else
      render json: {
-       error: @post.errors.full_messages
+       error: @post.errors.full_messages.join(',')
      }
     end
   end
