@@ -32,7 +32,7 @@
   "success": true,
   "user": {
     "id": 2,
-    "email": "example@example.com"",
+    "email": "example@example.com",
     "created_at": "2022-04-24T15:38:37.415Z",
     "updated_at": "2022-04-24T15:38:37.415Z",
     "firstname": "fname",
