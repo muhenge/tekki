@@ -32,7 +32,7 @@
 ```json
 {
     "user": {
-        "email":"string",
+        "email":"string@email.com",
         "username":"string",
         "firstname":"string",
         "lastname":"string",
