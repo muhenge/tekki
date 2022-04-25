@@ -24,8 +24,6 @@
   career_id: integer
   password : string,
   confirm_password : string
-  bio:text,
-  about:text
 ```
 ##### Body sample:
 
@@ -37,8 +35,6 @@
         "firstname":"string",
         "lastname":"string",
         "career_id": 1,
-        "bio":"text",
-        "about":"text",
         "password":"password",
         "password_confirmation":"password sample"
     }
