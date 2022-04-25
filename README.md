@@ -2,18 +2,7 @@
 # <span class="text-center"> API documentation </span>
 
 <strong>base_url</strong> : ```https://huza.herokuapp.com/api/```
-## Authentication
-
-### Endpoint:
-<strong>```POST```</strong> ```{base_url}/signup```<br>
-<strong>```POST```</strong> ```{base_url}/login```
-
-<hr>
-
-#### sign up
-
-> <strong>```POST:```</strong> ```{base_url}/signup```
-
+### <u>Authentication</u><br>
 ##### Body parameters:
 
 ```text
@@ -25,6 +14,37 @@
   password : string,
   confirm_password : string
 ```
+### Endpoint:
+
+<strong>```POST```</strong> ```{base_url}/signup```
+<strong>```POST```</strong> ```{base_url}/login```
+<strong>```DELETE```</strong> ```{base_url}/logout```
+
+### <u>Posts</u><br>
+##### Body parameters:
+
+```text
+  title : string,
+  content : string,
+  user_id : integer,
+  career_id : integer,
+  image : string
+```
+### Endpoint:
+
+<strong>Authorization: Bearer {jwt_token}</strong>
+
+> Create post: <strong>```POST```</strong> ```{base_url}/posts``` 
+> Get all posts: <strong>```GET```</strong> ```{base_url}/posts```
+
+
+<hr>
+
+#### sign up
+
+> <strong>```POST:```</strong> ```{base_url}/signup```
+
+
 ##### Body sample:
 
 ```json
@@ -56,7 +76,7 @@
     }
 }
 ```
-<strong>Response sample</strong>
+<strong>201 Code response</strong>
 
 ```json
 {
@@ -71,9 +91,10 @@
     "lastname": "lname",
     "username": "username",
     "slug": "slug",
-    "skill_id": null,
+    "skill_id": "skills names",
     "about": "about text",
     "bio": "bio text",
     "career_id": 1
   }
 }
+```
