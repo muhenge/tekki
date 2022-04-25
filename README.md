@@ -5,7 +5,7 @@
 ## Authentication
 
 ### Endpoint:
-<strong>```POST```</strong> ```{base_url}/signup```
+<strong>```POST```</strong> ```{base_url}/signup```<br>
 <strong>```POST```</strong> ```{base_url}/login```
 
 <hr>
@@ -24,21 +24,17 @@
   career_id: integer
   password : string,
   confirm_password : string
-  bio:text,
-  about:text
 ```
 ##### Body sample:
 
 ```json
 {
     "user": {
-        "email":"string",
+        "email":"string@email.com",
         "username":"string",
         "firstname":"string",
         "lastname":"string",
         "career_id": 1,
-        "bio":"text",
-        "about":"text",
         "password":"password",
         "password_confirmation":"password sample"
     }
