@@ -3,7 +3,9 @@
 
 <strong>base_url</strong> : ```https://huza.herokuapp.com/api/```
 ### <u>Authentication</u><br>
-##### Body parameters:
+ 
+ 
+ Body parameters:
 
 ```text
   email : string,
@@ -21,7 +23,8 @@
 <strong>```DELETE```</strong> ```{base_url}/logout```
 
 ### <u>Posts</u><br>
-##### Body parameters:
+
+parameters:
 
 ```text
   title : string,
