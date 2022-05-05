@@ -91,6 +91,8 @@ The REST API to the example app is described below.
     Referrer-Policy: strict-origin-when-cross-origin
     Content-Type: application/json; charset=utf-8
     Vary: Accept, Origin
+    Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Iiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjUxNzQyODk5LCJleHAiOjE2NTMwMzg4OTksImp0aSI6ImFkMzJmNTQ3LWY1YWEtNDc4OS1iOTA2LWRlYWNjOTg2NDJkOSJ9.Xl143Z3ziQTTuct8wrLiy3FOflz84vLS3GCGjssP2wE
+    Etag: W/"30e069d6f777e10ddf0e2c74dc924f7b"
     Etag: W/"30e069d6f777e10ddf0e2c74dc924f7b"
     Cache-Control: max-age=0, private, must-revalidate
     X-Request-Id: ca880624-490e-4455-bcc9-7a89ecb6a4ec
