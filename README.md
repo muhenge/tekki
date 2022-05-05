@@ -1,6 +1,6 @@
 # REST API example application
 
-> base_url : https://huza.herokuapp.com/api/
+> base_url : https://huza.herokuapp.com/api
 
 
 # REST API
