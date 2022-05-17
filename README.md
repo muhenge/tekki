@@ -101,3 +101,37 @@ The REST API to the example app is described below.
     Via: 1.1 vegur
 
     {"success":true,"user":{"id":5,"email":"","created_at":"2022-05-05T09:04:15.373Z","updated_at":"2022-05-05T09:04:15.373Z","firstname":"string","lastname":"string","username":"string","slug":"string","skill_id":null,"about":null,"bio":null,"career_id":1}"}
+
+# Post
+
+### Request
+
+    curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer {token}" -d '{"post": {"title":"title text", "content":"post content text", "career_id":1}}' https://huza.herokuapp.com/api/posts
+
+### Response
+
+    HTTP/1.1 200 OK
+    Server: Cowboy
+    Date: Thu, 05 May 2022 09:28:19 GMT
+    Connection: keep-alive
+    X-Frame-Options: SAMEORIGIN
+    X-Xss-Protection: 0
+    X-Content-Type-Options: nosniff
+    X-Download-Options: noopen
+    X-Permitted-Cross-Domain-Policies: none
+    Referrer-Policy: strict-origin-when-cross-origin
+    Content-Type: application/json; charset=utf-8
+    Vary: Accept, Origin
+    Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1Iiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjUxNzQyODk5LCJleHAiOjE2NTMwMzg4OTksImp0aSI6ImFkMzJmNTQ3LWY1YWEtNDc4OS1iOTA2LWRlYWNjOTg2NDJkOSJ9.Xl143Z3ziQTTuct8wrLiy3FOflz84vLS3GCGjssP2wE
+    Etag: W/"30e069d6f777e10ddf0e2c74dc924f7b"
+    Cache-Control: max-age=0, private, must-revalidate
+    X-Request-Id: ca880624-490e-4455-bcc9-7a89ecb6a4ec
+    X-Runtime: 0.768774
+    Transfer-Encoding: chunked
+    Via: 1.1 vegur
+
+    {"success":true,"post":{"id":1,"title":"title text","content":"post content text","created_at":"2022-05-05T09:04:15.373Z","updated_at":"2022-05-05T09:04:15.373Z","career_id":1}}
+
+## Like post
+
+    curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer {token}" -d '{"post_id":1}' https://huza.herokuapp.com/api/posts/:post_id/like
