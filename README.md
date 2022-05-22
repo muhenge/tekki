@@ -24,7 +24,7 @@ The REST API to the example app is described below.
         "password":"password",
         "password_confirmation":"password sample"
     }}' https://huza.herokuapp.com/api/signup
-    
+
 
 ### Response
 
@@ -134,4 +134,4 @@ The REST API to the example app is described below.
 
 ## Like post
 
-    curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer {token}" -d '{"post_id":1}' https://huza.herokuapp.com/api/posts/:post_id/like
+    curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer {token}" https://huza.herokuapp.com/api/posts/:post_id/like
