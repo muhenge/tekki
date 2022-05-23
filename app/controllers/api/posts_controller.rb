@@ -3,7 +3,6 @@ class Api::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :show, :destory, :vote]
   respond_to :json
 
-
   def index
     posts = Post.all.includes(:user, :comments, :career).where(career_id: current_user.career_id).most_recent
     render json: {
@@ -18,6 +17,7 @@ class Api::PostsController < ApplicationController
       comments: @post.comments
     }
   end
+
   def create
     @post = current_user.posts.build(post_params)
     if  @post.save
