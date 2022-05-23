@@ -12,7 +12,7 @@ class Users::SessionsController < Devise::SessionsController
     end
     
   end
-  
+
   def respond_to_on_destroy
     logout_success && return if current_user
 
