@@ -6,7 +6,6 @@ class Api::RelationshipsController < ApplicationController
     render json: {
       message: "Relationship created"
     },status: :ok
-    
   end
 
   def destroy
@@ -16,7 +15,7 @@ class Api::RelationshipsController < ApplicationController
       message:"Relationship destroyed"
     }
   end
-  
+
   private
 
     def user_params
@@ -26,5 +25,5 @@ class Api::RelationshipsController < ApplicationController
 
     def set_user
         @user = User.find(params[:id])
-    end 
+    end
 end

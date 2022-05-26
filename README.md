@@ -135,3 +135,8 @@ The REST API to the example app is described below.
 ## Like post
 
     curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer {token}" https://huza.herokuapp.com/api/posts/:post_id/like
+
+
+## Build relationships
+
+    curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer {token}" -d '{"followed_id": 2}' https://huza.herokuapp.com/api/relationships

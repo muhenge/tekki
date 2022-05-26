@@ -14,9 +14,11 @@ class Api::SkillsController < ApplicationController
   # POST /skills or /skills.json
   def create
     skill = current_user.skills.build(skill_params)
+      skills = []
       if skill.save
+        skills << skill
         render json: {
-          skill: skill,
+          skills: skills,
           message:"Skills saved"
         }, status: :ok
       else
