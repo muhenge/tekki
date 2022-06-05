@@ -10,7 +10,7 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   config.jwt do |jwt|
-    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
+    jwt.secret = Rails.application.secret_key_base
     jwt.dispatch_requests = [
       ['POST', %r{^/sign_in$}]
     ]
