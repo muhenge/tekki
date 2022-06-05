@@ -1,6 +1,6 @@
 # REST API example application
 
-> base_url : https://huza.herokuapp.com/api
+> base_url : https://tekki.herokuapp.com/api
 
 
 # REST API
@@ -23,7 +23,7 @@ The REST API to the example app is described below.
         "career_id": 1,
         "password":"password",
         "password_confirmation":"password sample"
-    }}' https://huza.herokuapp.com/api/signup
+    }}' {{base_url}}/api/signup
 
 
 ### Response
@@ -43,7 +43,7 @@ The REST API to the example app is described below.
 
 `POST /login`
 
-    curl -X POST -H "Content-Type: application/json" -d '{"user": "email":"test@email.com", "password":"password"}}' https://huza.herokuapp.com/api/login
+    curl -X POST -H "Content-Type: application/json" -d '{"user": "email":"test@email.com", "password":"password"}}' {{base_url}}/api/login
 
 
 ### Response
@@ -76,7 +76,7 @@ The REST API to the example app is described below.
 
 `POST /users/username`
 
-    curl -i -H "Accept: application/json" -H "Authorization: Bearer {token}" https://huza.herokuapp.com/api/users/username
+    curl -i -H "Accept: application/json" -H "Authorization: Bearer {token}" {{base_url}}/api/users/username
 ### Response
 
     HTTP/1.1 200 OK
@@ -106,7 +106,7 @@ The REST API to the example app is described below.
 
 ### Request
 
-    curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer {token}" -d '{"post": {"title":"title text", "content":"post content text", "career_id":1}}' https://huza.herokuapp.com/api/posts
+    curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer {token}" -d '{"post": {"title":"title text", "content":"post content text", "career_id":1}}' {{base_url}}/api/posts
 
 ### Response
 
@@ -134,9 +134,12 @@ The REST API to the example app is described below.
 
 ## Like post
 
-    curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer {token}" https://huza.herokuapp.com/api/posts/:post_id/like
+    curl -X PUT -H "Content-Type: application/json" -H "Authorization: Bearer {token}" {{base_url}}/api/posts/:post_id/like
 
+## feeds
 
+    curl -i -H "Accept: application/json" -H "Authorization: Bearer {token}" {{base_url}}/api/posts
 ## Build relationships
 
-    curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer {token}" -d '{"followed_id": 2}' https://huza.herokuapp.com/api/relationships
+    curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer {token}" -d '{"followed_id": 2}' {{base_url}}/api/relationships
+
