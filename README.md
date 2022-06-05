@@ -1,4 +1,4 @@
-# REST API example application
+# REST API documentation
 
 > base_url : https://tekki.herokuapp.com/api
 
