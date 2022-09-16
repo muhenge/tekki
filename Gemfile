@@ -7,11 +7,11 @@ ruby "3.1.2"
 gem "rails", "~> 7.0.2", ">= 7.0.2.2"
 
 # Use mysql as the database for Active Record
-gem "mysql2", "~> 0.5"
-
+# gem "mysql2", "~> 0.5"
+gem "pg"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
-
+gem 'redis-rails'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
@@ -38,7 +38,11 @@ gem 'public_suffix'
 gem 'rswag'
 gem 'swagger-docs'
 gem 'yaml_db'
-
+gem 'figaro'
+gem 'hiredis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
@@ -64,7 +68,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg'
+  # gem 'pg'
   gem 'rails_12factor', '0.0.2'
 end
 
