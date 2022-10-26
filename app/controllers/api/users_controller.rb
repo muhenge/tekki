@@ -8,25 +8,7 @@ class Api::UsersController < ApplicationController
       @users = User.all.includes(:following, :followers, :skills, :career)
       $redis.set('users', json: @users)
     end
-
-    render json: {
-      success: true,
-      users: @users
-    }, status: :ok
   end
-
-  # class Event < ApplicationRecord
-  #   def tickets_count
-  #     Rails.cache.fetch([cache_key, __method__], expires_in: 30.minutes) do
-  #       tickets.count
-  #     end
-  #   end
-  #   def tickets_sum
-  #     Rails.cache.fetch([cache_key, __method__]) do
-  #       tickets.sum(:amount)
-  #     end
-  #   end
-  # end
 
   def show
     render json: {
