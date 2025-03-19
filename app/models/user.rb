@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
+         :jwt_authenticatable, jwt_revocation_strategy: self
   belongs_to :career
   has_many :posts
   has_one_attached :avatar
@@ -38,5 +38,13 @@ class User < ApplicationRecord
 
   def get_image_url
     url_for(self.avatar)
+  end
+
+  before_create :set_jti
+
+  private
+
+  def set_jti
+    self.jti ||= SecureRandom.uuid
   end
 end
