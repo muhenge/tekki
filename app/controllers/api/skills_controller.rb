@@ -1,60 +1,52 @@
 class Api::SkillsController < ApplicationController
-  before_action :set_skill, only: %i[show edit update destroy]
-  before_action :authenticate_user!, only: %i[create edit]
+  before_action :authenticate_user!, only: %i[create update destroy]
+  before_action :set_skill, only: %i[update destroy]
 
-
-  def new
-    @skill = current_user.skills.build(skill_params)
-  end
-
-  # GET /skills/1/edit
-  def edit
-  end
-
-  # POST /skills or /skills.json
+  # POST /api/skills
   def create
-    skill = current_user.skills.build(skill_params)
-      skills = []
-      if skill.save
-        skills << skill
-        render json: {
-          skills: skills,
-          message:"Skills saved"
-        }, status: :ok
-      else
-        render json: {
-          message:"An error occurs, skills not saved"
-        }
-      end
-  end
+    skills = params.require(:skills).map do |skill_params|
+      skill_params = skill_params.permit(:name, :level)
+      skill_params[:level] = skill_params[:level].strip if skill_params[:level].present?
 
+      # Find or create skill
+      current_user.skills.find_or_initialize_by(name: skill_params[:name]).tap do |skill|
+        skill.level = skill_params[:level] if skill.new_record?
+      end
+    end
+
+    if skills.all?(&:valid?)
+      skills.each(&:save)
+      render json: { skills: skills, message: 'Skills processed successfully' }, status: :ok
+    else
+      render json: { errors: skills.map { |s| s.errors.full_messages } }, status: :unprocessable_entity
+    end
+  end
+  # PATCH/PUT /api/skills/:id
   def update
-      if current_user.skills.update(skill_params)
-        render json: {
-          skill: @skill,
-        }, status: :ok
-      else
-        render json: {
-          message:"An error occurs, skills not saved"
-        }
-      end
+    if @skill.update(skill_params)
+      render json: { skill: @skill, message: 'Skill updated successfully' }, status: :ok
+    else
+      render json: { errors: @skill.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
+  # DELETE /api/skills/:id
   def destroy
-    @skill.destroy
-    render json: {
-      message:"Skill deleted"
-    }, status: :ok
+    if @skill.destroy
+      render json: { message: 'Skill deleted successfully' }, status: :ok
+    else
+      render json: { message: 'Failed to delete skill' }, status: :unprocessable_entity
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_skill
-      @skill = Skill.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def skill_params
-      params.require(:skill).permit(:name, :level)
-    end
+  def set_skill
+    @skill = current_user.skills.find_by(id: params[:id])
+    render json: { message: 'Skill not found' }, status: :not_found unless @skill
+  end
+
+  def skill_params
+    params.require(:skill).permit(:name, :level)
+  end
 end
