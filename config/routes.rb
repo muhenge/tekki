@@ -3,14 +3,14 @@ Rails.application.routes.draw do
   devise_for :users,
   path: '',
   path_names: {
-    sign_in: 'api/login',
-    sign_out: 'api/logout',
-    registration: 'api/signup'
+    sign_in: 'api/auth/login',
+    sign_out: 'api/auth/logout',
+    registration: 'api/auth/signup'
   },
   controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations',
-    edit: 'users/registrations#update'
+    sessions: 'api/auth/sessions',
+    registrations: 'api/auth/registrations',
+    edit: 'api/auth/registrations#update'
   }
 
   resources :posts, only: [:create]

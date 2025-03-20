@@ -1,4 +1,6 @@
-class Users::RegistrationsController < Devise::RegistrationsController
+module Api
+  module Auth
+  class RegistrationsController < Devise::RegistrationsController
 
   def create
     @user = User.new(sign_up_params)
@@ -15,5 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       render json: {success: false, response: @user.errors.full_messages }, status: 401
     end
+  end
+  end
   end
 end
