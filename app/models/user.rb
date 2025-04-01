@@ -2,13 +2,13 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   acts_as_voter
-  
+
   extend FriendlyId
   friendly_id :username, use: :slugged
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :jwt_authenticatable, jwt_revocation_strategy: self
+         :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
   belongs_to :career
   has_many :posts
   has_one_attached :avatar
@@ -20,6 +20,10 @@ class User < ApplicationRecord
   has_many :skills, dependent: :destroy
   accepts_nested_attributes_for :skills
   validates :email, format: URI::MailTo::EMAIL_REGEXP
+
+  # def jwt_payload
+  #   super
+  # end
   def follow(user)
     active_relationships.create(followed_id: user.id)
   end
