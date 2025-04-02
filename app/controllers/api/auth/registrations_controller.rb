@@ -3,8 +3,10 @@ module Api
   class RegistrationsController < Devise::RegistrationsController
 
   def create
+
     @user = User.new(sign_up_params)
-    
+
+    Rails.logger.info "Params: #{@user.career_ids}"
     if @user.save
       render json: {success: true, user:@user, response: "Authentication successfully" }, status: 201
     else
