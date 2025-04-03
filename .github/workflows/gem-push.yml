@@ -1,4 +1,4 @@
-name: Ruby Gem
+name: Rails CI/CD Pipeline
 
 on:
   push:
@@ -6,9 +6,88 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  RAILS_ENV: test
+  DATABASE_URL: postgres://postgres:postgres@localhost:5432/rails_test
+  BUNDLE_DEPLOYMENT: 'true'
+  BUNDLE_WITHOUT: 'production'
+  BUNDLE_PATH: vendor/bundle
+
 jobs:
+  test:
+    name: Test Suite
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: rails_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Ruby 3.4.1
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.4.1
+        bundler-cache: true
+
+    - name: Install PostgreSQL dependencies
+      run: sudo apt-get -yqq install libpq-dev
+
+    - name: Set up database
+      run: |
+        bundle exec rails db:prepare
+        bundle exec rails db:test:prepare
+
+    - name: Run Rubocop
+      run: bundle exec rubocop
+
+    - name: Run Brakeman
+      run: bundle exec brakeman -q -w2
+
+    - name: Run RSpec
+      run: bundle exec rspec
+
+    - name: Run System Tests
+      run: bundle exec rails test:system
+
   build:
-    name: Build + Publish
+    name: Build Docker Image
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: |
+          ghcr.io/${{ github.repository }}:latest
+          ghcr.io/${{ github.repository }}:${{ github.sha }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+  publish-gem:
+    name: Publish Gem
+    needs: test
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -16,15 +95,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Ruby 2.6
-    # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
-    # change this to (see https://github.com/ruby/setup-ruby#versioning):
-    # uses: ruby/setup-ruby@v1
-      uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
-      with:
-        ruby-version: 2.6.x
 
-    - name: Publish to GPR
+    - name: Set up Ruby 3.4.1
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.4.1
+        bundler-cache: true
+
+    - name: Publish to GitHub Package Registry
       run: |
         mkdir -p $HOME/.gem
         touch $HOME/.gem/credentials
@@ -46,3 +124,26 @@ jobs:
         gem push *.gem
       env:
         GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_AUTH_TOKEN}}"
+
+  deploy-staging:
+    name: Deploy to Staging
+    needs: [test, build]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.STAGING_SSH_KEY }}
+        known_hosts: ${{ secrets.STAGING_KNOWN_HOSTS }}
+
+    - name: Deploy to staging server
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.STAGING_SERVER_USER }}@${{ secrets.STAGING_SERVER_HOST }} << 'EOF'
+        cd /path/to/your/app
+        docker compose -f docker-compose.prod.yml pull
+        docker compose -f docker-compose.prod.yml up -d
+        docker compose -f docker-compose.prod.yml exec app rails db:migrate
+        EOF
