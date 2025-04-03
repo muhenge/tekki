@@ -13,10 +13,8 @@ Rails.application.routes.draw do
     edit: 'api/auth/registrations#update'
   }
 
-  resources :posts, only: [:create]
-  get 'relationships/create'
-  get 'relationships/destroy'
-  get 'transit/home'
+
+
 
   namespace :api, defaults: { format: :json } do
     get 'careers/index'
@@ -24,14 +22,21 @@ Rails.application.routes.draw do
     resources :users
   end
   post '/skills', to: 'skills#create'
-  
+
+  get 'auth/current_user', to: 'auth/auth_status#check'
+
   resources :users, only: [:show], param: :slug
-  resources :users, only: %i[show index], param: :slug do 
+  resources :users, only: %i[show index], param: :slug do
     resources :posts
     resources :skills, only: %i[show]
   end
 
-  resources :comments do 
+    resources :posts, only: [:create]
+  get 'relationships/create'
+  get 'relationships/destroy'
+  get 'transit/home'
+
+  resources :comments do
     resources :users
     resources :posts
   end
@@ -63,5 +68,5 @@ Rails.application.routes.draw do
   root :to => "welcome#home"
   end
 
-  
+
 end

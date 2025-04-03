@@ -1,5 +1,4 @@
 class Career < ApplicationRecord
-  has_many :users
-  has_many :posts
-  
+   has_many :user_careers
+  has_many :users, through: :user_careers
 end
