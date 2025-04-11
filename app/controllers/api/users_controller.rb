@@ -3,6 +3,7 @@ module Api
 
     before_action :set_user, only: %i[show update destroy]
     before_action :authenticate_user!, only: %i[show, update, destroy]
+    
     def index
       users = User.includes(:following, :followers, :skills, :career)
                   .page(params[:page])
@@ -37,7 +38,11 @@ module Api
       Rails.cache.fetch("user_#{user.id}_response", expires_in: 1.hour) do
         {
           user: user,
-          career: user.career,
+          career: user.user_careers,
+          followers_count: user.followers.count,
+          following_count: user.following.count,
+          posts_count: user.posts.count,
+          skills_count: user.skills.count,
           followers: user.followers,
           following: user.following,
           posts: user.posts.limit(5),
@@ -52,7 +57,7 @@ module Api
 
     def set_user
       @user = if params[:id]
-                User.includes(:career, :followers, :following, :posts, :skills).friendly.find(params[:id])
+                User.includes(:user_careers, :followers, :following, :posts, :skills).friendly.find(params[:id])
               else
                 User.includes(:followers, :following, :posts).friendly.find_by(slug: params[:slug]) || current_user
               end

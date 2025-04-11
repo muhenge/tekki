@@ -1743,6 +1743,8 @@ GEM
     erubi (1.13.1)
     ethon (0.16.0)
       ffi (>= 1.15.0)
+    factory_bot (6.5.1)
+      activesupport (>= 6.1.0)
     ffi (1.17.1-x86_64-linux-gnu)
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
@@ -2004,6 +2006,7 @@ DEPENDENCIES
   devise
   devise-jwt
   dotenv-rails
+  factory_bot (~> 6.5)
   figaro
   friendly_id (~> 5.4.0)
   image_processing (~> 1.2)
