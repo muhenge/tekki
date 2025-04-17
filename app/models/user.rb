@@ -58,6 +58,15 @@ class User < ApplicationRecord
   validate :career_limit
 
   # Instance methods
+
+  def confirmation_required?
+    false
+  end
+
+  # Method to send welcome email (not confirmation)
+  # def send_welcome_email
+  #   UserMailer.with(user: self).welcome_email.deliver_later
+  # end
   def follow(user)
     active_relationships.create(followed_id: user.id)
   end
@@ -77,6 +86,12 @@ class User < ApplicationRecord
 
   # JWT methods
   before_create :set_jti
+
+  def generate_login_token!
+    self.login_token = SecureRandom.hex(10)
+    self.login_token_sent_at = Time.current
+    save!
+  end
 
   private
 
@@ -105,10 +120,5 @@ class User < ApplicationRecord
   def career_limit
     return if careers.size <= 3
     errors.add(:careers, "can't select more than 3 careers")
-  end
-  def generate_login_token!
-    self.login_token = SecureRandom.hex(10)
-    self.login_token_sent_at = Time.current
-    save!
   end
 end

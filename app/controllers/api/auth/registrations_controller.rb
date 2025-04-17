@@ -5,9 +5,10 @@ module Api
         @user = User.new(sign_up_params)
 
         if @user.save
-          # @user.sign_in(@user)
-          @user.generate_login_token!
-          UserMailer.with(user: @user).login_token_email.deliver_later
+          sign_in(@user)
+          # @user.generate_login_token!
+          #UserMailer.with(user: @user).login_token_email.deliver_later
+
           render json: {
                    success: true,
                    user: @user,
@@ -16,7 +17,6 @@ module Api
                  status: :created
         else
           render json: {
-
                    success: false,
                    errors: format_errors(@user.errors)
                  },
