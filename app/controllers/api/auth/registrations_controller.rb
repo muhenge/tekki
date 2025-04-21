@@ -6,6 +6,7 @@ module Api
 
         if @user.save
           sign_in(@user)
+          Rails.logger.info "User #{request.headers["Authorization"]} signed in successfully."
           # @user.generate_login_token!
           #UserMailer.with(user: @user).login_token_email.deliver_later
 
