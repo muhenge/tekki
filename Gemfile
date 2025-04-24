@@ -7,13 +7,17 @@ ruby "3.4.1"
 gem 'rails', '~> 8.0.1', '>= 8.0.1'
 
 # Use mysql as the database for Active Record
-gem 'mysql2', '~> 0.5.6'
+# gem 'mysql2'
+gem 'pg', '~> 1.5', '>= 1.5.9'
+
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 6.4', '>= 6.4.2'
+gem 'solargraph', group: :development
+gem 'syntax_tree', group: :development
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-# gem "jbuilder"
+gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
@@ -66,7 +70,7 @@ group :development do
 end
 
 group :production do
-  gem 'pg'
+  #gem 'pg'
   gem 'rails_12factor', '0.0.2'
 end
 
