@@ -6,7 +6,6 @@ pkgs.mkShell {
     pkgs.postgresql
     pkgs.postgresql.dev
     pkgs.mariadb_114
-    # pkgs.mariadb_114.dev
     pkgs.gcc
     pkgs.gnumake
     pkgs.pkg-config
@@ -15,10 +14,11 @@ pkgs.mkShell {
     pkgs.openssl
     pkgs.zstd
     pkgs.libyaml
-    pkgs.pkg-config
+    pkgs.curl
   ];
 
   shellHook = ''
-    echo "💎 Ready to install pg and mysql2 gems!"
+    export LD_LIBRARY_PATH=${pkgs.curl.out}/lib:$LD_LIBRARY_PATH
+    echo "💎 Dependencies installed successfully, libcurl is in LD_LIBRARY_PATH ✅"
   '';
 }
