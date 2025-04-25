@@ -29,6 +29,9 @@ gem "jbuilder"
 # gem "bcrypt", "~> 3.1.7"
 gem 'devise'
 gem 'devise-jwt'
+
+gem 'kamal'
+
 gem 'rack-cors'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'mini_magick'
@@ -76,3 +79,5 @@ end
 
 
 gem "ruby-lsp", "~> 0.0.2", :group => :development
+
+gem "factory_bot", "~> 6.5"

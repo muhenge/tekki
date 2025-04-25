@@ -15,6 +15,7 @@ class Api::PostsController < ApplicationController
     render json: { posts: posts, user_posts: user_posts }
   end
 
+
   # GET /api/posts/:id
   def show
     render json: { post: @post, comments: @post.comments }
@@ -31,7 +32,6 @@ class Api::PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /api/posts/:id
   def update
     if @post.update(post_params)
       render json: { message: 'Updated successfully', post: @post }
@@ -40,7 +40,6 @@ class Api::PostsController < ApplicationController
     end
   end
 
-  # DELETE /api/posts/:id
   def destroy
     if @post.destroy
       head :no_content
@@ -63,7 +62,7 @@ class Api::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :image, :user_slug, :created_at, :skill_id, :career_id)
+    params.require(:post).permit(:title, :content, :image, :user_slug, :created_at, :skill_id, career_ids: [])
   end
 
   def set_post

@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   path_names: {
     sign_in: 'api/auth/login',
     sign_out: 'api/auth/logout',
-    registration: 'api/auth/signup'
+    registration: 'api/auth/signup',
+    # confirmations: 'api/auth/confirmations'
   },
   controllers: {
     sessions: 'api/auth/sessions',
@@ -17,6 +18,9 @@ Rails.application.routes.draw do
 
 
   namespace :api, defaults: { format: :json } do
+    namespace :auth do
+      post :magic_login, to: 'magic_logins#show'
+    end
     get 'careers/index'
   resources :skills do
     resources :users

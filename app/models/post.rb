@@ -1,7 +1,8 @@
 class Post < ApplicationRecord
   acts_as_votable
   belongs_to :user
-  belongs_to :career
+  has_many :post_careers
+  has_many :careers, through: :post_careers
   has_many :skills
   has_many :comments
   validates :title, presence: true, length: { minimum: 5, maximum: 50 }
@@ -14,7 +15,7 @@ class Post < ApplicationRecord
   end
 
   def user_career_posts
-    self.where(career_id: current_user.career_id).most_recent
+    where(career_id: current_user.career_id).most_recent
   end
 
   def self.search(search)
