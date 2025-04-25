@@ -1,7 +1,6 @@
 # REST API documentation
 
-> base_url : https://tekki.herokuapp.com/api
-
+> Working on deploying the app
 
 # REST API
 
