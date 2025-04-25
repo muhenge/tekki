@@ -1,8 +1,6 @@
 # REST API documentation
 
-> base_url : https://tekki.herokuapp.com/api
-
-
+> Working on the deployment with kamal....
 # REST API
 
 The REST API to the example app is described below.
