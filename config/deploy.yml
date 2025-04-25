@@ -7,7 +7,7 @@ image: my-user/my-app
 # Deploy to these servers.
 servers:
   web:
-    - 192.168.0.1
+    - 66.220.29.151
   # job:
   #   hosts:
   #     - 192.168.0.1

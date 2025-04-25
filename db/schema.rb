@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_01_133116) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_10_101241) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -57,6 +57,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_01_133116) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "post_careers", force: :cascade do |t|
+    t.bigint "post_id", null: false
+    t.bigint "career_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["career_id"], name: "index_post_careers_on_career_id"
+    t.index ["post_id"], name: "index_post_careers_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -110,13 +119,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_01_133116) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.string "login_token"
+    t.datetime "login_token_sent_at"
+    t.string "jti"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["jti"], name: "index_users_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "post_careers", "careers"
+  add_foreign_key "post_careers", "posts"
   add_foreign_key "user_careers", "careers"
   add_foreign_key "user_careers", "users"
 end

@@ -29,6 +29,9 @@ gem "jbuilder"
 # gem "bcrypt", "~> 3.1.7"
 gem 'devise'
 gem 'devise-jwt'
+
+gem 'kamal'
+
 gem 'rack-cors'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'mini_magick'
