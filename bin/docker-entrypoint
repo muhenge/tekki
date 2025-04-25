@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+# Remove a potentially pre-existing server.pid for Rails.
+rm -f /app/tmp/pids/server.pid
+
+# Wait for PostgreSQL to be ready
+if [ -z "$SKIP_DATABASE_CHECK" ]; then
+  until pg_isready -h "${DATABASE_HOST:-db}" -p "${DATABASE_PORT:-5432}" -U "${DATABASE_USERNAME:-postgres}" -d "${DATABASE_NAME}"; do
+    echo "Waiting for PostgreSQL to be available..."
+    sleep 2
+  done
+fi
+
+# Run migrations if needed
+if [ "$RUN_MIGRATIONS" = "true" ]; then
+  echo "Running database migrations..."
+  bundle exec rails db:migrate
+fi
+
+# Then exec the container's main process
+exec "$@"
