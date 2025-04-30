@@ -1,0 +1,2066 @@
+repo_name: muhenge/tekki
+report_id: b3016569c6b4b73e7e4b5c6c21b21385
+version: 0.1
+repo_type: Public
+timestamp: '2024-03-01T14:41:24+00:00'
+requested_by: muhenge
+provider: github
+branch: main
+detected_tools_count: 156
+tools:
+- name: C lang
+  description: One of the most widely used programming languages of all time
+  website_url: http://en.wikipedia.org/wiki/C_(programming_language)
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/no-img-open-source.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: D
+  description: Modern convenience. Modeling power. Native efficiency.
+  website_url: http://dlang.org/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/3117/d-5.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: EJS
+  description: An Embedded JavaScript templating Language
+  website_url: https://ejs.co/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Templating Languages & Extensions
+  image_url: https://img.stackshare.io/no-img-open-source.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: JSON
+  description: A lightweight data-interchange format
+  website_url: http://www.json.org/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/2880/1024px-JSON_vector_logo.svg.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: JavaScript
+  description: Lightweight, interpreted, object-oriented language with first-class
+    functions
+  website_url: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Python
+  description: A clear and powerful object-oriented programming language, comparable
+    to Perl, Ruby, Scheme, or Java.
+  website_url: https://www.python.org
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Ruby
+  description: A dynamic, interpreted, open source programming language with a focus
+    on simplicity and productivity
+  website_url: https://www.ruby-lang.org
+  version: 3.1.2
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/989/ruby.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Repo Metadata
+  last_updated_by: herve
+  last_updated_on: 2022-03-03 21:12:58.000000000 Z
+- name: SQL
+  description: It is a domain-specific language used in programming
+  website_url: https://en.wikipedia.org/wiki/SQL
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/2271/default_068d33483bba6b81ee13fbd4dc7aab9780896a54.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/teki.session.sql
+  detection_source: teki.session.sql
+  last_updated_by: herve
+  last_updated_on: 2022-03-31 03:45:56.000000000 Z
+- name: TypeScript
+  description: A superset of JavaScript that compiles to clean JavaScript output
+  website_url: http://www.typescriptlang.org
+  version: 4.5.2
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/1612/bynNY5dJ.jpg
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: ".NET"
+  description: A free, cross-platform, open source developer platform for building
+    many different types of applications
+  website_url: http://www.microsoft.com/net/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/1014/IoPy1dce_400x400.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Less
+  description: The dynamic stylesheet language
+  website_url: http://lesscss.org/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: CSS Pre-processors / Extensions
+  image_url: https://img.stackshare.io/service/1170/default_957cbc0168b4d37265e264469c888f776e57f42c.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Node.js
+  description: A platform built on Chrome's JavaScript runtime for easily building
+    fast, scalable network applications
+  website_url: http://nodejs.org/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/1011/n1JRsFeB_400x400.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Omi
+  description: Next generation web framework in 4KB JavaScript (Web Components + JSX
+    + Proxy + Path Updating)
+  website_url: https://github.com/Tencent/omi
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Javascript UI Libraries
+  image_url: https://img.stackshare.io/service/9702/omi-logo.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Play
+  description: The High Velocity Web Framework For Java and Scala
+  website_url: http://www.playframework.com/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/1013/HqN22PuY.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Rails
+  description: Web development that doesn't hurt
+  website_url: http://rubyonrails.org/
+  version: 7.0.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/990/x57_Lorv.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-04-24 11:04:06.000000000 Z
+- name: Vue.js
+  description: A progressive framework for building user interfaces
+  website_url: http://vuejs.org/
+  version: 3.2.31
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Javascript MVC Frameworks
+  image_url: https://img.stackshare.io/service/3837/paeckCWC.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: css-loader
+  description: Helps webpack to collect CSS from all the css files
+  website_url: https://github.com/webpack-contrib/css-loader
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: CSS Pre-processors / Extensions
+  image_url: https://img.stackshare.io/service/8074/default_d2b16fd6997fb2e164de645a34f9b8d5a880d999.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: MySQL
+  description: The world's most popular open source database
+  website_url: http://www.mysql.com
+  open_source: true
+  hosted_saas: false
+  category: Data Stores
+  sub_category: Databases
+  image_url: https://img.stackshare.io/service/1025/logo-mysql-170x170.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-03 21:12:58.000000000 Z
+- name: PostgreSQL
+  description: A powerful, open source object-relational database system
+  website_url: http://www.postgresql.org/
+  open_source: true
+  hosted_saas: false
+  category: Data Stores
+  sub_category: Databases
+  image_url: https://img.stackshare.io/service/1028/ASOhU5xJ.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-03 21:12:58.000000000 Z
+- name: ent
+  description: An entity framework for Go
+  website_url: https://entgo.io/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Data Stores
+  sub_category: Microframeworks (Backend)
+  image_url: https://img.stackshare.io/service/21146/default_3b393819f74c4cb10f98fa9e683fa28cf6cc85f5.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: ws
+  description: A Node.js WebSocket library
+  website_url: https://github.com/websockets/ws
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Application Hosting
+  sub_category: Realtime Backend / API
+  image_url: https://img.stackshare.io/service/11381/no-img-open-source.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Ace
+  description: Embeddable code editor written in JavaScript
+  website_url: https://ace.c9.io
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Collaborative Text Editor
+  image_url: https://img.stackshare.io/service/5372/ACE-Cloud9-EDITOR-Social-Media-icon.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: BrowserStack
+  description: BrowserStack is the leading test platform built for developers &amp;
+    QAs to expand test coverage, scale, &amp; optimize testing
+  website_url: http://www.browserstack.com
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Browser Testing
+  image_url: https://img.stackshare.io/service/182/default_baf5833806936d0d160465c15805e984fd613134.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Bundler
+  description: A consistent environment for tracking and installing  gems and versions
+  website_url: http://bundler.io
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Front End Package Manager
+  image_url: https://img.stackshare.io/service/2988/4e77LXIo_400x400.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Dotenv
+  description: Loads environment variables from .env for Nodejs projects
+  website_url: https://github.com/motdotla/dotenv
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Server Configuration and Automation
+  image_url: https://img.stackshare.io/service/8067/default_90dcb1286af7685c68df319c764b80704df1155b.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-03 21:12:58.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/muhenge/tekki
+  detection_source: Repo Metadata
+- name: GitHub Actions
+  description: Automate your workflow from idea to production
+  website_url: https://github.com/features/actions
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Continuous Integration
+  image_url: https://img.stackshare.io/service/11563/actions.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/.github/workflows/gem-push.yml
+  detection_source: ".github/workflows/gem-push.yml"
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2023-10-06 02:27:24.000000000 Z
+- name: Jest
+  description: Painless JavaScript Unit Testing
+  website_url: http://facebook.github.io/jest/
+  version: 27.5.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Javascript Testing Framework
+  image_url: https://img.stackshare.io/service/830/jest.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Micro
+  description: A framework for cloud native development
+  website_url: https://github.com/micro/micro
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Microservices Tools
+  image_url: https://img.stackshare.io/service/4793/Powered_by_Micro__3_.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Nightwatchjs
+  description: Automated testing and continous integration framework based on node.js
+    and selenium webdriver
+  website_url: http://nightwatchjs.org/
+  version: 1.7.11
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Browser Testing
+  image_url: https://img.stackshare.io/service/4125/Ihf7jKaE.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: NuGet
+  description: The package manager for .NET
+  website_url: https://www.nuget.org/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/service/2637/6I3oEOP4_400x400.jpg
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Prettier
+  description: Prettier is an opinionated code formatter.
+  website_url: https://prettier.io/
+  version: 2.4.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Code Review
+  image_url: https://img.stackshare.io/service/7035/default_66f265943abed56bcdbfca1c866a4261b1fbb063.jpg
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Puma
+  description: A Modern, Concurrent Web Server for Ruby
+  website_url: http://puma.io/
+  version: 5.6.2
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Application Hosting
+  sub_category: Web Servers
+  image_url: https://img.stackshare.io/service/1055/favicon.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-03 21:12:58.000000000 Z
+- name: PyPI
+  description: A repository of software for the Python programming language
+  website_url: https://pypi.org/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Hosted Package Repository
+  image_url: https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: RSpec
+  description: Behaviour Driven Development for Ruby
+  website_url: https://rspec.info/
+  version: 5.1.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/2539/logo.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-03 21:12:58.000000000 Z
+- name: Rome
+  description: A linter, compiler, bundler, and more for JavaScript, TypeScript, JSON,
+    HTML, Markdown, and CSS
+  website_url: https://rome.tools/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: JavaScript Compilers
+  image_url: https://img.stackshare.io/service/25589/default_4a6d6ac5f685e81da1aeeb4f9dfe938685fdf940.jpg
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: RubyGems
+  description: Easily download, install, and use ruby software packages on your system
+  website_url: https://rubygems.org/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/service/12795/5jL6-BA5_400x400.jpeg
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Selenium
+  description: Web Browser Automation
+  website_url: http://www.seleniumhq.org/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Browser Testing
+  image_url: https://img.stackshare.io/service/1517/sbUizSli_400x400.jpg
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Sucrase
+  description: Super-fast alternative to Babel
+  website_url: https://sucrase.io/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: JavaScript Compilers
+  image_url: https://img.stackshare.io/no-img-open-source.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Vite
+  description: Native-ESM powered web dev build tool
+  website_url: https://vitejs.dev/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: JS Build Tools / JS Task Runners
+  image_url: https://img.stackshare.io/service/21547/default_1aeac791cde11ff66cc0b20dcc6144eeb185c905.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Webpack
+  description: A bundler for javascript and friends
+  website_url: http://webpack.js.org
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: JS Build Tools / JS Task Runners
+  image_url: https://img.stackshare.io/service/1682/IMG_4636.PNG
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Yarn
+  description: A new package manager for JavaScript
+  website_url: https://yarnpkg.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Front End Package Manager
+  image_url: https://img.stackshare.io/service/5848/44mC-kJ3.jpg
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: hub
+  description: Wraps Git with extra features that make working with GitHub easier
+    (by GitHub)
+  website_url: http://hub.github.com/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Git Tools
+  image_url: https://img.stackshare.io/no-img-open-source.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: jsdom
+  description: A JavaScript implementation of the WHATWG DOM and HTML standards, for
+    use with node.js
+  website_url: https://github.com/jsdom/jsdom
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Headless Browsers
+  image_url: https://img.stackshare.io/service/7054/preview.jpeg
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: npm
+  description: The package manager for JavaScript.
+  website_url: https://www.npmjs.com/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Front End Package Manager
+  image_url: https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: pre-commit
+  description: A slightly improved pre-commit hook for git
+  website_url: http://jish.github.io/pre-commit/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Git Tools
+  image_url: https://img.stackshare.io/no-img-open-source.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: rollup
+  description: The next-generation JavaScript module bundler
+  website_url: http://rollupjs.org/
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: JS Build Tools / JS Task Runners
+  image_url: https://img.stackshare.io/service/4423/zE8RTn9E_400x400.jpg
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Parse
+  description: The complete mobile app platform
+  website_url: https://parse.com
+  open_source: false
+  hosted_saas: true
+  category: Application Hosting
+  sub_category: Mobile Backend
+  image_url: https://img.stackshare.io/service/86/68wTsXcT.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Render
+  description: A unified platform to build and run all your apps and websites
+  website_url: https://render.com
+  open_source: false
+  hosted_saas: true
+  category: Application Hosting
+  sub_category: Platform as a Service
+  image_url: https://img.stackshare.io/service/11319/tmYAm4ow_400x400.jpg
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Omise
+  description: An online payment gateway offering a wide range of processing solutions
+    for any business need
+  website_url: https://www.omise.co/
+  open_source: false
+  hosted_saas: true
+  category: Payments
+  sub_category: Payment Services
+  image_url: https://img.stackshare.io/service/8491/jYzpfxho_400x400.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Stack
+  description: Add tasks and drag them into columns that match your workflow
+  website_url: http://www.getstack.io/
+  open_source: false
+  hosted_saas: true
+  category: Collaboration
+  sub_category: Agile Project Management
+  image_url: https://img.stackshare.io/service/1222/ibwB53uE.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Twilio SendGrid
+  description: Email Delivery. Simplified.
+  website_url: http://sendgrid.com
+  open_source: false
+  hosted_saas: true
+  category: Communications
+  sub_category: Transactional Email
+  image_url: https://img.stackshare.io/service/43/kQ_6nwmP.jpg
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/config/environments/production.rb
+  detection_source: config/environments/production.rb
+  last_updated_by: herve
+  last_updated_on: 2022-03-03 21:12:58.000000000 Z
+- name: Typ
+  description: Turn Markdown into formatted PDFs
+  website_url: https://www.typ-set.com/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Assets and Media
+  sub_category: File Conversion
+  image_url: https://img.stackshare.io/service/11914/typ.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: jsDelivr
+  description: A free Open Source CDN for webmasters and developers with full JS ESM
+    support
+  website_url: https://www.jsdelivr.com/
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Assets and Media
+  sub_category: Content Delivery Network
+  image_url: https://img.stackshare.io/service/2554/6191378.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Bootsnap
+  description: Boot large ruby/rails apps faster, by Shopify
+  website_url: https://github.com/shopify/bootsnap
+  version: 1.10.3
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Application Utilities
+  sub_category: Ruby Utilities
+  image_url: https://img.stackshare.io/no-img-open-source.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-03 21:12:58.000000000 Z
+- name: CommonJS
+  website_url: http://www.commonjs.org
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/2931/no-img-open-source.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Devise
+  description: Flexible authentication solution for Rails with Warden
+  website_url: https://github.com/plataformatec/devise
+  version: 4.8.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Application Utilities
+  sub_category: User Management and Authentication
+  image_url: https://img.stackshare.io/service/1432/devise.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-03 21:12:58.000000000 Z
+- name: EC
+  website_url: BUG
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/4455/no-img-open-source.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: ECT
+  website_url: http://ectjs.com/
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/2391/no-img-open-source.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: FIX
+  description: We build tools to help make trading connections faster and easier.
+    Hosted and enterprise. Multi-asset class and multi-protocol.
+  website_url: https://fixspec.com/FIX/4.2
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/6473/331jv9hea1czuo3qghna_normal.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Firefox
+  description: Mozilla's Web Browser
+  website_url: https://www.mozilla.org/en-US/firefox/
+  open_source: false
+  hosted_saas: false
+  category: Back Office
+  sub_category: Web Browser
+  image_url: https://img.stackshare.io/service/8705/768px-Firefox_Logo__2017.svg.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Lob
+  description: Print and Mail for Developers
+  website_url: https://lob.com/
+  open_source: false
+  hosted_saas: false
+  category: Application Utilities
+  sub_category: Printing API
+  image_url: https://img.stackshare.io/service/281/default_917b21004d74cbcfcbafcd50aac4d1f3fe3747d5.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: MiniMagick
+  website_url: https://github.com/minimagick/minimagick
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/3924/2532832.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-07 13:18:18.000000000 Z
+- name: OpenLayers
+  description: A high-performance, feature-packed library for all your mapping needs
+  website_url: http://openlayers.org/
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Application Utilities
+  sub_category: Mapping APIs
+  image_url: https://img.stackshare.io/service/3208/397ce8027eb036960f00dd5153d41993.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Per
+  description: Offer usage-based billing to your customers without the work.
+  website_url: https://www.useper.com
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/10232/logo-500x300.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: Vercel AI SDK
+  description: An interoperable, streaming-enabled, edge-ready software development
+    kit for AI apps
+  website_url: https://sdk.vercel.ai/docs
+  open_source: true
+  hosted_saas: false
+  category: Communications
+  sub_category: Large Language Model Tools
+  image_url: https://img.stackshare.io/service/101756/default_4f2991cba3ec7fdd1cc87de69f4868157b0f2001.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: axios
+  description: Promise based HTTP client for the browser and node.js
+  website_url: https://github.com/mzabriskie/axios
+  version: 0.26.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Javascript Utilities & Libraries
+  image_url: https://img.stackshare.io/no-img-open-source.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: chalk
+  description: terminal colors
+  website_url: https://github.com/chalk/chalk
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/8072/13122722.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: iOS
+  description: A mobile operating system by Apple
+  website_url: https://www.apple.com/lae/ios/ios-12/
+  open_source: false
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Operating Systems
+  image_url: https://img.stackshare.io/service/2886/ios-logo.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: js
+  website_url: www.js.com
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/5588/jscom.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: lint-staged
+  website_url: https://github.com/okonet/lint-staged
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/10577/11071.jpeg
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: nci
+  description: Flexible, open source continuous integration server written in node.js
+  website_url: https://github.com/node-ci/nci
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/7802/13189529.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: oso
+  description: A batteries-included system for application authorization.
+  website_url: https://www.osohq.com/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Application Utilities
+  sub_category: User Management and Authentication
+  image_url: https://img.stackshare.io/service/21477/default_4c19bba04fe20b8f2aa0608a1013e3a6faa43b66.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: pkg
+  description: Package your Node.js project into an executable
+  website_url: https://www.npmjs.com/package/pkg
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Javascript Utilities & Libraries
+  image_url: https://img.stackshare.io/service/6883/repo-banner.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: "@octokit/rest"
+  description: GitHub REST API client for Node.js
+  package_url: https://www.npmjs.com/@octokit/rest
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16999/default_43f23668e39c9b3381720c9c76540776b8a49167.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: "@rollup/plugin-node-resolve"
+  description: Locate and bundle third-party dependencies in node_modules
+  package_url: https://www.npmjs.com/@rollup/plugin-node-resolve
+  version: 13.0.5
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17836/default_abcc2eea82e62d338a749f334647866df76198b8.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: "@types/jest"
+  description: TypeScript definitions for Jest
+  package_url: https://www.npmjs.com/@types/jest
+  version: 27.4.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15840/default_004658cda9b38934f2871435e9dc15608c86e8be.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: "@types/jsdom"
+  description: TypeScript definitions for jsdom
+  package_url: https://www.npmjs.com/@types/jsdom
+  version: 16.2.13
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17003/default_88e2e076a71afdc1de87ad42c80c1606f2689af1.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: "@types/node"
+  description: TypeScript definitions for Node.js
+  package_url: https://www.npmjs.com/@types/node
+  version: 13.9.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15809/default_5e5e8ac63beda29f31f1844df64d4b8247570a66.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: "@types/webpack"
+  description: TypeScript definitions for webpack
+  package_url: https://www.npmjs.com/@types/webpack
+  version: 5.28.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16215/default_41f04716a804e853d5c38a5b81ee0ea8a842ad82.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: "@types/webpack-env"
+  description: TypeScript definitions for webpack
+  package_url: https://www.npmjs.com/@types/webpack-env
+  version: 1.15.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16614/default_5a21421012fa20e57fe0aeab31228f42e7118abc.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: "@vue/test-utils"
+  description: Utilities for testing Vue components
+  package_url: https://www.npmjs.com/@vue/test-utils
+  version: 2.0.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16231/default_41f04716a804e853d5c38a5b81ee0ea8a842ad82.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: ai
+  description: The Vercel AI SDK is **a library for building AI-powered streaming
+    text and chat UIs**
+  package_url: https://www.npmjs.com/ai
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/npm/image.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: angular
+  description: HTML enhanced for web apps
+  package_url: https://www.npmjs.com/angular
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16174/default_351a89f21bfb241e8dabeb1444cf56f529948708.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: bl
+  description: 'Buffer List: collect buffers and access with a standard readable Buffer
+    interface'
+  package_url: https://www.npmjs.com/bl
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17221/default_183829c5079b84333a720d8590a328efc043ba0e.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: chalk
+  description: Terminal string styling done right
+  package_url: https://www.npmjs.com/chalk
+  version: 4.1.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15813/default_db4a7791d2f1174547374b9b587bc10fec088a5a.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: chromedriver
+  description: ChromeDriver for Selenium
+  package_url: https://www.npmjs.com/chromedriver
+  version: 97.0.4
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16334/default_c64b9481f9c6af91ec9ae0d9b64505998ac31ee7.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+  vulnerabilities:
+  - name: chromedriver Command Injection vulnerability
+    cve_id: CVE-2023-26156
+    cve_url: https://github.com/advisories/GHSA-hm92-vgmw-qfmx
+    detected_date: Nov 10
+    severity: moderate
+    first_patched: 119.0.1
+- name: cli
+  description: A tool for rapidly building command line apps
+  package_url: https://www.npmjs.com/cli
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17384/default_b39374c3a74b433364bfdbff07be26214bf186fd.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: co
+  description: Generator async control flow goodness
+  package_url: https://www.npmjs.com/co
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16007/default_f8be85789693a9901dbcfa43c135c60525ae49a1.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: conf
+  description: Simple config handling for your app or module
+  package_url: https://www.npmjs.com/conf
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17998/default_fc5f66cf44024e173fd07c415d4f30ca58b4cbad.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: config
+  description: Configuration control for production node deployments
+  package_url: https://www.npmjs.com/config
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16353/default_b5c8f3c8e46d368f74a982d06d7f13291fe651ea.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: connect
+  description: High performance middleware framework
+  package_url: https://www.npmjs.com/connect
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16202/default_2c2f2c7b016f84c0fad2576cb986cb14a5dbbc2f.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: connect-history-api-fallback
+  description: Provides a fallback for non-existing directories so that the HTML 5
+    history API can be used
+  package_url: https://www.npmjs.com/connect-history-api-fallback
+  version: 1.6.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16214/default_180418c6fa6cdb8f7a3500f84a8fedb884fcb3fa.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: conventional-changelog
+  description: Generate a changelog from git metadata
+  package_url: https://www.npmjs.com/conventional-changelog
+  license: ISC
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16618/default_9012166d3e51cea5db6b4e69c80ace1c50b7509d.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: conventional-changelog-cli
+  description: Generate a changelog from git metadata
+  package_url: https://www.npmjs.com/conventional-changelog-cli
+  version: 2.1.1
+  license: ISC
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16260/default_9924e5da1d50ea01e52b48e4fae4b1347af5e4ff.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: css
+  description: CSS parser / stringifier
+  package_url: https://www.npmjs.com/css
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17017/default_824835a71140f223a333a5e10225c10368f12857.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: del
+  description: Delete files and directories
+  package_url: https://www.npmjs.com/del
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15907/default_a582b9fecca65f37fe68520c8f84d3bcae35db24.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: dot
+  description: Concise and fast javascript templating compatible with nodejs and other
+    javascript environments
+  package_url: https://www.npmjs.com/dot
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17465/default_10a98ebc0146ab94b0fde6f7013c1279c82e4135.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: esm
+  description: Tomorrow's ECMAScript modules today!
+  package_url: https://www.npmjs.com/esm
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16371/default_17385ab3aa01d4c295c08d4a9736140df691c5e9.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: github
+  description: 'DEPRECATED: renamed to @octokit/rest'
+  package_url: https://www.npmjs.com/github
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16751/default_6dc099b12d47e378ae121fb53c336fe5d8f0ffc8.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: glob
+  description: A little globber
+  package_url: https://www.npmjs.com/glob
+  license: ISC
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15875/default_7c39a83d4acd952df89b1ebfdb94c8646324fbf1.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: global
+  description: Require global variables
+  package_url: https://www.npmjs.com/global
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16772/default_661bbd7f9556b6c5c0b8be11cd13e1813fc5c977.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: he
+  description: A robust HTML entities encoder/decoder with full Unicode support
+  package_url: https://www.npmjs.com/he
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17059/default_31b594d049ba66ce98c924544ccc4329a3f2d530.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: history
+  description: Manage session history with JavaScript
+  package_url: https://www.npmjs.com/history
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16209/default_dc80ff0a17bac19253430a4f0f586714841116db.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: html-webpack-plugin
+  description: Simplifies creation of HTML files to serve your webpack bundles
+  package_url: https://www.npmjs.com/html-webpack-plugin
+  version: 5.3.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15841/default_5e5e8ac63beda29f31f1844df64d4b8247570a66.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: http
+  package_url: https://www.npmjs.com/http
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16874/default_768abdabb94806c932ace6262b6bbc8241907245.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: https
+  description: Https mediation
+  package_url: https://www.npmjs.com/https
+  license: ISC
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17546/default_8d32936cb624bf7f51657c1540463db0a3c4106e.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: i
+  description: Custom inflections for nodejs
+  package_url: https://www.npmjs.com/i
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17326/default_66bbb2a75a0234b1bfceaa99b8e82825fa7b8284.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: ip
+  description: "[![]"
+  package_url: https://www.npmjs.com/ip
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16483/default_fc6e1fc17e404d936593b5b901d67abb3386daa3.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: is
+  description: The definitive JavaScript type testing library
+  package_url: https://www.npmjs.com/is
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17544/default_e665c133253b5cd434c1991167ebd25dc68f1c17.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: lint-staged
+  description: Lint files staged by git
+  package_url: https://www.npmjs.com/lint-staged
+  version: 12.3.4
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15868/default_e0a4fb1126d7400f419f0931cf1669947a5bc552.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: log
+  description: Universal pluggable logging utility
+  package_url: https://www.npmjs.com/log
+  license: ISC
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17960/default_e0b07170ab7d7ea66954ff35fdeaae5255c4c0aa.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: ms
+  description: Tiny millisecond conversion utility
+  package_url: https://www.npmjs.com/ms
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16565/default_536789d2630ed352dc721a1c915ab456b7660201.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: node
+  description: Node
+  package_url: https://www.npmjs.com/node
+  license: ISC
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17983/default_fc5f66cf44024e173fd07c415d4f30ca58b4cbad.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: np
+  description: A better `npm publish`
+  package_url: https://www.npmjs.com/np
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16247/default_5dfc1810d0882ab844578a326bb8bf19e45e7227.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: ol
+  description: OpenLayers mapping library
+  package_url: https://www.npmjs.com/ol
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/18695/default_ba22650903e999378ab35f8093d2d808f0a46039.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: os
+  description: NodeJS Core Module Extended
+  package_url: https://www.npmjs.com/os
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17784/default_b760b4f955878b0055c02bde0608c2f01e7d4f4f.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: promise
+  description: Bare bones Promises/A+ implementation
+  package_url: https://www.npmjs.com/promise
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16093/default_5a461d436012a0c4024534aaba303dcdb0297d24.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: publish
+  description: Npm auto publishing of your modules
+  package_url: https://www.npmjs.com/publish
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/18190/default_b56a957d927d2e40d2c7cf9f3588b95c4df2c97c.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: raf
+  description: RequestAnimationFrame polyfill for node and the browser
+  package_url: https://www.npmjs.com/raf
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16199/default_fef27d1523ac1844fc00e83e47bddd8898ff8a89.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: rc
+  description: Hardwired configuration loader
+  package_url: https://www.npmjs.com/rc
+  license: BSD-2-Clause,MIT,Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16813/default_5c6919c5e02b8e6c83f3a2b23db5b6962e3caca0.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: read
+  description: Read
+  package_url: https://www.npmjs.com/read
+  license: ISC
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17342/default_66bbb2a75a0234b1bfceaa99b8e82825fa7b8284.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: ref
+  description: Turn Buffer instances into "pointers"
+  package_url: https://www.npmjs.com/ref
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/18418/default_4d27e57a415c059481cbe1fd0734523c261d311a.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: replace
+  description: Command line search and replace utility
+  package_url: https://www.npmjs.com/replace
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16890/default_143d92b1fc944107cf48a3ab42a2a347bf3d91b5.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: resolve
+  description: Resolve like require.resolve
+  package_url: https://www.npmjs.com/resolve
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16128/default_63a34654baee757196ddff2457bd1c9a0dfb7287.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: rimraf
+  description: A deep deletion module for node
+  package_url: https://www.npmjs.com/rimraf
+  license: ISC
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15807/default_db4a7791d2f1174547374b9b587bc10fec088a5a.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: rollup-plugin-terser
+  description: Rollup plugin to minify generated es bundle
+  package_url: https://www.npmjs.com/rollup-plugin-terser
+  version: 7.0.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16078/default_c7b204838197013798409fa2b4dafce450edc7fb.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: rollup-plugin-typescript
+  description: Seamless integration between Rollup and TypeScript
+  package_url: https://www.npmjs.com/rollup-plugin-typescript
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16445/default_55f3303d620c93eecbee69c43373d484f2be492f.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: rollup-plugin-typescript2
+  description: Seamless integration between Rollup and TypeScript
+  package_url: https://www.npmjs.com/rollup-plugin-typescript2
+  version: 0.31.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16076/default_d4e765f8a43dcfd232c8b9ee9732058bc27c727a.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: selenium-server
+  description: Selenium in an npm package
+  package_url: https://www.npmjs.com/selenium-server
+  version: 3.141.59
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16602/default_ebd83b4f0415be108d977ea72558b13fd7c5283d.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: serve
+  description: Static file serving and directory listing
+  package_url: https://www.npmjs.com/serve
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16484/default_73c88a18b684e01cbdbf945631a40a44aff5a777.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: st
+  description: A module for serving static files. Does etags, caching, etc
+  package_url: https://www.npmjs.com/st
+  license: ISC
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/18455/default_d8e945bfec4c4a608fb0493abf73c9ec1cffc9a2.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: terser
+  description: JavaScript parser
+  package_url: https://www.npmjs.com/terser
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16562/default_536789d2630ed352dc721a1c915ab456b7660201.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: test
+  description: ''
+  package_url: https://www.npmjs.com/test
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/18204/default_329699d382cad74e0d389300999bd267b9699d3f.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: tsc
+  description: Latest code from microsoft/typescript packaged and released
+  package_url: https://www.npmjs.com/tsc
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/18739/default_45da7a7c78da21b4de04db19cc949c3490185f5e.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: url
+  description: The core `url` packaged standalone for use with Browserify
+  package_url: https://www.npmjs.com/url
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16462/default_89ba91277e3434b03295bb11d22736632df1d04f.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: util
+  description: Node.js's util module for all engines
+  package_url: https://www.npmjs.com/util
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16507/default_55f3303d620c93eecbee69c43373d484f2be492f.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: verb
+  description: Documentation generator for GitHub projects
+  package_url: https://www.npmjs.com/verb
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17845/default_7e49ed9d84206a0a241a2a0e7e3f63b8f9585401.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: vite
+  description: Native-ESM powered web dev build tool
+  package_url: https://www.npmjs.com/vite
+  version: 2.8.4
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/npm/image.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+  vulnerabilities:
+  - name: Vite dev server option `server.fs.deny` can be bypassed when hosted on case-insensitive
+      filesystem
+    cve_id: CVE-2024-23331
+    cve_url: https://github.com/advisories/GHSA-c24v-8rfc-w8vw
+    detected_date: Jan 20
+    severity: high
+    first_patched: 2.9.17
+  - name: Vite Server Options (server.fs.deny) can be bypassed using double forward-slash
+      (//)
+    cve_id: CVE-2023-34092
+    cve_url: https://github.com/advisories/GHSA-353f-5xf4-qw67
+    detected_date: Nov 23
+    severity: high
+    first_patched: 2.9.16
+  - name: Vitejs Vite before v2.9.13 vulnerable to directory traversal via crafted
+      URL to victim's service
+    cve_id: CVE-2022-35204
+    cve_url: https://github.com/advisories/GHSA-mv48-hcvh-8jj8
+    detected_date: Nov 23
+    severity: moderate
+    first_patched: 2.9.13
+- name: vue
+  description: Vue
+  package_url: https://www.npmjs.com/vue
+  version: 3.2.31
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15844/default_b71c906aeda030a5e2f1fe40bf12a93be52404ab.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: vue-router
+  description: Official router for Vue.js 2
+  package_url: https://www.npmjs.com/vue-router
+  version: 4.0.15
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15969/default_261820f5687b4c88a3e8f95c71b5e8dccd34c1d7.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/yarn.lock
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: watch
+  description: Utilities for watching file trees
+  package_url: https://www.npmjs.com/watch
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/16280/default_97104dc50154593d2dde1d791400955934c9c715.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/@vue/devtools-api/package.json
+  detection_source: node_modules/@vue/devtools-api/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: write
+  description: Write data to a file, replacing the file if it already exists and creating
+    any intermediate directories if they don't already exist
+  package_url: https://www.npmjs.com/write
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/18762/default_b057657dca80f65f97b5bbe8ba405ffa92071739.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: yo
+  description: CLI tool for running Yeoman generators
+  package_url: https://www.npmjs.com/yo
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/17899/default_3bc64391130859f94a137a7dc6cb87cd54da546b.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/node_modules/vue-router/package.json
+  detection_source: node_modules/vue-router/package.json
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-26 10:30:39.000000000 Z
+- name: aws-sdk
+  description: The official AWS SDK for Ruby
+  package_url: https://rubygems.org/aws-sdk
+  version: 3.1.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: RubyGems Packages
+  image_url: https://img.stackshare.io/package/18869/default_63d360ffaa27bed91e2b067fb467407b5c9da0ed.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: NGENZI Herve
+  last_updated_on: 2022-05-23 08:01:53.000000000 Z
+- name: dotenv-rails
+  description: Autoload dotenv in Rails
+  package_url: https://rubygems.org/dotenv-rails
+  version: 2.7.6
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: RubyGems Packages
+  image_url: https://img.stackshare.io/package/19404/default_256f314e809c8e6655d38645e0a725102cea782b.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-04-24 11:04:06.000000000 Z
+- name: friendly_id
+  description: FriendlyId is the "Swiss Army bulldozer" of slugging and permalink
+    plugins for Active Record
+  package_url: https://rubygems.org/friendly_id
+  version: 5.4.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: RubyGems Packages
+  image_url: https://img.stackshare.io/package/19084/default_54dcdbda5f19ac7cce7dfde7a31f57a35d2cdc2f.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-07 13:18:18.000000000 Z
+- name: image_processing
+  description: High-level wrapper for processing images for the web with ImageMagick
+    or libvips
+  package_url: https://rubygems.org/image_processing
+  version: 1.12.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: RubyGems Packages
+  image_url: https://img.stackshare.io/package/rubygems/image.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-07 13:18:18.000000000 Z
+- name: mini_magick
+  description: Manipulate images with minimal use of memory via ImageMagick / GraphicsMagick
+  package_url: https://rubygems.org/mini_magick
+  version: 4.11.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: RubyGems Packages
+  image_url: https://img.stackshare.io/package/18955/default_89409eddf4c844af508d7b2a0c2436ec652e1120.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-07 13:18:18.000000000 Z
+- name: mysql2
+  description: A simple, fast Mysql library for Ruby, binding to libmysql
+  package_url: https://rubygems.org/mysql2
+  version: 0.5.3
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: RubyGems Packages
+  image_url: https://img.stackshare.io/package/18883/default_947bd37125b8812cb816bc3cf571b13df90a4fe0.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-03 21:12:58.000000000 Z
+- name: pg
+  description: Pg is the Ruby interface to the {PostgreSQL RDBMS}[http://www.postgresql.org/]
+  package_url: https://rubygems.org/pg
+  version: 1.3.5
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: RubyGems Packages
+  image_url: https://img.stackshare.io/package/18855/default_d343d9a7c573fa5dcbeb4d3c43d2ffe4afa82cc1.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-03 21:12:58.000000000 Z
+- name: public_suffix
+  description: PublicSuffix can parse and decompose a domain name into top level domain
+  package_url: https://rubygems.org/public_suffix
+  version: 4.0.6
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: RubyGems Packages
+  image_url: https://img.stackshare.io/package/19234/default_9d690be2e4cce2ae7ccb9ebe030550089fe4ad1c.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-07 13:18:18.000000000 Z
+- name: rack-cors
+  description: Middleware that will make Rack-based apps CORS compatible
+  package_url: https://rubygems.org/rack-cors
+  version: 1.1.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: RubyGems Packages
+  image_url: https://img.stackshare.io/package/19489/default_235e01dd950d1f80c14beead28dc8c06a1dbf108.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-03-03 21:12:58.000000000 Z
+  vulnerabilities:
+  - name: Rack CORS Middleware has Insecure File Permissions
+    cve_id: CVE-2024-27456
+    cve_url: https://github.com/advisories/GHSA-785g-282q-pwvx
+    detected_date: Feb 27
+    severity: moderate
+    first_patched: 
+- name: rails_12factor
+  description: Run Rails the 12factor way
+  package_url: https://rubygems.org/rails_12factor
+  version: 0.0.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: RubyGems Packages
+  image_url: https://img.stackshare.io/package/rubygems/image.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-04-24 11:04:06.000000000 Z
+- name: rspec-rails
+  description: Rspec-rails is a testing framework for Rails 3+
+  package_url: https://rubygems.org/rspec-rails
+  version: 5.1.2
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: RubyGems Packages
+  image_url: https://img.stackshare.io/package/18830/default_ba8d7756589e5fc0164687950e3f091b32554546.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-04-24 11:04:06.000000000 Z
+- name: yaml_db
+  description: YamlDb is a database-independent format for dumping and restoring data
+  package_url: https://rubygems.org/yaml_db
+  version: 0.7.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: RubyGems Packages
+  image_url: https://img.stackshare.io/package/rubygems/image.png
+  detection_source_url: https://github.com/muhenge/tekki/blob/main/Gemfile.lock
+  detection_source: Gemfile
+  last_updated_by: herve
+  last_updated_on: 2022-04-24 13:41:52.000000000 Z
