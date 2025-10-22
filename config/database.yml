@@ -23,10 +23,10 @@ test:
   <<: *default
   database: <%= ENV['DB_TEST'] %>
 
-# DATABASE_URL: <%= ENV['DATABASE_URL'] %>
+# DATABASE_URL: <%= ENV['DATABASE_URL'] %>  # Commented out - not a valid Rails environment key
 
 production:
   <<: *default
   database: <%= ENV['DB_PROD'] %>
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>  # Commented out - already inherited from default
   timeout: 5000
