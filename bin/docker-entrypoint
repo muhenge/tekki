@@ -1,22 +1,36 @@
 #!/bin/bash
 set -e
 
+echo "🚀 Starting Tekki API..."
+
 # Remove a potentially pre-existing server.pid for Rails.
 rm -f /app/tmp/pids/server.pid
 
 # Wait for PostgreSQL to be ready
 if [ -z "$SKIP_DATABASE_CHECK" ]; then
+  echo "🔍 Checking database connection..."
   until pg_isready -h "${DATABASE_HOST:-db}" -p "${DATABASE_PORT:-5432}" -U "${DATABASE_USERNAME:-postgres}" -d "${DATABASE_NAME}"; do
-    echo "Waiting for PostgreSQL to be available..."
+    echo "⏳ Waiting for PostgreSQL to be available..."
     sleep 2
   done
+  echo "✅ Database connection established"
 fi
 
 # Run migrations if needed
 if [ "$RUN_MIGRATIONS" = "true" ]; then
-  echo "Running database migrations..."
+  echo "🔄 Running database migrations..."
   bundle exec rails db:migrate
+  echo "✅ Database migrations completed"
 fi
+
+# Create necessary directories
+mkdir -p /app/tmp/pids
+mkdir -p /app/log
+
+# Set proper permissions
+chown -R app:app /app/tmp /app/log
+
+echo "🎯 Starting Rails server..."
 
 # Then exec the container's main process
 exec "$@"

@@ -11,7 +11,9 @@ RUN apt-get update -qq && \
     curl \
     git \
     libpq-dev \
-    pkg-config && \
+    pkg-config \
+    nodejs \
+    npm && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -19,13 +21,17 @@ WORKDIR /app
 # Install gems
 ENV BUNDLE_PATH=/usr/local/bundle \
     BUNDLE_JOBS=4 \
-    BUNDLE_WITHOUT="development test"
+    BUNDLE_WITHOUT="development test" \
+    RAILS_ENV=production
 
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
+RUN bundle install --frozen
 
 # Copy application code
 COPY . .
+
+# Precompile assets
+RUN bundle exec rails assets:precompile
 
 # Stage 2: Production image
 FROM ruby:$RUBY_VERSION-slim
@@ -34,7 +40,8 @@ FROM ruby:$RUBY_VERSION-slim
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
     libpq5 \
-    postgresql-client && \
+    postgresql-client \
+    curl && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -46,12 +53,18 @@ COPY --from=builder /app /app
 # Create non-root user
 RUN useradd -m app && \
     chown -R app:app /app
+
+# Set proper permissions
+RUN chmod +x bin/docker-entrypoint
+
 USER app
 
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD curl -f http://localhost:3000/api || exit 1
+
 # Entrypoint
-COPY bin/docker-entrypoint /usr/bin/
-RUN chmod +x /usr/bin/docker-entrypoint
-ENTRYPOINT ["docker-entrypoint"]
+ENTRYPOINT ["bin/docker-entrypoint"]
 
 # Default command
 CMD ["bin/rails", "server", "-b", "0.0.0.0", "-p", "3000"]

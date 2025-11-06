@@ -1,0 +1,95 @@
+# .dockerignore - Optimize Docker build by excluding unnecessary files
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+KAMAL_DEPLOYMENT_GUIDE.md
+*.md
+
+# Development files
+.env
+.env.local
+.env.development
+.env.test
+
+# Logs
+log/*
+tmp/*
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+node_modules/
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Test files
+spec/
+test/
+.rspec
+
+# Development database
+db/*.sqlite3
+db/*.sqlite3-journal
+
+# Kamal deployment files
+.kamal/
+
+# Docker files
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# Setup scripts
+setup_kamal.sh
+
+# Backup files
+*.bak
+*.backup
+
+
+
