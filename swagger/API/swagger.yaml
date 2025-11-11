@@ -34,6 +34,10 @@ paths:
                         type: string
                       lastname:
                         type: string
+                      bio:
+                        type: string
+                      about:
+                        type: string
                       slug:
                         type: string
                       created_at:
@@ -65,15 +69,18 @@ paths:
                     email:
                       type: string
                       example: user@example.com
+                      description: Must be a valid email address and maximum 255 characters
                     password:
                       type: string
-                      example: password123
+                      example: Password123!
+                      description: Must include at least 1 uppercase, 1 lowercase, 1 digit and 1 special character, minimum 8 characters
                     password_confirmation:
                       type: string
-                      example: password123
+                      example: Password123!
                     username:
                       type: string
                       example: johndoe
+                      description: 3-20 characters, letters, numbers and underscores only
                     firstname:
                       type: string
                       example: John
@@ -83,9 +90,30 @@ paths:
                     bio:
                       type: string
                       example: Software developer
+                      description: Maximum 500 characters
                     about:
                       type: string
                       example: Passionate about technology
+                    career_ids:
+                      type: array
+                      description: Select up to 3 careers
+                      items:
+                        type: integer
+                      example: [1, 2, 3]
+                    skills:
+                      type: array
+                      description: User skills with name and level (optional during signup)
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          level:
+                            type: string
+                            enum: 
+                              - Beginner
+                              - Intermediate
+                              - Advanced
                   required:
                   - email
                   - password
@@ -1295,13 +1323,38 @@ paths:
                       type: string
                     username:
                       type: string
+                      description: 3-20 characters, letters, numbers and underscores only
                     bio:
                       type: string
+                      description: Maximum 500 characters
                     about:
                       type: string
                     avatar:
                       type: string
                       format: binary
+                    career_ids:
+                      type: array
+                      description: Select up to 3 careers
+                      items:
+                        type: integer
+                      example: [1, 2, 3]
+                    skills_attributes:
+                      type: array
+                      description: User skills with name and level
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            description: ID of existing skill to update or null for new skill
+                          name:
+                            type: string
+                          level:
+                            type: string
+                            enum: 
+                              - Beginner
+                              - Intermediate
+                              - Advanced
   "/api/{user_slug}/connections":
     get:
       summary: Get user connections
@@ -1414,7 +1467,7 @@ paths:
               - password
               - career_id
 servers:
-- url: http://localhost:3000
+- url: http://localhost:3450
 components:
   securitySchemes:
     bearerAuth:

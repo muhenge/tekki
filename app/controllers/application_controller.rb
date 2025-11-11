@@ -1,7 +1,4 @@
-class ApplicationController < ActionController::Base
-  include InertiaRails
-  helper InertiaRails::Helpers
-
+class ApplicationController < ActionController::API
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def current_token
