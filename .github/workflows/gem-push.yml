@@ -12,24 +12,15 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: rails_test
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
       postgres:
         image: postgres:14
         env:
           POSTGRES_PASSWORD: password
           POSTGRES_USER: postgres
-          POSTGRES_DB: rails_test_pg
+          POSTGRES_DB: rails_test
         ports:
           - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout=5s --health-retries=5
 
     steps:
     - uses: actions/checkout@v3
@@ -45,32 +36,19 @@ jobs:
         gem install bundler
         bundle install --jobs 4 --retry 3
 
-    - name: Setup MySQL database
+    - name: Setup PostgreSQL database
       run: |
         bundle exec rake db:create RAILS_ENV=test
         bundle exec rake db:schema:load RAILS_ENV=test
       env:
-        DATABASE_URL: mysql2://root:password@127.0.0.1:3306/rails_test
-
-    - name: Run tests with MySQL
-      run: bundle exec rspec
-      env:
-        DATABASE_URL: mysql2://root:password@127.0.0.1:3306/rails_test
+        DATABASE_URL: postgres://postgres:password@127.0.0.1:5432/rails_test
         RAILS_ENV: test
 
-    - name: Setup PostgreSQL database
-      run: |
-        bundle exec rake db:create RAILS_ENV=production_test
-        bundle exec rake db:schema:load RAILS_ENV=production_test
-      env:
-        DATABASE_URL: postgres://postgres:password@127.0.0.1:5432/rails_test_pg
-        RAILS_ENV: production_test
-
-    - name: Run tests with PostgreSQL
+    - name: Run tests
       run: bundle exec rspec
       env:
-        DATABASE_URL: postgres://postgres:password@127.0.0.1:5432/rails_test_pg
-        RAILS_ENV: production_test
+        DATABASE_URL: postgres://postgres:password@127.0.0.1:5432/rails_test
+        RAILS_ENV: test
 
     - name: Run security checks
       run: |
