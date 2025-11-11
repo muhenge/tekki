@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_10_101241) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_11_114133) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -73,6 +73,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_101241) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "relashionships", force: :cascade do |t|
@@ -80,11 +82,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_101241) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "skills", force: :cascade do |t|
-    t.string "name"
-    t.string "level"
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_skills_on_user_id"
   end
 
   create_table "user_careers", force: :cascade do |t|
@@ -116,6 +129,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_101241) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
+    t.string "about"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["jti"], name: "index_users_on_jti", unique: true
@@ -127,6 +141,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_10_101241) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "post_careers", "careers"
   add_foreign_key "post_careers", "posts"
+  add_foreign_key "posts", "users"
+  add_foreign_key "skills", "users"
   add_foreign_key "user_careers", "careers"
   add_foreign_key "user_careers", "users"
 end

@@ -5,13 +5,10 @@ class Api::SkillsController < ApplicationController
   # POST /api/skills
   def create
     skills = params.require(:skills).map do |skill_params|
-      skill_params = skill_params.permit(:name, :level)
-      skill_params[:level] = skill_params[:level].strip if skill_params[:level].present?
+      skill_params = skill_params.permit(:name)
 
       # Find or create skill
-      current_user.skills.find_or_initialize_by(name: skill_params[:name]).tap do |skill|
-        skill.level = skill_params[:level] if skill.new_record?
-      end
+      current_user.skills.find_or_initialize_by(name: skill_params[:name])
     end
 
     if skills.all?(&:valid?)
@@ -47,6 +44,6 @@ class Api::SkillsController < ApplicationController
   end
 
   def skill_params
-    params.require(:skill).permit(:name, :level)
+    params.require(:skill).permit(:name)
   end
 end
