@@ -2,6 +2,11 @@
 require "spec_helper"
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
+
+# Clear any cached constants to prevent autoloading conflicts
+if defined?(Zeitwerk::Loader)
+  Rails.application.reloader.reload!
+end
 # Prevent database truncation if the environment is production
 if Rails.env.production?
   abort("The Rails environment is running in production mode!")

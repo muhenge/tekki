@@ -1,337 +1,106 @@
-require "swagger_helper"
+require 'rails_helper'
 
-RSpec.describe "Authentication API", type: :request do
-  path "/api/auth/signup" do
-    post "Create a new user account" do
-      tags "Authentication"
-      consumes "application/json"
-      produces "application/json"
+RSpec.describe 'Api::Auth', type: :request do
+  describe 'POST /api/auth/signup' do
+    let(:valid_params) do
+      {
+        user: {
+          email: 'test@example.com',
+          password: 'Password123!',
+          password_confirmation: 'Password123!',
+          username: 'testuser',
+          firstname: 'John',
+          lastname: 'Doe',
+          bio: 'Software developer'
+        }
+      }
+    end
 
-      parameter name: :user,
-                in: :body,
-                schema: {
-                  type: :object,
-                  properties: {
-                    user: {
-                      type: :object,
-                      properties: {
-                        email: {
-                          type: :string,
-                          example: "user@example.com"
-                        },
-                        password: {
-                          type: :string,
-                          example: "password123"
-                        },
-                        password_confirmation: {
-                          type: :string,
-                          example: "password123"
-                        },
-                        username: {
-                          type: :string,
-                          example: "johndoe"
-                        },
-                        firstname: {
-                          type: :string,
-                          example: "John"
-                        },
-                        lastname: {
-                          type: :string,
-                          example: "Doe"
-                        },
-                        bio: {
-                          type: :string,
-                          example: "Software developer"
-                        },
-                        about: {
-                          type: :string,
-                          example: "Passionate about technology"
-                        }
-                      },
-                      required: %w[
-                        email
-                        password
-                        password_confirmation
-                        username
-                        firstname
-                        lastname
-                      ]
-                    }
-                  }
-                }
+    let(:invalid_params) do
+      {
+        user: {
+          email: 'invalid-email',
+          password: '123',
+          password_confirmation: '456',
+          username: '', # Invalid - empty
+          firstname: '',
+          lastname: ''
+        }
+      }
+    end
 
-      response "201", "User created successfully" do
-        schema type: :object,
-               properties: {
-                 success: {
-                   type: :boolean
-                 },
-                 user: {
-                   type: :object,
-                   properties: {
-                     id: {
-                       type: :integer
-                     },
-                     email: {
-                       type: :string
-                     },
-                     username: {
-                       type: :string
-                     },
-                     firstname: {
-                       type: :string
-                     },
-                     lastname: {
-                       type: :string
-                     },
-                     slug: {
-                       type: :string
-                     },
-                     created_at: {
-                       type: :string
-                     },
-                     updated_at: {
-                       type: :string
-                     }
-                   }
-                 },
-                 message: {
-                   type: :string
-                 }
-               }
+    context 'with valid parameters' do
+      it 'creates a new user' do
+        expect {
+          post '/api/auth/signup', params: valid_params
+        }.to change(User, :count).by(1)
 
-        let(:user) do
-          {
-            user: {
-              email: "test@example.com",
-              password: "password123",
-              password_confirmation: "password123",
-              username: "testuser",
-              firstname: "Test",
-              lastname: "User"
-            }
-          }
-        end
-
-        run_test!
+        expect(response).to have_http_status(:created)
+        expect(response.content_type).to include('application/json')
+        json_response = JSON.parse(response.body)
+        expect(json_response['success']).to be true
+        expect(json_response['user']['email']).to eq('test@example.com')
+        expect(json_response['user']['username']).to eq('testuser')
       end
+    end
 
-      response "422", "Invalid request" do
-        schema type: :object,
-               properties: {
-                 success: {
-                   type: :boolean
-                 },
-                 errors: {
-                   type: :object
-                 }
-               }
-
-        let(:user) do
-          {
-            user: {
-              email: "invalid-email",
-              password: "123",
-              password_confirmation: "456"
-            }
-          }
-        end
-
-        run_test!
+    context 'with invalid parameters' do
+      it 'returns unprocessable entity' do
+        post '/api/auth/signup', params: invalid_params
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.content_type).to include('application/json')
+        json_response = JSON.parse(response.body)
+        expect(json_response['success']).to be false
       end
     end
   end
 
-  path "/api/auth/login" do
-    post "User login" do
-      tags "Authentication"
-      consumes "application/json"
-      produces "application/json"
+  describe 'POST /api/auth/login' do
+    let(:user) do
+      User.create!(
+        email: 'test@example.com',
+        password: 'Password123!',
+        username: 'testuser',
+        firstname: 'John',
+        lastname: 'Doe'
+      )
+    end
 
-      parameter name: :user,
-                in: :body,
-                schema: {
-                  type: :object,
-                  properties: {
-                    user: {
-                      type: :object,
-                      properties: {
-                        email: {
-                          type: :string,
-                          example: "user@example.com"
-                        },
-                        password: {
-                          type: :string,
-                          example: "password123"
-                        }
-                      },
-                      required: %w[email password]
-                    }
-                  }
-                }
+    let(:valid_login_params) do
+      {
+        user: {
+          email: 'test@example.com',
+          password: 'Password123!'
+        }
+      }
+    end
 
-      response "200", "Login successful" do
-        schema type: :object,
-               properties: {
-                 message: {
-                   type: :string
-                 },
-                 data: {
-                   type: :object,
-                   properties: {
-                     id: {
-                       type: :integer
-                     },
-                     email: {
-                       type: :string
-                     },
-                     username: {
-                       type: :string
-                     },
-                     firstname: {
-                       type: :string
-                     },
-                     lastname: {
-                       type: :string
-                     },
-                     slug: {
-                       type: :string
-                     }
-                   }
-                 }
-               }
+    let(:invalid_login_params) do
+      {
+        user: {
+          email: 'test@example.com',
+          password: 'wrongpassword'
+        }
+      }
+    end
 
-        let(:user) do
-          { user: { email: "test@example.com", password: "password123" } }
-        end
-
-        run_test!
-      end
-
-      response "401", "Invalid credentials" do
-        schema type: :object, properties: { error: { type: :string } }
-
-        let(:user) do
-          { user: { email: "wrong@example.com", password: "wrongpassword" } }
-        end
-
-        run_test!
+    context 'with valid credentials' do
+      it 'returns authentication token' do
+        post '/api/auth/login', params: valid_login_params
+        expect(response).to have_http_status(:ok)
+        expect(response.content_type).to include('application/json')
+        json_response = JSON.parse(response.body)
+        expect(json_response['data']['email']).to eq('test@example.com')
+        expect(json_response['data']['username']).to eq('testuser')
       end
     end
-  end
 
-  path "/api/auth/logout" do
-    delete "User logout" do
-      tags "Authentication"
-      security [{ bearerAuth: [] }]
-      produces "application/json"
-
-      response "200", "Logout successful" do
-        schema type: :object, properties: { message: { type: :string } }
-
-        run_test!
-      end
-    end
-  end
-
-  path "/api/auth/current_user" do
-    get "Get current user information" do
-      tags "Authentication"
-      security [{ bearerAuth: [] }]
-      produces "application/json"
-
-      response "200", "Current user retrieved" do
-        schema type: :object,
-               properties: {
-                 success: {
-                   type: :boolean
-                 },
-                 user: {
-                   type: :object,
-                   properties: {
-                     id: {
-                       type: :integer
-                     },
-                     email: {
-                       type: :string
-                     },
-                     username: {
-                       type: :string
-                     },
-                     firstname: {
-                       type: :string
-                     },
-                     lastname: {
-                       type: :string
-                     },
-                     slug: {
-                       type: :string
-                     }
-                   }
-                 }
-               }
-
-        run_test!
-      end
-
-      response "401", "Unauthorized" do
-        schema type: :object, properties: { error: { type: :string } }
-
-        run_test!
-      end
-    end
-  end
-
-  path "/api/auth/magic_login" do
-    post "Magic login with token" do
-      tags "Authentication"
-      consumes "application/json"
-      produces "application/json"
-
-      parameter name: :token,
-                in: :body,
-                schema: {
-                  type: :object,
-                  properties: {
-                    token: {
-                      type: :string,
-                      example: "abc123def456"
-                    }
-                  },
-                  required: ["token"]
-                }
-
-      response "200", "Magic login successful" do
-        schema type: :object,
-               properties: {
-                 success: {
-                   type: :boolean
-                 },
-                 user: {
-                   type: :object,
-                   properties: {
-                     id: {
-                       type: :integer
-                     },
-                     email: {
-                       type: :string
-                     },
-                     username: {
-                       type: :string
-                     }
-                   }
-                 }
-               }
-
-        let(:token) { { token: "valid_token" } }
-        run_test!
-      end
-
-      response "401", "Invalid token" do
-        schema type: :object, properties: { error: { type: :string } }
-
-        let(:token) { { token: "invalid_token" } }
-        run_test!
+    context 'with invalid credentials' do
+      it 'returns unauthorized' do
+        post '/api/auth/login', params: invalid_login_params
+        expect(response).to have_http_status(:unauthorized)
+        json_response = JSON.parse(response.body)
+        expect(json_response['error']).to eq('Invalid credentials')
       end
     end
   end

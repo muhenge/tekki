@@ -14,7 +14,7 @@ Rails.application.configure do
   # Eager loading loads your whole application. When running a single test locally,
   # this probably isn't necessary. It's a good idea to do in a continuous integration
   # system, or in some way before deploying your code.
-  config.eager_load = true
+  config.eager_load = ENV["CI"].present?
 
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
@@ -57,4 +57,12 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+  
+  # Additional configuration to prevent autoloading issues in test environment
+  config.after_initialize do
+    # Ensure certain components are not unnecessarily loaded in API mode
+    Rails.application.config.eager_load_paths = Rails.application.config.eager_load_paths.reject do |path|
+      path.include?('actiontext') || path.include?('action_mailbox')
+    end
+  end
 end
