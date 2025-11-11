@@ -110,7 +110,7 @@ paths:
                             type: string
                           level:
                             type: string
-                            enum: 
+                            enum:
                               - Beginner
                               - Intermediate
                               - Advanced
@@ -1351,7 +1351,7 @@ paths:
                             type: string
                           level:
                             type: string
-                            enum: 
+                            enum:
                               - Beginner
                               - Intermediate
                               - Advanced
