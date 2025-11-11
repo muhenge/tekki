@@ -1,4 +1,4 @@
-class CustomFailureLoginController < Devise::FailureApp
+class Api::Auth::CustomFailureLoginController < Devise::FailureApp
   def respond
     if request.format.json?
       json_error_response
