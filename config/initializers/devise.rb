@@ -1,5 +1,7 @@
 
 # frozen_string_literal: true
+require_relative '../../app/controllers/api/auth/custom_failure_login_controller'
+
 
 # config/initializers/devise.rb
 Devise.setup do |config|
