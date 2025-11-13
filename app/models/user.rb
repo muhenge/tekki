@@ -11,7 +11,8 @@ class User < ApplicationRecord
          :recoverable,
          :rememberable,
          :validatable,
-         :api
+         :jwt_authenticatable,
+         jwt_revocation_strategy: JwtDenylist
 
   # Associations
   has_many :user_careers, dependent: :destroy
