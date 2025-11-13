@@ -3,19 +3,13 @@ Rails.application.routes.draw do
   mount Rswag::Ui::Engine => "/api-docs"
   mount Rswag::Api::Engine => "/api-docs"
 
-  devise_for :users,
-             path: "",
-             path_names: {
-               sign_in: "api/auth/login",
-               sign_out: "api/auth/logout",
-               registration: "api/auth/signup"
-               # confirmations: 'api/auth/confirmations'
-             },
-             controllers: {
-               sessions: "api/auth/sessions",
-               registrations: "api/auth/registrations",
-               edit: "api/auth/registrations#update"
-             }
+  devise_for :users, skip: :all # Skip all default Devise routes for users
+  devise_api_for :users,
+                 path: "api/auth",
+                 controllers: {
+                   registrations: "api/auth/registrations",
+                   sessions: "api/auth/sessions"
+                 }
 
   namespace :api, defaults: { format: :json } do
     namespace :auth do

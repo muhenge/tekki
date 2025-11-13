@@ -1,46 +1,20 @@
 module Api
   module Auth
-    class SessionsController < Devise::SessionsController
-      respond_to :json
-      before_action :ensure_json_request
+    class SessionsController < Devise::Api::SessionsController
+      # POST /api/auth/sign_in
+      def create
+        self.resource = warden.authenticate!(auth_options)
+        sign_in(resource_name, resource)
+        yield resource if block_given?
 
-      private
-
-      def respond_with(resource, _opts = {})
-        if resource.persisted?
-          
-          render json: {
-                   message: "Logged in successfully.",
-                   # token: request.env['warden-jwt_auth.token'],
-                   data: current_user
-                 },
-                 status: :ok
-        else
-          render json: {
-                   error: "Invalid email or password."
-                 },
-                 status: :unauthorized
-        end
+        render json: { success: true, user: resource }
       end
 
-      def respond_to_on_destroy
-        jwt_payload =
-          JWT.decode(
-            request.headers["Authorization"].split(" ")[1],
-            Rails.application.secret_key_base
-          )
-        current_user = User.find(jwt_payload[0]["sub"])
-        return unless current_user
-
-        render json: { message: "Logged out successfully." }, status: :ok
-      end
-
-      def logout_failure
-        render json: { message: "Failed to logout!" }, status: :unauthorized
-      end
-
-      def ensure_json_request
-        request.format = :json
+      # DELETE /api/auth/sign_out
+      def destroy
+        # Devise::Api::SessionsController handles token revocation automatically
+        # The super call will handle signing out the user and revoking the token
+        super
       end
     end
   end

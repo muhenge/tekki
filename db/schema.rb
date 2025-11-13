@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_11_114133) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_13_054428) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -46,6 +46,22 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_11_114133) do
     t.string "field"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "devise_api_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "resource_owner_type", null: false
+    t.uuid "resource_owner_id", null: false
+    t.string "access_token", null: false
+    t.string "refresh_token"
+    t.integer "expires_in", null: false
+    t.datetime "revoked_at"
+    t.string "previous_refresh_token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["access_token"], name: "index_devise_api_tokens_on_access_token"
+    t.index ["previous_refresh_token"], name: "index_devise_api_tokens_on_previous_refresh_token"
+    t.index ["refresh_token"], name: "index_devise_api_tokens_on_refresh_token"
+    t.index ["resource_owner_type", "resource_owner_id"], name: "index_devise_api_tokens_on_resource_owner"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

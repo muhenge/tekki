@@ -28,8 +28,6 @@ gem "jbuilder"
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 gem 'devise'
-gem 'devise-jwt'
-
 gem 'kamal'
 
 gem 'rack-cors'
@@ -81,3 +79,5 @@ end
 gem "ruby-lsp", "~> 0.0.2", :group => :development
 
 gem "factory_bot", "~> 6.5"
+
+gem "devise-api", "~> 0.2.0"

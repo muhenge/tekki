@@ -1,46 +1,35 @@
 module Api
   module Auth
-    class RegistrationsController < Devise::RegistrationsController
+    class RegistrationsController < Devise::Api::RegistrationsController
       def create
-        user_params = sign_up_params.to_h.deep_symbolize_keys
-        career_ids_or_names = user_params.delete(:career_ids)
+        build_resource(sign_up_params)
 
-        @user = User.new(user_params)
+        resource.career_ids = params[:user][:career_ids] if params[:user][:career_ids].present?
 
-        if @user.save
-          if career_ids_or_names.present?
-            careers = career_ids_or_names.map do |item|
-              if item.is_a?(Integer) || item.match?(/\A\d+\z/)
-                Career.find_by(id: item.to_i)
-              elsif item.is_a?(String)
-                Career.find_or_create_by(field: item)
-              end
-            end.compact
-            @user.careers = careers
+        if resource.save
+          yield resource if block_given?
+          if resource.persisted?
+            render json: {
+              success: true,
+              user: resource,
+              message: "Registration successful"
+            }, status: :created
+          else
+            render json: {
+              success: false,
+              errors: format_errors(resource.errors)
+            }, status: :unprocessable_entity
           end
-
-          sign_in(@user)
-          Rails.logger.info "User signed in successfully."
-          # @user.generate_login_token!
-          # UserMailer.with(user: @user).login_token_email.deliver_later
-
-          render json: {
-                   success: true,
-                   user: @user,
-                   message: "Registration successful"
-                 },
-                 status: :created
         else
           render json: {
-                   success: false,
-                   errors: format_errors(@user.errors)
-                 },
-                 status: :unprocessable_entity
+            success: false,
+            errors: format_errors(resource.errors)
+          }, status: :unprocessable_entity
         end
       end
 
       def update
-        if @user.update(sign_up_params)
+        if @user.update(account_update_params)
           render json: {
                    success: true,
                    user: @user,
@@ -57,6 +46,14 @@ module Api
       end
 
       private
+
+      def sign_up_params
+        params.require(:user).permit(:email, :password, :password_confirmation, :username, :firstname, :lastname, :bio, career_ids: [])
+      end
+
+      def account_update_params
+        params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :username, :firstname, :lastname, :bio, career_ids: [])
+      end
 
       def format_errors(errors)
         errors.to_hash(true).transform_values { |v| v.join(", ") }

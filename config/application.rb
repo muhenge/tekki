@@ -23,6 +23,11 @@ module Tekki
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a session.
     config.api_only = true
+
+    # Enable session middleware
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, key: '_tekki_session'
+
     
     # Prevent ActionText and other unnecessary components from loading in API mode
     config.generators do |g|

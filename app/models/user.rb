@@ -11,8 +11,7 @@ class User < ApplicationRecord
          :recoverable,
          :rememberable,
          :validatable,
-         :jwt_authenticatable,
-         jwt_revocation_strategy: JwtDenylist
+         :api
 
   # Associations
   has_many :user_careers, dependent: :destroy
@@ -83,20 +82,7 @@ class User < ApplicationRecord
     Rails.application.routes.url_helpers.url_for(avatar)
   end
 
-  # JWT methods
-  before_create :set_jti
-
-  def generate_login_token!
-    self.login_token = SecureRandom.hex(10)
-    self.login_token_sent_at = Time.current
-    save!
-  end
-
   private
-
-  def set_jti
-    self.jti ||= SecureRandom.uuid
-  end
 
   def password_complexity
     return if password.blank? || password =~ /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}\z/
