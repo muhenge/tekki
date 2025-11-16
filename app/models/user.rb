@@ -6,6 +6,7 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :username, use: :slugged
 
+  # ✅ Change jwt_revocation_strategy to JTIMatcher
   devise :database_authenticatable,
          :registerable,
          :recoverable,
@@ -33,11 +34,15 @@ class User < ApplicationRecord
   has_many :skills, dependent: :destroy
   accepts_nested_attributes_for :skills, allow_destroy: true
 
-  # Username validations
+  # Validations
   validates :username,
             presence: true,
-            uniqueness: { case_sensitive: false },
-            length: { in: 3..20 },
+            uniqueness: {
+              case_sensitive: false
+            },
+            length: {
+              in: 3..20
+            },
             format: {
               with: /\A[a-zA-Z0-9_]+\z/,
               message: "can only contain letters, numbers, and underscores"
@@ -48,24 +53,22 @@ class User < ApplicationRecord
               with: URI::MailTo::EMAIL_REGEXP,
               message: "must be a valid email address"
             },
-            length: { maximum: 255 }
+            length: {
+              maximum: 255
+            }
 
   validate :password_complexity
-
   validates :bio, length: { maximum: 500 }, allow_blank: true
   validate :avatar_content_type
   validate :career_limit
 
-  # Instance methods
+  # ✅ Ensure jti is always set
+  before_create :set_jti
 
   def confirmation_required?
     false
   end
 
-  # Method to send welcome email (not confirmation)
-  # def send_welcome_email
-  #   UserMailer.with(user: self).welcome_email.deliver_later
-  # end
   def follow(user)
     active_relationships.create(followed_id: user.id)
   end
@@ -85,21 +88,30 @@ class User < ApplicationRecord
 
   private
 
-  def password_complexity
-    return if password.blank? || password =~ /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}\z/
+  def set_jti
+    self.jti ||= SecureRandom.uuid
+  end
 
-    errors.add :password, 'must include at least: 1 uppercase, 1 lowercase, 1 digit and 1 special character'
+  def password_complexity
+    if password.blank? ||
+         password =~
+           /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}\z/
+      return
+    end
+
+    errors.add :password,
+               "must include at least: 1 uppercase, 1 lowercase, 1 digit and 1 special character"
   end
 
   def avatar_content_type
     return unless avatar.attached?
 
     unless avatar.content_type.in?(%w[image/jpeg image/jpg image/png image/gif])
-      errors.add(:avatar, 'must be a JPEG, JPG, PNG, or GIF')
+      errors.add(:avatar, "must be a JPEG, JPG, PNG, or GIF")
     end
 
     if avatar.blob.byte_size > 5.megabytes
-      errors.add(:avatar, 'should be less than 5MB')
+      errors.add(:avatar, "should be less than 5MB")
     end
   end
 

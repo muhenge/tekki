@@ -1,6 +1,9 @@
 module Api
   module Auth
     class RegistrationsController < Devise::RegistrationsController
+      respond_to :json
+      before_action :authenticate_user!, only: %i[update destroy]
+
       def create
         user_params = sign_up_params.to_h.deep_symbolize_keys
         career_ids_or_names = user_params.delete(:career_ids)
@@ -40,7 +43,7 @@ module Api
       end
 
       def update
-        if @user.update(sign_up_params)
+        if @user.update_with_password(account_update_params)
           render json: {
                    success: true,
                    user: @user,
@@ -56,7 +59,24 @@ module Api
         end
       end
 
+      def destroy
+        @user.destroy
+        render json: {
+                 success: true,
+                 message: "Account deleted successfully"
+               },
+               status: :ok
+      end
+
       private
+
+      def sign_up_params
+        params.require(:user).permit(:email, :password, :password_confirmation, :username, :first_name, :last_name, career_ids: [])
+      end
+
+      def account_update_params
+        params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :username, :first_name, :last_name, career_ids: [])
+      end
 
       def format_errors(errors)
         errors.to_hash(true).transform_values { |v| v.join(", ") }

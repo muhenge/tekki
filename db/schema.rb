@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_11_13_054428) do
+ActiveRecord::Schema[8.0].define(version: 2025_11_15_000000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -48,9 +48,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_13_054428) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "devise_api_tokens", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "devise_api_tokens", force: :cascade do |t|
     t.string "resource_owner_type", null: false
-    t.uuid "resource_owner_id", null: false
+    t.bigint "resource_owner_id", null: false
     t.string "access_token", null: false
     t.string "refresh_token"
     t.integer "expires_in", null: false
@@ -91,6 +91,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_13_054428) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "refresh_tokens", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "token", null: false
+    t.datetime "expires_at", null: false
+    t.boolean "revoked", default: false
+    t.datetime "revoked_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_refresh_tokens_on_token", unique: true
+    t.index ["user_id"], name: "index_refresh_tokens_on_user_id"
   end
 
   create_table "relashionships", force: :cascade do |t|
@@ -158,6 +170,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_11_13_054428) do
   add_foreign_key "post_careers", "careers"
   add_foreign_key "post_careers", "posts"
   add_foreign_key "posts", "users"
+  add_foreign_key "refresh_tokens", "users"
   add_foreign_key "skills", "users"
   add_foreign_key "user_careers", "careers"
   add_foreign_key "user_careers", "users"
