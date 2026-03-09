@@ -1,0 +1,17 @@
+.git
+.gitignore
+.kamal
+.github
+.vscode
+.idea
+node_modules
+tmp
+log
+*.log
+.DS_Store
+render.yaml
+.env*
+!.env.example
+coverage
+.rspec
+.ruby-version

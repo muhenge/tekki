@@ -21,7 +21,7 @@ Devise.setup do |config|
 
 
     jwt.secret =
-      ENV["DEVISE_JWT_SECRET_KEY"] || Rails.application.secrets.secret_key_base
+      ENV["DEVISE_JWT_SECRET_KEY"] || Rails.application.secret_key_base
     jwt.algorithm = "HS256"
     jwt.expiration_time = 1.day.to_i
   end
