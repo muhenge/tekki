@@ -21,7 +21,7 @@ proxy:
   ssl: false
   host: 66.220.29.151 # Replace with your actual domain
   # Proxy connects to your container on port 80 by default.
-  app_port: 3450
+  app_port: 3000
 
 # Credentials for your image host.
 registry:
@@ -46,14 +46,15 @@ env:
     RAILS_ENV: production
     RAILS_SERVE_STATIC_FILES: true
     RAILS_LOG_TO_STDOUT: true
-    DATABASE_HOST: <%= ENV['DB_HOST'] || 'localhost' %>
-    DATABASE_PORT: <%= ENV['DB_PORT'] || '5432' %>
-    DATABASE_USERNAME: <%= ENV['DB_USER'] || 'postgres' %>
-    DATABASE_NAME: <%= ENV['DB_PROD'] || 'tekki_production' %>
-    SWAGGER_BASE_URL: 66.220.29.151:3450
+    RAILS_MAX_THREADS: "5"
+    DB_HOST: <%= ENV['DB_HOST'] || 'localhost' %>
+    DB_PORT: <%= ENV['DB_PORT'] || '5432' %>
+    DB_USER: <%= ENV['DB_USER'] || 'postgres' %>
+    DB_PROD: <%= ENV['DB_PROD'] || 'tekki_production' %>
+    SWAGGER_BASE_URL: 66.220.29.151:3000
   secret:
     - RAILS_MASTER_KEY
-    - DATABASE_PASSWORD
+    - DB_PASS
 # Aliases are triggered with "bin/kamal <alias>". You can overwrite arguments on invocation:
 # "bin/kamal app logs -r job" will tail logs from the first server in the job section.
 #
