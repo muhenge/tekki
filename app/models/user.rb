@@ -13,9 +13,11 @@ class User < ApplicationRecord
          :rememberable,
          :validatable,
          :jwt_authenticatable,
+         :omniauthable,
          jwt_revocation_strategy: JwtDenylist
 
   # Associations
+  has_many :identities, dependent: :destroy
   has_many :user_careers, dependent: :destroy
   has_many :careers, through: :user_careers
   has_many :posts, dependent: :destroy
@@ -84,6 +86,58 @@ class User < ApplicationRecord
   def avatar_url
     return unless avatar.attached?
     Rails.application.routes.url_helpers.url_for(avatar)
+  end
+
+  def generate_jwt_token
+    token, _ = Devise::JWT.generate_token(self)
+    token
+  end
+
+  def self.find_or_create_from_oauth(auth, provider)
+    transaction do
+      # Find existing identity or create new one
+      identity = Identity.find_or_initialize_by(provider: provider, uid: auth.uid)
+
+      if identity.persisted?
+        # User already exists with this OAuth account
+        return identity.user
+      end
+
+      # Check if user exists with this email
+      user = User.find_by(email: auth.info.email)
+
+      if user
+        # Link OAuth to existing user
+        identity.user = user
+        identity.update_oauth_data(auth)
+        return user
+      end
+
+      # Create new user
+      user = User.new(
+        email: auth.info.email,
+        password: SecureRandom.hex(20),
+        username: generate_username(auth.info),
+        first_name: auth.info.first_name,
+        last_name: auth.info.last_name
+      )
+
+      user.skip_confirmation! if user.respond_to?(:skip_confirmation!)
+      user.save!
+
+      identity.user = user
+      identity.update_oauth_data(auth)
+
+      user
+    end
+  end
+
+  private
+
+  def self.generate_username(info)
+    base = (info.first_name || info.last_name || 'user').parameterize.underscore
+    suffix = SecureRandom.random_number(1000)
+    "#{base}_#{suffix}"
   end
 
   private

@@ -282,6 +282,132 @@ paths:
                   example: abc123def456
               required:
               - token
+  "/api/auth/google_oauth2":
+    get:
+      summary: Initiate Google OAuth2 authentication
+      tags:
+      - Authentication
+      description: Redirects user to Google OAuth2 consent screen
+      parameters: []
+      responses:
+        '302':
+          description: Redirect to Google OAuth2 consent screen
+  "/api/auth/microsoft_office365":
+    get:
+      summary: Initiate Microsoft Office 365 OAuth2 authentication
+      tags:
+      - Authentication
+      description: Redirects user to Microsoft OAuth2 consent screen
+      parameters: []
+      responses:
+        '302':
+          description: Redirect to Microsoft OAuth2 consent screen
+  "/api/auth/apple":
+    post:
+      summary: Initiate Apple Sign In authentication
+      tags:
+      - Authentication
+      description: Redirects user to Apple Sign In consent screen
+      parameters: []
+      responses:
+        '302':
+          description: Redirect to Apple Sign In consent screen
+  "/api/auth/google_oauth2/callback":
+    get:
+      summary: Google OAuth2 callback
+      tags:
+      - Authentication
+      parameters: []
+      responses:
+        '200':
+          description: OAuth2 authentication successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  token:
+                    type: string
+                    description: JWT authentication token
+                  user_id:
+                    type: integer
+        '302':
+          description: Redirect to frontend with authentication token
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  "/api/auth/microsoft_office365/callback":
+    get:
+      summary: Microsoft Office 365 OAuth2 callback
+      tags:
+      - Authentication
+      parameters: []
+      responses:
+        '200':
+          description: OAuth2 authentication successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  token:
+                    type: string
+                    description: JWT authentication token
+                  user_id:
+                    type: integer
+        '302':
+          description: Redirect to frontend with authentication token
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+  "/api/auth/apple/callback":
+    post:
+      summary: Apple Sign In callback
+      tags:
+      - Authentication
+      parameters: []
+      responses:
+        '200':
+          description: OAuth2 authentication successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  token:
+                    type: string
+                    description: JWT authentication token
+                  user_id:
+                    type: integer
+        '302':
+          description: Redirect to frontend with authentication token
+        '401':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
   "/api/careers/index":
     get:
       summary: Get all careers

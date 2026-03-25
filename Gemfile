@@ -31,6 +31,12 @@ gem 'devise'
 gem 'devise-jwt'
 gem 'kamal'
 
+# OmniAuth
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-microsoft-office365'
+gem 'omniauth-apple'
+
 gem 'rack-cors'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'mini_magick'

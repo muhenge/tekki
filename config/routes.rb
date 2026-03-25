@@ -15,8 +15,18 @@ Rails.application.routes.draw do
              controllers: {
                sessions: "api/auth/sessions",
                registrations: "api/auth/registrations",
-               passwords: "api/auth/passwords"
+               passwords: "api/auth/passwords",
+               omniauth_callbacks: "api/auth/omniauth_callbacks"
              }
+
+  # OmniAuth routes for Google, Microsoft, Apple
+  namespace :api, defaults: { format: :json } do
+    namespace :auth do
+      get "google_oauth2/callback", to: "omniauth_callbacks#google_oauth2"
+      get "microsoft_office365/callback", to: "omniauth_callbacks#microsoft_office365"
+      post "apple/callback", to: "omniauth_callbacks#apple"
+    end
+  end
 
   namespace :api, defaults: { format: :json } do
     namespace :auth do
