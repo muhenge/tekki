@@ -3,7 +3,7 @@ require "swagger_helper"
 RSpec.describe "Comments API", type: :request do
   path "/api/posts/{post_id}/comments" do
     post "Create a comment on a post" do
-      tags "Comments"
+      tags "Comments", "Protected"
       security [{ bearerAuth: [] }]
       consumes "application/json"
       produces "application/json"
@@ -86,7 +86,7 @@ RSpec.describe "Comments API", type: :request do
     end
 
     get "Get comments for a post" do
-      tags "Comments"
+      tags "Comments", "Protected"
       security [{ bearerAuth: [] }]
       produces "application/json"
 
@@ -134,7 +134,7 @@ RSpec.describe "Comments API", type: :request do
 
   path "/api/comments/{id}" do
     delete "Delete a comment" do
-      tags "Comments"
+      tags "Comments", "Protected"
       security [{ bearerAuth: [] }]
       produces "application/json"
 

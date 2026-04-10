@@ -6,11 +6,15 @@ class Api::PostsController < ApplicationController
 
   # GET /api/posts
   def index
-    posts = Post.eager_load(:user, :comments, :career)
-                .where(career_id: current_user.career_id)
-                .most_recent
+    posts = if current_user.career_ids.any?
+              Post.includes(:user, :careers)
+                  .for_career_ids(current_user.career_ids)
+                  .most_recent
+            else
+              Post.none
+            end
 
-    user_posts = current_user.posts.eager_load(:user, :comments, :career).most_recent
+    user_posts = current_user.posts.most_recent
 
     render json: { posts: posts, user_posts: user_posts }
   end

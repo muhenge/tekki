@@ -10,29 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_25_063020) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_10_160000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.bigint "record_id", null: false
+    t.string "record_type", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
   create_table "active_storage_blobs", force: :cascade do |t|
-    t.string "key", null: false
-    t.string "filename", null: false
-    t.string "content_type"
-    t.text "metadata"
-    t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum"
+    t.string "content_type"
     t.datetime "created_at", null: false
+    t.string "filename", null: false
+    t.string "key", null: false
+    t.text "metadata"
+    t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -43,20 +43,20 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_25_063020) do
   end
 
   create_table "careers", force: :cascade do |t|
-    t.string "field"
     t.datetime "created_at", null: false
+    t.string "field"
     t.datetime "updated_at", null: false
   end
 
   create_table "devise_api_tokens", force: :cascade do |t|
-    t.string "resource_owner_type", null: false
-    t.bigint "resource_owner_id", null: false
     t.string "access_token", null: false
-    t.string "refresh_token"
-    t.integer "expires_in", null: false
-    t.datetime "revoked_at"
-    t.string "previous_refresh_token"
     t.datetime "created_at", null: false
+    t.integer "expires_in", null: false
+    t.string "previous_refresh_token"
+    t.string "refresh_token"
+    t.bigint "resource_owner_id", null: false
+    t.string "resource_owner_type", null: false
+    t.datetime "revoked_at"
     t.datetime "updated_at", null: false
     t.index ["access_token"], name: "index_devise_api_tokens_on_access_token"
     t.index ["previous_refresh_token"], name: "index_devise_api_tokens_on_previous_refresh_token"
@@ -65,57 +65,63 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_25_063020) do
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
+    t.datetime "created_at"
+    t.string "scope"
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
-    t.string "scope"
-    t.datetime "created_at"
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "identities", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "provider", null: false
-    t.string "uid", null: false
-    t.string "name"
-    t.string "email"
     t.string "avatar"
-    t.text "tokens"
     t.datetime "created_at", null: false
+    t.string "email"
+    t.string "name"
+    t.string "provider", null: false
+    t.text "tokens"
+    t.string "uid", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["provider", "uid"], name: "index_identities_on_provider_and_uid", unique: true
     t.index ["provider"], name: "index_identities_on_provider"
     t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
+  create_table "jwt_denylists", force: :cascade do |t|
+    t.datetime "exp", null: false
+    t.string "jti", null: false
+    t.index ["jti"], name: "index_jwt_denylists_on_jti"
+  end
+
   create_table "post_careers", force: :cascade do |t|
-    t.bigint "post_id", null: false
     t.bigint "career_id", null: false
     t.datetime "created_at", null: false
+    t.bigint "post_id", null: false
     t.datetime "updated_at", null: false
     t.index ["career_id"], name: "index_post_careers_on_career_id"
     t.index ["post_id"], name: "index_post_careers_on_post_id"
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "title"
     t.text "content"
     t.datetime "created_at", null: false
+    t.string "title"
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "refresh_tokens", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "token", null: false
+    t.datetime "created_at", null: false
     t.datetime "expires_at", null: false
     t.boolean "revoked", default: false
     t.datetime "revoked_at"
-    t.datetime "created_at", null: false
+    t.string "token", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["token"], name: "index_refresh_tokens_on_token", unique: true
     t.index ["user_id"], name: "index_refresh_tokens_on_user_id"
   end
@@ -126,9 +132,9 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_25_063020) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
     t.datetime "created_at", null: false
+    t.integer "followed_id"
+    t.integer "follower_id"
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
@@ -136,43 +142,43 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_25_063020) do
   end
 
   create_table "skills", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
+    t.string "name"
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_skills_on_user_id"
   end
 
   create_table "user_careers", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.bigint "career_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["career_id"], name: "index_user_careers_on_career_id"
     t.index ["user_id"], name: "index_user_careers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "about"
+    t.text "bio"
+    t.datetime "confirmation_sent_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "created_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "firstname"
+    t.string "jti"
     t.string "lastname"
-    t.string "username", null: false
-    t.text "bio"
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "slug"
     t.string "login_token"
     t.datetime "login_token_sent_at"
-    t.string "jti"
-    t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at"
+    t.string "reset_password_token"
+    t.string "slug"
     t.string "unconfirmed_email"
-    t.string "about"
+    t.datetime "updated_at", null: false
+    t.string "username", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["jti"], name: "index_users_on_jti", unique: true

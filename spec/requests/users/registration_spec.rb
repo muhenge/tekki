@@ -3,7 +3,8 @@ require 'swagger_helper'
 RSpec.describe 'users/registration', type: :request do
   path "/api/signup" do
     post "Create an user" do
-      tags "Users"
+      tags "Users", "Public"
+      security []
       consumes "application/json"
        
       parameter name: :user, in: :body, schema: {

@@ -3,9 +3,10 @@ require "swagger_helper"
 RSpec.describe "Authentication API", type: :request do
   path "/api/auth/signup" do
     post "Create a new user account" do
-      tags "Authentication"
+      tags "Authentication", "Public"
       consumes "application/json"
       produces "application/json"
+      security []
 
       parameter name: :user,
                 in: :body,
@@ -144,9 +145,10 @@ RSpec.describe "Authentication API", type: :request do
 
   path "/api/auth/login" do
     post "User login" do
-      tags "Authentication"
+      tags "Authentication", "Public"
       consumes "application/json"
       produces "application/json"
+      security []
 
       parameter name: :user,
                 in: :body,
@@ -222,7 +224,7 @@ RSpec.describe "Authentication API", type: :request do
 
   path "/api/auth/logout" do
     delete "User logout" do
-      tags "Authentication"
+      tags "Authentication", "Protected"
       security [{ bearerAuth: [] }]
       produces "application/json"
 
@@ -236,7 +238,7 @@ RSpec.describe "Authentication API", type: :request do
 
   path "/api/auth/current_user" do
     get "Get current user information" do
-      tags "Authentication"
+      tags "Authentication", "Protected"
       security [{ bearerAuth: [] }]
       produces "application/json"
 
@@ -284,7 +286,8 @@ RSpec.describe "Authentication API", type: :request do
 
   path "/api/auth/magic_login" do
     post "Magic login with token" do
-      tags "Authentication"
+      tags "Authentication", "Public"
+      security []
       consumes "application/json"
       produces "application/json"
 

@@ -3,7 +3,7 @@ require "swagger_helper"
 RSpec.describe "Relationships API", type: :request do
   path "/api/relationships" do
     post "Follow a user" do
-      tags "Relationships"
+      tags "Relationships", "Protected"
       security [{ bearerAuth: [] }]
       consumes "application/json"
       produces "application/json"
@@ -73,7 +73,7 @@ RSpec.describe "Relationships API", type: :request do
 
   path "/api/relationships/{id}" do
     delete "Unfollow a user" do
-      tags "Relationships"
+      tags "Relationships", "Protected"
       security [{ bearerAuth: [] }]
       produces "application/json"
 

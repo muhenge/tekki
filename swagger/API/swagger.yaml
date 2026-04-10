@@ -10,6 +10,8 @@ paths:
       summary: Create a new user account
       tags:
       - Authentication
+      - Public
+      security: []
       parameters: []
       responses:
         '201':
@@ -47,16 +49,7 @@ paths:
                   message:
                     type: string
         '422':
-          description: Invalid request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                  errors:
-                    type: object
+          "$ref": "#/components/responses/ValidationError"
       requestBody:
         content:
           application/json:
@@ -126,6 +119,8 @@ paths:
       summary: User login
       tags:
       - Authentication
+      - Public
+      security: []
       parameters: []
       responses:
         '200':
@@ -153,14 +148,7 @@ paths:
                       slug:
                         type: string
         '401':
-          description: Invalid credentials
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
+          "$ref": "#/components/responses/UnauthorizedError"
       requestBody:
         content:
           application/json:
@@ -229,19 +217,14 @@ paths:
                       slug:
                         type: string
         '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
+          "$ref": "#/components/responses/UnauthorizedError"
   "/api/auth/magic_login":
     post:
       summary: Magic login with token
       tags:
       - Authentication
+      - Public
+      security: []
       parameters: []
       responses:
         '200':
@@ -287,6 +270,8 @@ paths:
       summary: Initiate Google OAuth2 authentication
       tags:
       - Authentication
+      - Public
+      security: []
       description: Redirects user to Google OAuth2 consent screen
       parameters: []
       responses:
@@ -297,6 +282,8 @@ paths:
       summary: Initiate Microsoft Office 365 OAuth2 authentication
       tags:
       - Authentication
+      - Public
+      security: []
       description: Redirects user to Microsoft OAuth2 consent screen
       parameters: []
       responses:
@@ -307,6 +294,8 @@ paths:
       summary: Initiate Apple Sign In authentication
       tags:
       - Authentication
+      - Public
+      security: []
       description: Redirects user to Apple Sign In consent screen
       parameters: []
       responses:
@@ -317,6 +306,8 @@ paths:
       summary: Google OAuth2 callback
       tags:
       - Authentication
+      - Public
+      security: []
       parameters: []
       responses:
         '200':
@@ -349,6 +340,8 @@ paths:
       summary: Microsoft Office 365 OAuth2 callback
       tags:
       - Authentication
+      - Public
+      security: []
       parameters: []
       responses:
         '200':
@@ -381,6 +374,8 @@ paths:
       summary: Apple Sign In callback
       tags:
       - Authentication
+      - Public
+      security: []
       parameters: []
       responses:
         '200':
@@ -413,6 +408,8 @@ paths:
       summary: Get all careers
       tags:
       - Careers
+      - Public
+      security: []
       responses:
         '200':
           description: Careers retrieved successfully
@@ -437,6 +434,8 @@ paths:
       summary: Get all careers (alternative endpoint)
       tags:
       - Careers
+      - Public
+      security: []
       responses:
         '200':
           description: Careers retrieved successfully
@@ -1193,8 +1192,8 @@ paths:
       summary: Get all users
       tags:
       - Users
-      security:
-      - bearerAuth: []
+      - Public
+      security: []
       parameters:
       - name: page
         in: query
@@ -1600,5 +1599,87 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+  schemas:
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        error:
+          type: string
+          example: Unauthorized
+        message:
+          type: string
+          example: You need to sign in or sign up before continuing.
+      additionalProperties: false
+    ValidationError:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            email: has already been taken
+            password: must include at least 1 uppercase, 1 lowercase, 1 digit and 1 special character
+      additionalProperties: false
+  responses:
+    UnauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/Error"
+          examples:
+            missingToken:
+              summary: Missing/invalid access token
+              value:
+                success: false
+                error: Unauthorized
+                message: Missing or invalid token
+    NotFoundError:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/Error"
+          examples:
+            notFound:
+              summary: Resource not found
+              value:
+                success: false
+                error: NotFound
+                message: Resource not found
+    ValidationError:
+      description: Validation failed
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/ValidationError"
+          examples:
+            invalidInput:
+              summary: Field validation errors
+              value:
+                success: false
+                errors:
+                  email: must be a valid email address
+                  password: is too short (minimum is 8 characters)
+    ServerError:
+      description: Unexpected server error
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/Error"
+          examples:
+            serverError:
+              summary: Generic 500
+              value:
+                success: false
+                error: ServerError
+                message: Something went wrong
 security:
 - bearerAuth: []

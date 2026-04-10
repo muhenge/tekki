@@ -3,7 +3,7 @@ require "swagger_helper"
 RSpec.describe "Skills API", type: :request do
   path "/api/skills" do
     post "Create user skills" do
-      tags "Skills"
+      tags "Skills", "Protected"
       security [{ bearerAuth: [] }]
       consumes "application/json"
       produces "application/json"
@@ -107,7 +107,7 @@ RSpec.describe "Skills API", type: :request do
 
   path "/api/skills/{id}" do
     patch "Update a skill" do
-      tags "Skills"
+      tags "Skills", "Protected"
       security [{ bearerAuth: [] }]
       consumes "application/json"
       produces "application/json"
@@ -175,7 +175,7 @@ RSpec.describe "Skills API", type: :request do
     end
 
     delete "Delete a skill" do
-      tags "Skills"
+      tags "Skills", "Protected"
       security [{ bearerAuth: [] }]
       produces "application/json"
 

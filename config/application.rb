@@ -15,15 +15,6 @@ module Tekki
     config.middleware.use ActionDispatch::Session::CookieStore,
                           key: "_tekki_session"
 
-    # Enable CORS and allow credentials (keep your existing cors.rb if present)
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins ENV.fetch("CORS_ORIGINS", "http://localhost:3000")
-        resource "*",
-                 headers: :any,
-                 methods: %i[get post put patch delete options head],
-                 credentials: true
-      end
-    end
+    # CORS is configured in `config/initializers/cors.rb`
   end
 end

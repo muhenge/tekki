@@ -8,7 +8,16 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
 
-    origins "http://localhost:5173"
+    # When credentials are enabled, Rack::Cors forbids wildcard origins ("*").
+    # Use CORS_ORIGINS as a comma-separated list, e.g.:
+    # CORS_ORIGINS=http://localhost:5173,http://localhost:3000
+    allowed_origins =
+      ENV.fetch("CORS_ORIGINS", "http://localhost:5173,http://localhost:3000")
+        .split(",")
+        .map(&:strip)
+        .reject(&:empty?)
+
+    origins(*allowed_origins)
 
     resource "*",
       headers: :any,

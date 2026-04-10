@@ -3,8 +3,8 @@ require "swagger_helper"
 RSpec.describe "Users API", type: :request do
   path "/api/users" do
     get "Get all users" do
-      tags "Users"
-      security [{ bearerAuth: [] }]
+      tags "Users", "Public"
+      security []
       produces "application/json"
 
       parameter name: :page,
@@ -94,7 +94,7 @@ RSpec.describe "Users API", type: :request do
 
   path "/api/users/{slug}" do
     get "Get user by slug" do
-      tags "Users"
+      tags "Users", "Protected"
       security [{ bearerAuth: [] }]
       produces "application/json"
 
@@ -260,7 +260,7 @@ RSpec.describe "Users API", type: :request do
     end
 
     patch "Update user profile" do
-      tags "Users"
+      tags "Users", "Protected"
       security [{ bearerAuth: [] }]
       consumes "application/json"
       produces "application/json"
@@ -373,7 +373,7 @@ RSpec.describe "Users API", type: :request do
 
   path "/api/{user_slug}/connections" do
     get "Get user connections" do
-      tags "Users"
+      tags "Users", "Protected"
       security [{ bearerAuth: [] }]
       produces "application/json"
 
@@ -429,7 +429,7 @@ RSpec.describe "Users API", type: :request do
 
   path "/api/current_user_skills" do
     get "Get current user skills" do
-      tags "Users"
+      tags "Users", "Protected"
       security [{ bearerAuth: [] }]
       produces "application/json"
 

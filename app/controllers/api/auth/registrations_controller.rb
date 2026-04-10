@@ -71,11 +71,36 @@ module Api
       private
 
       def sign_up_params
-        params.require(:user).permit(:email, :password, :password_confirmation, :username, :first_name, :last_name, career_ids: [])
+        params
+          .require(:user)
+          .permit(
+            :email,
+            :password,
+            :password_confirmation,
+            :username,
+            :firstname,
+            :lastname,
+            :bio,
+            :about,
+            career_ids: []
+          )
       end
 
       def account_update_params
-        params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :username, :first_name, :last_name, career_ids: [])
+        params
+          .require(:user)
+          .permit(
+            :email,
+            :password,
+            :password_confirmation,
+            :current_password,
+            :username,
+            :firstname,
+            :lastname,
+            :bio,
+            :about,
+            career_ids: []
+          )
       end
 
       def format_errors(errors)

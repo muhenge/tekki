@@ -3,7 +3,7 @@ require "swagger_helper"
 RSpec.describe "Posts API", type: :request do
   path "/api/posts" do
     get "Get all posts (feed)" do
-      tags "Posts"
+      tags "Posts", "Protected"
       security [{ bearerAuth: [] }]
       produces "application/json"
 
@@ -97,7 +97,7 @@ RSpec.describe "Posts API", type: :request do
     end
 
     post "Create a new post" do
-      tags "Posts"
+      tags "Posts", "Protected"
       security [{ bearerAuth: [] }]
       consumes "application/json"
       produces "application/json"
@@ -202,7 +202,7 @@ RSpec.describe "Posts API", type: :request do
 
   path "/api/posts/{id}" do
     get "Get post by ID" do
-      tags "Posts"
+      tags "Posts", "Protected"
       security [{ bearerAuth: [] }]
       produces "application/json"
 
@@ -288,7 +288,7 @@ RSpec.describe "Posts API", type: :request do
     end
 
     patch "Update post" do
-      tags "Posts"
+      tags "Posts", "Protected"
       security [{ bearerAuth: [] }]
       consumes "application/json"
       produces "application/json"
@@ -381,7 +381,7 @@ RSpec.describe "Posts API", type: :request do
     end
 
     delete "Delete post" do
-      tags "Posts"
+      tags "Posts", "Protected"
       security [{ bearerAuth: [] }]
 
       parameter name: :id, in: :path, type: :integer, description: "Post ID"
@@ -402,7 +402,7 @@ RSpec.describe "Posts API", type: :request do
 
   path "/api/posts/{id}/like" do
     put "Like/Unlike a post" do
-      tags "Posts"
+      tags "Posts", "Protected"
       security [{ bearerAuth: [] }]
       produces "application/json"
 

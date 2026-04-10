@@ -12,7 +12,7 @@ module Api
           render json: {
                    message: "Logged in successfully.",
                    # token: request.env['warden-jwt_auth.token'],
-                   data: current_user
+                   data: resource
                  },
                  status: :ok
         else
@@ -23,9 +23,10 @@ module Api
         end
       end
 
-      def respond_to_on_destroy
-        # For JWT authentication, devise-jwt will handle token revocation automatically
-        # when using appropriate revocation strategies
+      def respond_to_on_destroy(resource = nil)
+        # Only report success if a user was authenticated via JWT.
+        return logout_failure unless current_user
+
         render json: { message: "Logged out successfully." }, status: :ok
       end
 
