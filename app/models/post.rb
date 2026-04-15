@@ -11,10 +11,6 @@ class Post < ApplicationRecord
   scope :for_career_ids, ->(career_ids) { joins(:careers).where(careers: { id: career_ids }).distinct if career_ids.present? }
   # validates :content_length { |post| post.errors.add(:content, "is too long (maximum is #{Post::CONTENT_MAX_LENGTH} characters)") if post.content.length > Post::CONTENT_MAX_LENGTH }
 
-  def liked_by?(user)
-    likes.where(user_id: user.id).exists?
-  end
-
   def self.search(search)
     where("title LIKE ? OR content LIKE ?", "%#{search}%", "%#{search}%")
   end

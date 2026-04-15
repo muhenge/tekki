@@ -615,51 +615,11 @@ paths:
                   posts:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        title:
-                          type: string
-                        content:
-                          type: string
-                        created_at:
-                          type: string
-                        updated_at:
-                          type: string
-                        user:
-                          type: object
-                          properties:
-                            id:
-                              type: integer
-                            username:
-                              type: string
-                            slug:
-                              type: string
-                        comments:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              id:
-                                type: integer
-                              text:
-                                type: string
-                              created_at:
-                                type: string
+                      "$ref": "#/components/schemas/Post"
                   user_posts:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        title:
-                          type: string
-                        content:
-                          type: string
-                        created_at:
-                          type: string
+                      "$ref": "#/components/schemas/Post"
         '401':
           description: Unauthorized
           content:
@@ -682,23 +642,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  post:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      title:
-                        type: string
-                      content:
-                        type: string
-                      created_at:
-                        type: string
-                      updated_at:
-                        type: string
-                  message:
-                    type: string
+                "$ref": "#/components/schemas/Post"
         '422':
           description: Validation failed
           content:
@@ -758,48 +702,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  post:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      title:
-                        type: string
-                      content:
-                        type: string
-                      created_at:
-                        type: string
-                      updated_at:
-                        type: string
-                      user:
-                        type: object
-                        properties:
-                          id:
-                            type: integer
-                          username:
-                            type: string
-                          slug:
-                            type: string
-                  comments:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        text:
-                          type: string
-                        created_at:
-                          type: string
-                        user:
-                          type: object
-                          properties:
-                            id:
-                              type: integer
-                            username:
-                              type: string
+                "$ref": "#/components/schemas/Post"
         '404':
           description: Post not found
           content:
@@ -828,21 +731,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                  post:
-                    type: object
-                    properties:
-                      id:
-                        type: integer
-                      title:
-                        type: string
-                      content:
-                        type: string
-                      updated_at:
-                        type: string
+                "$ref": "#/components/schemas/Post"
         '422':
           description: Validation failed
           content:
@@ -892,8 +781,8 @@ paths:
           description: Post deleted successfully
         '404':
           description: Post not found
-  "/api/posts/{id}/like":
-    put:
+  "/api/posts/{id}/vote":
+    post:
       summary: Like/Unlike a post
       tags:
       - Posts
@@ -1627,6 +1516,112 @@ components:
             email: has already been taken
             password: must include at least 1 uppercase, 1 lowercase, 1 digit and 1 special character
       additionalProperties: false
+    Post:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "Best Practices for API Design in 2026"
+        content:
+          type: string
+          example: "RESTful APIs have evolved significantly over the years..."
+        created_at:
+          type: string
+          format: date-time
+          example: "2026-04-13T11:58:31.030Z"
+        updated_at:
+          type: string
+          format: date-time
+          example: "2026-04-13T11:58:31.030Z"
+        user:
+          "$ref": "#/components/schemas/PostAuthor"
+        careers:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Career"
+        comments:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Comment"
+        votes_count:
+          type: integer
+          example: 5
+        liked_by_current_user:
+          type: boolean
+          example: false
+    PostAuthor:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 7
+        username:
+          type: string
+          example: "bob_data"
+        firstname:
+          type: string
+          example: "Bob"
+        lastname:
+          type: string
+          example: "Smith"
+        email:
+          type: string
+          example: "bob@example.com"
+        bio:
+          type: string
+          example: "Data scientist exploring the world of ML/AI"
+        about:
+          type: string
+          example: "PhD in Computer Science, specializing in machine learning"
+        slug:
+          type: string
+          example: "bob_data"
+        avatar_url:
+          type: string
+          example: "http://localhost:3000/rails/active_storage/blobs/..."
+    Career:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        field:
+          type: string
+          example: "Software engineer"
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        text:
+          type: string
+          example: "Great post!"
+        created_at:
+          type: string
+          format: date-time
+          example: "2026-04-13T12:00:00.000Z"
+        updated_at:
+          type: string
+          format: date-time
+          example: "2026-04-13T12:00:00.000Z"
+        user:
+          "$ref": "#/components/schemas/CommentAuthor"
+    CommentAuthor:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 2
+        username:
+          type: string
+          example: "alice_dev"
+        slug:
+          type: string
+          example: "alice_dev"
   responses:
     UnauthorizedError:
       description: Unauthorized

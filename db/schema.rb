@@ -48,6 +48,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_10_160000) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "post_id", null: false
+    t.text "text"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "devise_api_tokens", force: :cascade do |t|
     t.string "access_token", null: false
     t.datetime "created_at", null: false
@@ -186,8 +196,24 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_10_160000) do
     t.index ["slug"], name: "index_users_on_slug", unique: true
   end
 
+  create_table "votes", id: :serial, force: :cascade do |t|
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.integer "votable_id"
+    t.string "votable_type"
+    t.boolean "vote_flag"
+    t.string "vote_scope"
+    t.integer "vote_weight"
+    t.integer "voter_id"
+    t.string "voter_type"
+    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "identities", "users"
   add_foreign_key "post_careers", "careers"
   add_foreign_key "post_careers", "posts"

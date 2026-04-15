@@ -177,7 +177,7 @@ curl -X POST -H "Content-Type: application/json" \
 | POST | `/api/posts` | Create a post |
 | GET | `/api/posts` | Get feed |
 | GET | `/api/posts/:id` | Get single post |
-| PUT | `/api/posts/:id/like` | Like/unlike a post |
+| POST | `/api/posts/:id/vote` | Like/unlike a post |
 
 ### Relationships
 

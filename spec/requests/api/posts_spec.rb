@@ -15,32 +15,32 @@ RSpec.describe "Posts API", type: :request do
                    items: {
                      type: :object,
                      properties: {
-                       id: {
-                         type: :integer
-                       },
-                       title: {
-                         type: :string
-                       },
-                       content: {
-                         type: :string
-                       },
-                       created_at: {
-                         type: :string
-                       },
-                       updated_at: {
-                         type: :string
-                       },
+                       id: { type: :integer },
+                       title: { type: :string },
+                       content: { type: :string },
+                       created_at: { type: :string },
+                       updated_at: { type: :string },
                        user: {
                          type: :object,
                          properties: {
-                           id: {
-                             type: :integer
-                           },
-                           username: {
-                             type: :string
-                           },
-                           slug: {
-                             type: :string
+                           id: { type: :integer },
+                           username: { type: :string },
+                           firstname: { type: :string },
+                           lastname: { type: :string },
+                           email: { type: :string },
+                           bio: { type: :string },
+                           about: { type: :string },
+                           slug: { type: :string },
+                           avatar_url: { type: :string }
+                         }
+                       },
+                       careers: {
+                         type: :array,
+                         items: {
+                           type: :object,
+                           properties: {
+                             id: { type: :integer },
+                             field: { type: :string }
                            }
                          }
                        },
@@ -49,18 +49,23 @@ RSpec.describe "Posts API", type: :request do
                          items: {
                            type: :object,
                            properties: {
-                             id: {
-                               type: :integer
-                             },
-                             text: {
-                               type: :string
-                             },
-                             created_at: {
-                               type: :string
+                             id: { type: :integer },
+                             text: { type: :string },
+                             created_at: { type: :string },
+                             updated_at: { type: :string },
+                             user: {
+                               type: :object,
+                               properties: {
+                                 id: { type: :integer },
+                                 username: { type: :string },
+                                 slug: { type: :string }
+                               }
                              }
                            }
                          }
-                       }
+                       },
+                       votes_count: { type: :integer },
+                       liked_by_current_user: { type: :boolean }
                      }
                    }
                  },
@@ -69,18 +74,16 @@ RSpec.describe "Posts API", type: :request do
                    items: {
                      type: :object,
                      properties: {
-                       id: {
-                         type: :integer
-                       },
-                       title: {
-                         type: :string
-                       },
-                       content: {
-                         type: :string
-                       },
-                       created_at: {
-                         type: :string
-                       }
+                       id: { type: :integer },
+                       title: { type: :string },
+                       content: { type: :string },
+                       created_at: { type: :string },
+                       updated_at: { type: :string },
+                       user: { type: :object },
+                       careers: { type: :array },
+                       comments: { type: :array },
+                       votes_count: { type: :integer },
+                       liked_by_current_user: { type: :boolean }
                      }
                    }
                  }
@@ -211,37 +214,32 @@ RSpec.describe "Posts API", type: :request do
       response "200", "Post found" do
         schema type: :object,
                properties: {
-                 post: {
+                 id: { type: :integer },
+                 title: { type: :string },
+                 content: { type: :string },
+                 created_at: { type: :string },
+                 updated_at: { type: :string },
+                 user: {
                    type: :object,
                    properties: {
-                     id: {
-                       type: :integer
-                     },
-                     title: {
-                       type: :string
-                     },
-                     content: {
-                       type: :string
-                     },
-                     created_at: {
-                       type: :string
-                     },
-                     updated_at: {
-                       type: :string
-                     },
-                     user: {
-                       type: :object,
-                       properties: {
-                         id: {
-                           type: :integer
-                         },
-                         username: {
-                           type: :string
-                         },
-                         slug: {
-                           type: :string
-                         }
-                       }
+                     id: { type: :integer },
+                     username: { type: :string },
+                     firstname: { type: :string },
+                     lastname: { type: :string },
+                     email: { type: :string },
+                     bio: { type: :string },
+                     about: { type: :string },
+                     slug: { type: :string },
+                     avatar_url: { type: :string }
+                   }
+                 },
+                 careers: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       id: { type: :integer },
+                       field: { type: :string }
                      }
                    }
                  },
@@ -250,29 +248,23 @@ RSpec.describe "Posts API", type: :request do
                    items: {
                      type: :object,
                      properties: {
-                       id: {
-                         type: :integer
-                       },
-                       text: {
-                         type: :string
-                       },
-                       created_at: {
-                         type: :string
-                       },
+                       id: { type: :integer },
+                       text: { type: :string },
+                       created_at: { type: :string },
+                       updated_at: { type: :string },
                        user: {
                          type: :object,
                          properties: {
-                           id: {
-                             type: :integer
-                           },
-                           username: {
-                             type: :string
-                           }
+                           id: { type: :integer },
+                           username: { type: :string },
+                           slug: { type: :string }
                          }
                        }
                      }
                    }
-                 }
+                 },
+                 votes_count: { type: :integer },
+                 liked_by_current_user: { type: :boolean }
                }
 
         let(:id) { 1 }
@@ -400,8 +392,8 @@ RSpec.describe "Posts API", type: :request do
     end
   end
 
-  path "/api/posts/{id}/like" do
-    put "Like/Unlike a post" do
+  path "/api/posts/{id}/vote" do
+    post "Like/Unlike a post" do
       tags "Posts", "Protected"
       security [{ bearerAuth: [] }]
       produces "application/json"

@@ -6,23 +6,23 @@ class Api::PostsController < ApplicationController
 
   # GET /api/posts
   def index
-    posts = if current_user.career_ids.any?
-              Post.includes(:user, :careers)
+    @posts = if current_user.career_ids.any?
+              Post.includes(:user, :careers, comments: :user)
                   .for_career_ids(current_user.career_ids)
                   .most_recent
             else
               Post.none
             end
 
-    user_posts = current_user.posts.most_recent
+    @user_posts = current_user.posts.includes(:user, :careers).most_recent
 
-    render json: { posts: posts, user_posts: user_posts }
+    render :index, formats: :json
   end
 
 
   # GET /api/posts/:id
   def show
-    render json: { post: @post, comments: @post.comments }
+    render :show, formats: :json
   end
 
   # POST /api/posts
@@ -30,7 +30,7 @@ class Api::PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      render json: { post: @post, message: 'Post created successfully' }, status: :created
+      render json: @post.as_json(current_user: current_user), status: :created
     else
       render json: { error: @post.errors.full_messages }, status: :unprocessable_entity
     end
@@ -38,7 +38,7 @@ class Api::PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      render json: { message: 'Updated successfully', post: @post }
+      render json: @post.as_json(current_user: current_user)
     else
       render json: { error: @post.errors.full_messages }, status: :unprocessable_entity
     end
