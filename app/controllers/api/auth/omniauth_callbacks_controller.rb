@@ -1,7 +1,7 @@
 module Api
   module Auth
     class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-      skip_before_action :verify_authenticity_token
+      skip_before_action :verify_authenticity_token, raise: false
       before_action :set_origin, only: [:failure]
 
       def google_oauth2

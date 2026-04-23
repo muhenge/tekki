@@ -9,12 +9,12 @@ paths:
     post:
       summary: Create a new user account
       tags:
-      - Authentication
-      - Public
+        - Authentication
+        - Public
       security: []
       parameters: []
       responses:
-        '201':
+        "201":
           description: User created successfully
           content:
             application/json:
@@ -36,10 +36,6 @@ paths:
                         type: string
                       lastname:
                         type: string
-                      bio:
-                        type: string
-                      about:
-                        type: string
                       slug:
                         type: string
                       created_at:
@@ -48,8 +44,17 @@ paths:
                         type: string
                   message:
                     type: string
-        '422':
-          "$ref": "#/components/responses/ValidationError"
+        "422":
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  errors:
+                    type: object
       requestBody:
         content:
           application/json:
@@ -62,18 +67,15 @@ paths:
                     email:
                       type: string
                       example: user@example.com
-                      description: Must be a valid email address and maximum 255 characters
                     password:
                       type: string
-                      example: Password123!
-                      description: Must include at least 1 uppercase, 1 lowercase, 1 digit and 1 special character, minimum 8 characters
+                      example: password123
                     password_confirmation:
                       type: string
-                      example: Password123!
+                      example: password123
                     username:
                       type: string
                       example: johndoe
-                      description: 3-20 characters, letters, numbers and underscores only
                     firstname:
                       type: string
                       example: John
@@ -83,47 +85,26 @@ paths:
                     bio:
                       type: string
                       example: Software developer
-                      description: Maximum 500 characters
                     about:
                       type: string
                       example: Passionate about technology
-                    career_ids:
-                      type: array
-                      description: Select up to 3 careers
-                      items:
-                        type: integer
-                      example: [1, 2, 3]
-                    skills:
-                      type: array
-                      description: User skills with name and level (optional during signup)
-                      items:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                          level:
-                            type: string
-                            enum:
-                              - Beginner
-                              - Intermediate
-                              - Advanced
                   required:
-                  - email
-                  - password
-                  - password_confirmation
-                  - username
-                  - firstname
-                  - lastname
+                    - email
+                    - password
+                    - password_confirmation
+                    - username
+                    - firstname
+                    - lastname
   "/api/auth/login":
     post:
       summary: User login
       tags:
-      - Authentication
-      - Public
+        - Authentication
+        - Public
       security: []
       parameters: []
       responses:
-        '200':
+        "200":
           description: Login successful
           content:
             application/json:
@@ -147,8 +128,15 @@ paths:
                         type: string
                       slug:
                         type: string
-        '401':
-          "$ref": "#/components/responses/UnauthorizedError"
+        "401":
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
       requestBody:
         content:
           application/json:
@@ -165,17 +153,18 @@ paths:
                       type: string
                       example: password123
                   required:
-                  - email
-                  - password
+                    - email
+                    - password
   "/api/auth/logout":
     delete:
       summary: User logout
       tags:
-      - Authentication
+        - Authentication
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       responses:
-        '200':
+        "200":
           description: Logout successful
           content:
             application/json:
@@ -188,11 +177,12 @@ paths:
     get:
       summary: Get current user information
       tags:
-      - Authentication
+        - Authentication
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       responses:
-        '200':
+        "200":
           description: Current user retrieved
           content:
             application/json:
@@ -216,18 +206,25 @@ paths:
                         type: string
                       slug:
                         type: string
-        '401':
-          "$ref": "#/components/responses/UnauthorizedError"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
   "/api/auth/magic_login":
     post:
       summary: Magic login with token
       tags:
-      - Authentication
-      - Public
+        - Authentication
+        - Public
       security: []
       parameters: []
       responses:
-        '200':
+        "200":
           description: Magic login successful
           content:
             application/json:
@@ -245,7 +242,7 @@ paths:
                         type: string
                       username:
                         type: string
-        '401':
+        "401":
           description: Invalid token
           content:
             application/json:
@@ -264,154 +261,16 @@ paths:
                   type: string
                   example: abc123def456
               required:
-              - token
-  "/api/auth/google_oauth2":
-    get:
-      summary: Initiate Google OAuth2 authentication
-      tags:
-      - Authentication
-      - Public
-      security: []
-      description: Redirects user to Google OAuth2 consent screen
-      parameters: []
-      responses:
-        '302':
-          description: Redirect to Google OAuth2 consent screen
-  "/api/auth/microsoft_office365":
-    get:
-      summary: Initiate Microsoft Office 365 OAuth2 authentication
-      tags:
-      - Authentication
-      - Public
-      security: []
-      description: Redirects user to Microsoft OAuth2 consent screen
-      parameters: []
-      responses:
-        '302':
-          description: Redirect to Microsoft OAuth2 consent screen
-  "/api/auth/apple":
-    post:
-      summary: Initiate Apple Sign In authentication
-      tags:
-      - Authentication
-      - Public
-      security: []
-      description: Redirects user to Apple Sign In consent screen
-      parameters: []
-      responses:
-        '302':
-          description: Redirect to Apple Sign In consent screen
-  "/api/auth/google_oauth2/callback":
-    get:
-      summary: Google OAuth2 callback
-      tags:
-      - Authentication
-      - Public
-      security: []
-      parameters: []
-      responses:
-        '200':
-          description: OAuth2 authentication successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                  token:
-                    type: string
-                    description: JWT authentication token
-                  user_id:
-                    type: integer
-        '302':
-          description: Redirect to frontend with authentication token
-        '401':
-          description: Authentication failed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-  "/api/auth/microsoft_office365/callback":
-    get:
-      summary: Microsoft Office 365 OAuth2 callback
-      tags:
-      - Authentication
-      - Public
-      security: []
-      parameters: []
-      responses:
-        '200':
-          description: OAuth2 authentication successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                  token:
-                    type: string
-                    description: JWT authentication token
-                  user_id:
-                    type: integer
-        '302':
-          description: Redirect to frontend with authentication token
-        '401':
-          description: Authentication failed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-  "/api/auth/apple/callback":
-    post:
-      summary: Apple Sign In callback
-      tags:
-      - Authentication
-      - Public
-      security: []
-      parameters: []
-      responses:
-        '200':
-          description: OAuth2 authentication successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                  token:
-                    type: string
-                    description: JWT authentication token
-                  user_id:
-                    type: integer
-        '302':
-          description: Redirect to frontend with authentication token
-        '401':
-          description: Authentication failed
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
+                - token
   "/api/careers/index":
     get:
       summary: Get all careers
       tags:
-      - Careers
-      - Public
+        - Careers
+        - Public
       security: []
       responses:
-        '200':
+        "200":
           description: Careers retrieved successfully
           content:
             application/json:
@@ -433,11 +292,11 @@ paths:
     get:
       summary: Get all careers (alternative endpoint)
       tags:
-      - Careers
-      - Public
+        - Careers
+        - Public
       security: []
       responses:
-        '200':
+        "200":
           description: Careers retrieved successfully
           content:
             application/json:
@@ -458,18 +317,19 @@ paths:
     post:
       summary: Create a comment on a post
       tags:
-      - Comments
+        - Comments
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters:
-      - name: post_id
-        in: path
-        description: Post ID
-        required: true
-        schema:
-          type: integer
+        - name: post_id
+          in: path
+          description: Post slug or ID
+          required: true
+          schema:
+            type: string
       responses:
-        '201':
+        "201":
           description: Comment created successfully
           content:
             application/json:
@@ -494,7 +354,7 @@ paths:
                             type: string
                   message:
                     type: string
-        '422':
+        "422":
           description: Validation failed
           content:
             application/json:
@@ -516,22 +376,23 @@ paths:
                       type: string
                       example: This is a great post!
                   required:
-                  - text
+                    - text
     get:
       summary: Get comments for a post
       tags:
-      - Comments
+        - Comments
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters:
-      - name: post_id
-        in: path
-        description: Post ID
-        required: true
-        schema:
-          type: integer
+        - name: post_id
+          in: path
+          description: Post slug or ID
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: Comments retrieved successfully
           content:
             application/json:
@@ -559,18 +420,19 @@ paths:
     delete:
       summary: Delete a comment
       tags:
-      - Comments
+        - Comments
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters:
-      - name: id
-        in: path
-        description: Comment ID
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: Comment ID
+          required: true
+          schema:
+            type: integer
       responses:
-        '200':
+        "200":
           description: Comment deleted successfully
           content:
             application/json:
@@ -579,7 +441,7 @@ paths:
                 properties:
                   message:
                     type: string
-        '403':
+        "403":
           description: Not authorized
           content:
             application/json:
@@ -588,7 +450,7 @@ paths:
                 properties:
                   error:
                     type: string
-        '404':
+        "404":
           description: Comment not found
           content:
             application/json:
@@ -601,11 +463,12 @@ paths:
     get:
       summary: Get all posts (feed)
       tags:
-      - Posts
+        - Posts
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       responses:
-        '200':
+        "200":
           description: Posts retrieved successfully
           content:
             application/json:
@@ -615,12 +478,108 @@ paths:
                   posts:
                     type: array
                     items:
-                      "$ref": "#/components/schemas/Post"
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                        content:
+                          type: string
+                        author:
+                          type: string
+                        slug:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                        user:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            username:
+                              type: string
+                            firstname:
+                              type: string
+                            lastname:
+                              type: string
+                            email:
+                              type: string
+                            bio:
+                              type: string
+                            about:
+                              type: string
+                            slug:
+                              type: string
+                            avatar_url:
+                              type: string
+                        careers:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                              field:
+                                type: string
+                        comments:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                              text:
+                                type: string
+                              created_at:
+                                type: string
+                              updated_at:
+                                type: string
+                              user:
+                                type: object
+                                properties:
+                                  id:
+                                    type: integer
+                                  username:
+                                    type: string
+                                  slug:
+                                    type: string
+                        votes_count:
+                          type: integer
+                        liked_by_current_user:
+                          type: boolean
                   user_posts:
                     type: array
                     items:
-                      "$ref": "#/components/schemas/Post"
-        '401':
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                        content:
+                          type: string
+                        author:
+                          type: string
+                        slug:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                        user:
+                          type: object
+                        careers:
+                          type: array
+                        comments:
+                          type: array
+                        votes_count:
+                          type: integer
+                        liked_by_current_user:
+                          type: boolean
+        "401":
           description: Unauthorized
           content:
             application/json:
@@ -632,18 +591,35 @@ paths:
     post:
       summary: Create a new post
       tags:
-      - Posts
+        - Posts
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters: []
       responses:
-        '201':
+        "201":
           description: Post created successfully
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/Post"
-        '422':
+                type: object
+                properties:
+                  post:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      title:
+                        type: string
+                      content:
+                        type: string
+                      created_at:
+                        type: string
+                      updated_at:
+                        type: string
+                  message:
+                    type: string
+        "422":
           description: Validation failed
           content:
             application/json:
@@ -669,6 +645,9 @@ paths:
                     content:
                       type: string
                       example: This is the content of my post
+                    author:
+                      type: string
+                      example: alice_dev
                     image:
                       type: string
                       format: binary
@@ -677,33 +656,101 @@ paths:
                       items:
                         type: integer
                       example:
-                      - 1
-                      - 2
+                        - 1
+                        - 2
                   required:
-                  - title
-                  - content
+                    - title
+                    - content
   "/api/posts/{id}":
     get:
       summary: Get post by ID
       tags:
-      - Posts
+        - Posts
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters:
-      - name: id
-        in: path
-        description: Post ID
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: Post slug or ID
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: Post found
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/Post"
-        '404':
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  title:
+                    type: string
+                  content:
+                    type: string
+                  created_at:
+                    type: string
+                  updated_at:
+                    type: string
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      username:
+                        type: string
+                      firstname:
+                        type: string
+                      lastname:
+                        type: string
+                      email:
+                        type: string
+                      bio:
+                        type: string
+                      about:
+                        type: string
+                      slug:
+                        type: string
+                      avatar_url:
+                        type: string
+                  careers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        field:
+                          type: string
+                  comments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        text:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                        user:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            username:
+                              type: string
+                            slug:
+                              type: string
+                  votes_count:
+                    type: integer
+                  liked_by_current_user:
+                    type: boolean
+        "404":
           description: Post not found
           content:
             application/json:
@@ -715,24 +762,39 @@ paths:
     patch:
       summary: Update post
       tags:
-      - Posts
+        - Posts
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters:
-      - name: id
-        in: path
-        description: Post ID
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: Post slug or ID
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: Post updated successfully
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/Post"
-        '422':
+                type: object
+                properties:
+                  message:
+                    type: string
+                  post:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      title:
+                        type: string
+                      content:
+                        type: string
+                      updated_at:
+                        type: string
+        "422":
           description: Validation failed
           content:
             application/json:
@@ -766,37 +828,39 @@ paths:
     delete:
       summary: Delete post
       tags:
-      - Posts
+        - Posts
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters:
-      - name: id
-        in: path
-        description: Post ID
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: Post slug or ID
+          required: true
+          schema:
+            type: string
       responses:
-        '204':
+        "204":
           description: Post deleted successfully
-        '404':
+        "404":
           description: Post not found
   "/api/posts/{id}/vote":
     post:
       summary: Like/Unlike a post
       tags:
-      - Posts
+        - Posts
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters:
-      - name: id
-        in: path
-        description: Post ID
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: Post slug or ID
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: Post liked/unliked successfully
           content:
             application/json:
@@ -805,7 +869,7 @@ paths:
                 properties:
                   message:
                     type: string
-        '404':
+        "404":
           description: Post not found
           content:
             application/json:
@@ -818,12 +882,13 @@ paths:
     post:
       summary: Follow a user
       tags:
-      - Relationships
+        - Relationships
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters: []
       responses:
-        '201':
+        "201":
           description: Relationship created successfully
           content:
             application/json:
@@ -841,7 +906,7 @@ paths:
                         type: string
                       slug:
                         type: string
-        '404':
+        "404":
           description: User not found
           content:
             application/json:
@@ -850,7 +915,7 @@ paths:
                 properties:
                   error:
                     type: string
-        '422':
+        "422":
           description: Cannot follow yourself
           content:
             application/json:
@@ -870,23 +935,24 @@ paths:
                   example: 2
                   description: ID of user to follow
               required:
-              - followed_id
+                - followed_id
   "/api/relationships/{id}":
     delete:
       summary: Unfollow a user
       tags:
-      - Relationships
+        - Relationships
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters:
-      - name: id
-        in: path
-        description: Relationship ID
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: Relationship ID
+          required: true
+          schema:
+            type: integer
       responses:
-        '200':
+        "200":
           description: Relationship destroyed successfully
           content:
             application/json:
@@ -904,7 +970,7 @@ paths:
                         type: string
                       slug:
                         type: string
-        '404':
+        "404":
           description: Relationship not found
           content:
             application/json:
@@ -917,12 +983,13 @@ paths:
     post:
       summary: Create user skills
       tags:
-      - Skills
+        - Skills
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters: []
       responses:
-        '200':
+        "200":
           description: Skills created successfully
           content:
             application/json:
@@ -944,7 +1011,7 @@ paths:
                           type: string
                   message:
                     type: string
-        '422':
+        "422":
           description: Validation failed
           content:
             application/json:
@@ -974,31 +1041,32 @@ paths:
                       level:
                         type: string
                         enum:
-                        - Beginner
-                        - Intermediate
-                        - Advanced
+                          - Beginner
+                          - Intermediate
+                          - Advanced
                         example: Intermediate
                     required:
-                    - name
-                    - level
+                      - name
+                      - level
               required:
-              - skills
+                - skills
   "/api/skills/{id}":
     patch:
       summary: Update a skill
       tags:
-      - Skills
+        - Skills
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters:
-      - name: id
-        in: path
-        description: Skill ID
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: Skill ID
+          required: true
+          schema:
+            type: integer
       responses:
-        '200':
+        "200":
           description: Skill updated successfully
           content:
             application/json:
@@ -1018,7 +1086,7 @@ paths:
                         type: string
                   message:
                     type: string
-        '404':
+        "404":
           description: Skill not found
           content:
             application/json:
@@ -1041,24 +1109,25 @@ paths:
                     level:
                       type: string
                       enum:
-                      - Beginner
-                      - Intermediate
-                      - Advanced
+                        - Beginner
+                        - Intermediate
+                        - Advanced
     delete:
       summary: Delete a skill
       tags:
-      - Skills
+        - Skills
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters:
-      - name: id
-        in: path
-        description: Skill ID
-        required: true
-        schema:
-          type: integer
+        - name: id
+          in: path
+          description: Skill ID
+          required: true
+          schema:
+            type: integer
       responses:
-        '200':
+        "200":
           description: Skill deleted successfully
           content:
             application/json:
@@ -1067,7 +1136,7 @@ paths:
                 properties:
                   message:
                     type: string
-        '404':
+        "404":
           description: Skill not found
           content:
             application/json:
@@ -1080,24 +1149,24 @@ paths:
     get:
       summary: Get all users
       tags:
-      - Users
-      - Public
+        - Users
+        - Public
       security: []
       parameters:
-      - name: page
-        in: query
-        required: false
-        description: Page number
-        schema:
-          type: integer
-      - name: per_page
-        in: query
-        required: false
-        description: Items per page
-        schema:
-          type: integer
+        - name: page
+          in: query
+          required: false
+          description: Page number
+          schema:
+            type: integer
+        - name: per_page
+          in: query
+          required: false
+          description: Items per page
+          schema:
+            type: integer
       responses:
-        '200':
+        "200":
           description: Users retrieved successfully
           content:
             application/json:
@@ -1125,6 +1194,8 @@ paths:
                           type: string
                         bio:
                           type: string
+                        about:
+                          type: string
                         created_at:
                           type: string
                         updated_at:
@@ -1142,7 +1213,7 @@ paths:
                         type: integer
                       total_count:
                         type: integer
-        '401':
+        "401":
           description: Unauthorized
           content:
             application/json:
@@ -1155,18 +1226,19 @@ paths:
     get:
       summary: Get user by slug
       tags:
-      - Users
+        - Users
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters:
-      - name: slug
-        in: path
-        description: User slug
-        required: true
-        schema:
-          type: string
+        - name: slug
+          in: path
+          description: User slug
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: User found
           content:
             application/json:
@@ -1196,6 +1268,8 @@ paths:
                           slug:
                             type: string
                           bio:
+                            type: string
+                          about:
                             type: string
                       career:
                         type: array
@@ -1247,6 +1321,10 @@ paths:
                               type: string
                             content:
                               type: string
+                            author:
+                              type: string
+                            slug:
+                              type: string
                             created_at:
                               type: string
                       skills:
@@ -1260,7 +1338,7 @@ paths:
                               type: string
                             level:
                               type: string
-        '404':
+        "404":
           description: User not found
           content:
             application/json:
@@ -1274,18 +1352,19 @@ paths:
     patch:
       summary: Update user profile
       tags:
-      - Users
+        - Users
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters:
-      - name: slug
-        in: path
-        description: User slug
-        required: true
-        schema:
-          type: string
+        - name: slug
+          in: path
+          description: User slug
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: User updated successfully
           content:
             application/json:
@@ -1309,7 +1388,7 @@ paths:
                         type: string
                       bio:
                         type: string
-        '422':
+        "422":
           description: Validation failed
           content:
             application/json:
@@ -1337,54 +1416,30 @@ paths:
                       type: string
                     username:
                       type: string
-                      description: 3-20 characters, letters, numbers and underscores only
                     bio:
                       type: string
-                      description: Maximum 500 characters
                     about:
                       type: string
                     avatar:
                       type: string
                       format: binary
-                    career_ids:
-                      type: array
-                      description: Select up to 3 careers
-                      items:
-                        type: integer
-                      example: [1, 2, 3]
-                    skills_attributes:
-                      type: array
-                      description: User skills with name and level
-                      items:
-                        type: object
-                        properties:
-                          id:
-                            type: integer
-                            description: ID of existing skill to update or null for new skill
-                          name:
-                            type: string
-                          level:
-                            type: string
-                            enum:
-                              - Beginner
-                              - Intermediate
-                              - Advanced
   "/api/{user_slug}/connections":
     get:
       summary: Get user connections
       tags:
-      - Users
+        - Users
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       parameters:
-      - name: user_slug
-        in: path
-        description: User slug
-        required: true
-        schema:
-          type: string
+        - name: user_slug
+          in: path
+          description: User slug
+          required: true
+          schema:
+            type: string
       responses:
-        '200':
+        "200":
           description: Connections retrieved
           content:
             application/json:
@@ -1417,11 +1472,12 @@ paths:
     get:
       summary: Get current user skills
       tags:
-      - Users
+        - Users
+        - Protected
       security:
-      - bearerAuth: []
+        - bearerAuth: []
       responses:
-        '200':
+        "200":
           description: Skills retrieved
           content:
             application/json:
@@ -1445,12 +1501,14 @@ paths:
     post:
       summary: Create an user
       tags:
-      - Users
+        - Users
+        - Public
+      security: []
       parameters: []
       responses:
-        '201':
+        "201":
           description: Signed up successfully
-        '422':
+        "422":
           description: invalid request
       requestBody:
         content:
@@ -1477,204 +1535,16 @@ paths:
                 career_id:
                   type: integer
               required:
-              - email
-              - password
-              - career_id
+                - email
+                - password
+                - career_id
 servers:
-- url: http://localhost:3450
+  - url: http://localhost:3450
 components:
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-  schemas:
-    Error:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        error:
-          type: string
-          example: Unauthorized
-        message:
-          type: string
-          example: You need to sign in or sign up before continuing.
-      additionalProperties: false
-    ValidationError:
-      type: object
-      properties:
-        success:
-          type: boolean
-          example: false
-        errors:
-          type: object
-          additionalProperties:
-            type: string
-          example:
-            email: has already been taken
-            password: must include at least 1 uppercase, 1 lowercase, 1 digit and 1 special character
-      additionalProperties: false
-    Post:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 1
-        title:
-          type: string
-          example: "Best Practices for API Design in 2026"
-        content:
-          type: string
-          example: "RESTful APIs have evolved significantly over the years..."
-        created_at:
-          type: string
-          format: date-time
-          example: "2026-04-13T11:58:31.030Z"
-        updated_at:
-          type: string
-          format: date-time
-          example: "2026-04-13T11:58:31.030Z"
-        user:
-          "$ref": "#/components/schemas/PostAuthor"
-        careers:
-          type: array
-          items:
-            "$ref": "#/components/schemas/Career"
-        comments:
-          type: array
-          items:
-            "$ref": "#/components/schemas/Comment"
-        votes_count:
-          type: integer
-          example: 5
-        liked_by_current_user:
-          type: boolean
-          example: false
-    PostAuthor:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 7
-        username:
-          type: string
-          example: "bob_data"
-        firstname:
-          type: string
-          example: "Bob"
-        lastname:
-          type: string
-          example: "Smith"
-        email:
-          type: string
-          example: "bob@example.com"
-        bio:
-          type: string
-          example: "Data scientist exploring the world of ML/AI"
-        about:
-          type: string
-          example: "PhD in Computer Science, specializing in machine learning"
-        slug:
-          type: string
-          example: "bob_data"
-        avatar_url:
-          type: string
-          example: "http://localhost:3000/rails/active_storage/blobs/..."
-    Career:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 1
-        field:
-          type: string
-          example: "Software engineer"
-    Comment:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 1
-        text:
-          type: string
-          example: "Great post!"
-        created_at:
-          type: string
-          format: date-time
-          example: "2026-04-13T12:00:00.000Z"
-        updated_at:
-          type: string
-          format: date-time
-          example: "2026-04-13T12:00:00.000Z"
-        user:
-          "$ref": "#/components/schemas/CommentAuthor"
-    CommentAuthor:
-      type: object
-      properties:
-        id:
-          type: integer
-          example: 2
-        username:
-          type: string
-          example: "alice_dev"
-        slug:
-          type: string
-          example: "alice_dev"
-  responses:
-    UnauthorizedError:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            "$ref": "#/components/schemas/Error"
-          examples:
-            missingToken:
-              summary: Missing/invalid access token
-              value:
-                success: false
-                error: Unauthorized
-                message: Missing or invalid token
-    NotFoundError:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            "$ref": "#/components/schemas/Error"
-          examples:
-            notFound:
-              summary: Resource not found
-              value:
-                success: false
-                error: NotFound
-                message: Resource not found
-    ValidationError:
-      description: Validation failed
-      content:
-        application/json:
-          schema:
-            "$ref": "#/components/schemas/ValidationError"
-          examples:
-            invalidInput:
-              summary: Field validation errors
-              value:
-                success: false
-                errors:
-                  email: must be a valid email address
-                  password: is too short (minimum is 8 characters)
-    ServerError:
-      description: Unexpected server error
-      content:
-        application/json:
-          schema:
-            "$ref": "#/components/schemas/Error"
-          examples:
-            serverError:
-              summary: Generic 500
-              value:
-                success: false
-                error: ServerError
-                message: Something went wrong
 security:
-- bearerAuth: []
+  - bearerAuth: []

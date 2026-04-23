@@ -10,8 +10,8 @@ RSpec.describe "Comments API", type: :request do
 
       parameter name: :post_id,
                 in: :path,
-                type: :integer,
-                description: "Post ID"
+                type: :string,
+                description: "Post slug or ID"
       parameter name: :comment,
                 in: :body,
                 schema: {
@@ -92,8 +92,8 @@ RSpec.describe "Comments API", type: :request do
 
       parameter name: :post_id,
                 in: :path,
-                type: :integer,
-                description: "Post ID"
+                type: :string,
+                description: "Post slug or ID"
 
       response "200", "Comments retrieved successfully" do
         schema type: :array,

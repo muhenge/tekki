@@ -32,7 +32,7 @@ module Api
   private
 
     def set_post
-      @post = Post.find(params[:post_id])
+      @post = Post.friendly.find(params[:post_id])
     rescue ActiveRecord::RecordNotFound
       render json: { error: 'Post not found' }, status: :not_found
     end

@@ -240,7 +240,8 @@ posts_data.each_with_index do |post_data, index|
   post = Post.new(
     title: post_data[:title],
     content: post_data[:content],
-    user: user
+    user: user,
+    author: user.username
   )
 
   if post.save

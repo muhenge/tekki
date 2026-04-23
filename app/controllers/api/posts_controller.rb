@@ -66,14 +66,19 @@ class Api::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :image, :user_slug, :created_at, :skill_id, career_ids: [])
+    allowed = [:title, :content, :image, :user_slug, :created_at, :skill_id, career_ids: []]
+    source = params[:post].present? ? params.require(:post) : params
+    source = source.except(:format)
+    source.permit(allowed)
   end
 
   def set_post
-    @post = Post.includes(:comments).find_by(id: params[:id])
+    @post = Post.includes(:comments).friendly.find(params[:id] || params[:slug])
 
     unless @post
       render json: { error: 'Post not found' }, status: :not_found
     end
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'Post not found' }, status: :not_found
   end
 end

@@ -50,6 +50,9 @@ RSpec.describe "Users API", type: :request do
                        bio: {
                          type: :string
                        },
+                       about: {
+                         type: :string
+                       },
                        created_at: {
                          type: :string
                        },
@@ -135,6 +138,9 @@ RSpec.describe "Users API", type: :request do
                          },
                          bio: {
                            type: :string
+                         },
+                         about: {
+                           type: :string
                          }
                        }
                      },
@@ -210,6 +216,12 @@ RSpec.describe "Users API", type: :request do
                              type: :string
                            },
                            content: {
+                             type: :string
+                           },
+                           author: {
+                             type: :string
+                           },
+                           slug: {
                              type: :string
                            },
                            created_at: {

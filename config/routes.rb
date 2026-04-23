@@ -47,7 +47,7 @@ Rails.application.routes.draw do
       resources :skills, only: %i[show]
     end
 
-    resources :posts, only: [:create]
+    resources :posts, only: [:index, :create]
     get "relationships/create"
     get "relationships/destroy"
     get "transit/home"
@@ -63,7 +63,7 @@ Rails.application.routes.draw do
 
     resources :users, only: [:index]
 
-    resources :posts do
+    resources :posts, only: %i[show update destroy], param: :slug do
       resources :users
       resources :careers
       resources :comments

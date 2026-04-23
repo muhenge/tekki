@@ -18,6 +18,8 @@ RSpec.describe "Posts API", type: :request do
                        id: { type: :integer },
                        title: { type: :string },
                        content: { type: :string },
+                       author: { type: :string },
+                       slug: { type: :string },
                        created_at: { type: :string },
                        updated_at: { type: :string },
                        user: {
@@ -77,6 +79,8 @@ RSpec.describe "Posts API", type: :request do
                        id: { type: :integer },
                        title: { type: :string },
                        content: { type: :string },
+                       author: { type: :string },
+                       slug: { type: :string },
                        created_at: { type: :string },
                        updated_at: { type: :string },
                        user: { type: :object },
@@ -120,6 +124,10 @@ RSpec.describe "Posts API", type: :request do
                         content: {
                           type: :string,
                           example: "This is the content of my post"
+                        },
+                        author: {
+                          type: :string,
+                          example: "alice_dev"
                         },
                         image: {
                           type: :string,
@@ -209,7 +217,7 @@ RSpec.describe "Posts API", type: :request do
       security [{ bearerAuth: [] }]
       produces "application/json"
 
-      parameter name: :id, in: :path, type: :integer, description: "Post ID"
+      parameter name: :id, in: :path, type: :string, description: "Post slug or ID"
 
       response "200", "Post found" do
         schema type: :object,
@@ -285,7 +293,7 @@ RSpec.describe "Posts API", type: :request do
       consumes "application/json"
       produces "application/json"
 
-      parameter name: :id, in: :path, type: :integer, description: "Post ID"
+      parameter name: :id, in: :path, type: :string, description: "Post slug or ID"
       parameter name: :post,
                 in: :body,
                 schema: {
@@ -376,7 +384,7 @@ RSpec.describe "Posts API", type: :request do
       tags "Posts", "Protected"
       security [{ bearerAuth: [] }]
 
-      parameter name: :id, in: :path, type: :integer, description: "Post ID"
+      parameter name: :id, in: :path, type: :string, description: "Post slug or ID"
 
       response "204", "Post deleted successfully" do
         let(:id) { 1 }
@@ -398,7 +406,7 @@ RSpec.describe "Posts API", type: :request do
       security [{ bearerAuth: [] }]
       produces "application/json"
 
-      parameter name: :id, in: :path, type: :integer, description: "Post ID"
+      parameter name: :id, in: :path, type: :string, description: "Post slug or ID"
 
       response "200", "Post liked/unliked successfully" do
         schema type: :object, properties: { message: { type: :string } }
