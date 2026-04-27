@@ -83,6 +83,11 @@ class User < ApplicationRecord
     following.include?(user)
   end
 
+  def relationship_id_for(viewer)
+    return nil unless viewer
+    viewer.active_relationships.find_by(followed_id: self.id)&.id
+  end
+
   def avatar_url
     return unless avatar.attached?
     Rails.application.routes.url_helpers.url_for(avatar)

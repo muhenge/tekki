@@ -4,7 +4,7 @@ class Api::PostsController < ApplicationController
 
   respond_to :json
 
-  # GET /api/posts
+  #
   def index
     @posts = if current_user.career_ids.any?
               Post.includes(:user, :careers, comments: :user)

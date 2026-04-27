@@ -381,15 +381,41 @@ RSpec.describe "Users API", type: :request do
         run_test!
       end
     end
+
+    post "Follow user" do
+      tags "Users", "Protected"
+      security [{ bearerAuth: [] }]
+      produces "application/json"
+
+      parameter name: :slug, in: :path, type: :string, description: "User slug"
+
+      response "201", "Relationship created successfully" do
+        let(:slug) { "testuser" }
+        run_test!
+      end
+    end
+
+    delete "Unfollow user" do
+      tags "Users", "Protected"
+      security [{ bearerAuth: [] }]
+      produces "application/json"
+
+      parameter name: :slug, in: :path, type: :string, description: "User slug"
+
+      response "200", "Relationship destroyed successfully" do
+        let(:slug) { "testuser" }
+        run_test!
+      end
+    end
   end
 
-  path "/api/{user_slug}/connections" do
+  path "/api/users/{slug}/connections" do
     get "Get user connections" do
       tags "Users", "Protected"
       security [{ bearerAuth: [] }]
       produces "application/json"
 
-      parameter name: :user_slug,
+      parameter name: :slug,
                 in: :path,
                 type: :string,
                 description: "User slug"
@@ -397,18 +423,30 @@ RSpec.describe "Users API", type: :request do
       response "200", "Connections retrieved" do
         schema type: :object,
                properties: {
+                 success: {
+                   type: :boolean
+                 },
                  followers: {
                    type: :array,
                    items: {
                      type: :object,
                      properties: {
-                       id: {
+                       userId: {
                          type: :integer
                        },
                        username: {
                          type: :string
                        },
                        slug: {
+                         type: :string
+                       },
+                       relationshipId: {
+                         type: :integer
+                       },
+                       isFollowing: {
+                         type: :boolean
+                       },
+                       redirectTo: {
                          type: :string
                        }
                      }
@@ -419,7 +457,7 @@ RSpec.describe "Users API", type: :request do
                    items: {
                      type: :object,
                      properties: {
-                       id: {
+                       userId: {
                          type: :integer
                        },
                        username: {
@@ -427,13 +465,22 @@ RSpec.describe "Users API", type: :request do
                        },
                        slug: {
                          type: :string
+                       },
+                       relationshipId: {
+                         type: :integer
+                       },
+                       isFollowing: {
+                         type: :boolean
+                       },
+                       redirectTo: {
+                         type: :string
                        }
                      }
                    }
                  }
                }
 
-        let(:user_slug) { "testuser" }
+        let(:slug) { "testuser" }
         run_test!
       end
     end

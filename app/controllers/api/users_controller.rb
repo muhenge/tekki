@@ -32,6 +32,40 @@ module Api
       end
     end
 
+    def user_connections
+      user = User.friendly.find(params[:slug] || params[:id])
+      
+      followers = user.followers.map do |f|
+        {
+          userId: f.id,
+          username: f.username,
+          slug: f.slug,
+          relationshipId: f.relationship_id_for(current_user),
+          isFollowing: current_user&.following?(f),
+          redirectTo: "/profile/#{f.slug}"
+        }
+      end
+
+      following = user.following.map do |f|
+        {
+          userId: f.id,
+          username: f.username,
+          slug: f.slug,
+          relationshipId: f.relationship_id_for(current_user),
+          isFollowing: true,
+          redirectTo: "/profile/#{f.slug}"
+        }
+      end
+
+      render json: {
+        success: true,
+        followers: followers,
+        following: following
+      }
+    rescue ActiveRecord::RecordNotFound
+      render json: { success: false, error: 'User not found' }, status: :not_found
+    end
+
   private
 
     def user_response(user)

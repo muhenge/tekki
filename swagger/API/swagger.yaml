@@ -1423,16 +1423,77 @@ paths:
                     avatar:
                       type: string
                       format: binary
-  "/api/{user_slug}/connections":
-    get:
-      summary: Get user connections
+  "/api/users/{slug}/follow":
+    post:
+      summary: Follow a user (Recommended)
       tags:
         - Users
         - Protected
       security:
         - bearerAuth: []
       parameters:
-        - name: user_slug
+        - name: slug
+          in: path
+          description: User slug
+          required: true
+          schema:
+            type: string
+      responses:
+        "201":
+          description: Relationship created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  relationship_id:
+                    type: integer
+                  followed_user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      username:
+                        type: string
+                      slug:
+                        type: string
+  "/api/users/{slug}/unfollow":
+    delete:
+      summary: Unfollow a user (Recommended)
+      tags:
+        - Users
+        - Protected
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          description: User slug
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Unfollowed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  "/api/users/{slug}/connections":
+    get:
+      summary: Get user connections (Recommended)
+      tags:
+        - Users
+        - Protected
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
           in: path
           description: User slug
           required: true
@@ -1446,27 +1507,42 @@ paths:
               schema:
                 type: object
                 properties:
+                  success:
+                    type: boolean
                   followers:
                     type: array
                     items:
                       type: object
                       properties:
-                        id:
+                        userId:
                           type: integer
                         username:
                           type: string
                         slug:
+                          type: string
+                        relationshipId:
+                          type: integer
+                          nullable: true
+                        isFollowing:
+                          type: boolean
+                        redirectTo:
                           type: string
                   following:
                     type: array
                     items:
                       type: object
                       properties:
-                        id:
+                        userId:
                           type: integer
                         username:
                           type: string
                         slug:
+                          type: string
+                        relationshipId:
+                          type: integer
+                        isFollowing:
+                          type: boolean
+                        redirectTo:
                           type: string
   "/api/current_user_skills":
     get:

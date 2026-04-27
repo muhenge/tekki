@@ -41,15 +41,17 @@ Rails.application.routes.draw do
 
     get "auth/current_user", to: "auth/auth_status#check"
 
-    resources :users, only: [:show], param: :slug
-    resources :users, only: %i[show index], param: :slug do
+    resources :users, only: %i[index show update destroy], param: :slug do
+      member do
+        post :follow, to: "relationships#create"
+        delete :unfollow, to: "relationships#destroy"
+        get :connections, to: "users#user_connections"
+      end
       resources :posts
       resources :skills, only: %i[show]
     end
 
     resources :posts, only: [:index, :create]
-    get "relationships/create"
-    get "relationships/destroy"
     get "transit/home"
 
     resources :comments do
@@ -60,8 +62,6 @@ Rails.application.routes.draw do
     authenticated :user do
       root "posts#index", as: :authenticated_root
     end
-
-    resources :users, only: [:index]
 
     resources :posts, only: %i[show update destroy], param: :slug do
       resources :users
@@ -77,9 +77,6 @@ Rails.application.routes.draw do
       resources :users
       resources :posts
     end
-    get "/:user_slug/connections",
-        to: "users#user_connections",
-        as: "user_connections"
     get "/current_user_skills", to: "users#current_user_skills"
     root to: "welcome#home"
   end
