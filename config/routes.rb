@@ -51,7 +51,11 @@ Rails.application.routes.draw do
       resources :skills, only: %i[show]
     end
 
-    resources :posts, only: [:index, :create]
+    resources :posts, only: [:index, :create] do
+      collection do
+        get :search
+      end
+    end
     get "transit/home"
 
     resources :comments do

@@ -13,11 +13,17 @@ class Post < ApplicationRecord
   validates :content, presence: true, length: { minimum: 10 }
   scope :most_recent, -> { order(created_at: :desc) }
   scope :for_career_ids, ->(career_ids) { joins(:careers).where(careers: { id: career_ids }).distinct if career_ids.present? }
+  scope :search_by_title, ->(query) { where("title ILIKE ?", "%#{query}%") if query.present? }
+
   # validates :content_length { |post| post.errors.add(:content, "is too long (maximum is #{Post::CONTENT_MAX_LENGTH} characters)") if post.content.length > Post::CONTENT_MAX_LENGTH }
   has_one_attached :image
 
-  def self.search(search)
-    where("title LIKE ? OR content LIKE ?", "%#{search}%", "%#{search}%")
+  def self.search(query)
+    if query.present?
+      where("title ILIKE ? OR content ILIKE ?", "%#{query}%", "%#{query}%")
+    else
+      all
+    end
   end
 
   def as_json(options = {})

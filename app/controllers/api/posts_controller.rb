@@ -1,6 +1,6 @@
 class Api::PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy vote]
-  before_action :authenticate_user!, only: %i[index new create edit update show destroy vote]
+  before_action :authenticate_user!, only: %i[index new create edit update show destroy vote search]
 
   respond_to :json
 
@@ -17,6 +17,17 @@ class Api::PostsController < ApplicationController
     @user_posts = current_user.posts.includes(:user, :careers).most_recent
 
     render :index, formats: :json
+  end
+
+  # GET /api/posts/search
+  def search
+    @posts = Post.includes(:user, :careers, comments: :user).most_recent
+    @posts = @posts.search_by_title(params[:query]) if params[:query].present?
+    @posts = @posts.for_career_ids(params[:career_ids]) if params[:career_ids].present?
+
+    @user_posts = [] # Empty for search results
+    render :index, formats: :json
+    
   end
 
 

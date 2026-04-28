@@ -211,6 +211,39 @@ RSpec.describe "Posts API", type: :request do
     end
   end
 
+  path "/api/posts/search" do
+    get "Search posts" do
+      tags "Posts", "Protected"
+      security [{ bearerAuth: [] }]
+      produces "application/json"
+
+      parameter name: :query, in: :query, type: :string, description: "Search by title"
+      parameter name: :"career_ids[]", in: :query, type: :array, items: { type: :integer }, description: "Filter by career IDs"
+
+      response "200", "Search results retrieved" do
+        schema type: :object,
+               properties: {
+                 posts: {
+                   type: :array,
+                   items: {
+                     type: :object,
+                     properties: {
+                       id: { type: :integer },
+                       title: { type: :string },
+                       content: { type: :string },
+                       author: { type: :string },
+                       slug: { type: :string }
+                     }
+                   }
+                 },
+                 user_posts: { type: :array, items: { type: :object } }
+               }
+
+        run_test!
+      end
+    end
+  end
+
   path "/api/posts/{id}" do
     get "Get post by ID" do
       tags "Posts", "Protected"

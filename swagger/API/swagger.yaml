@@ -459,6 +459,81 @@ paths:
                 properties:
                   error:
                     type: string
+  "/api/posts/search":
+    get:
+      summary: Search posts by title and filter by careers
+      tags:
+        - Posts
+        - Protected
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: query
+          in: query
+          description: Search by title
+          required: false
+          schema:
+            type: string
+        - name: career_ids[]
+          in: query
+          description: Filter by career IDs
+          required: false
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: integer
+      responses:
+        "200":
+          description: Search results retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  posts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                        content:
+                          type: string
+                        author:
+                          type: string
+                        slug:
+                          type: string
+                        created_at:
+                          type: string
+                        updated_at:
+                          type: string
+                        user:
+                          type: object
+                        careers:
+                          type: array
+                        comments:
+                          type: array
+                        votes_count:
+                          type: integer
+                        liked_by_current_user:
+                          type: boolean
+                  user_posts:
+                    type: array
+                    items:
+                      type: object
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
   "/api/posts":
     get:
       summary: Get all posts (feed)
