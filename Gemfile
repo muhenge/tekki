@@ -49,6 +49,7 @@ gem 'public_suffix'
 gem 'rswag'
 gem 'swagger-docs'
 gem 'yaml_db'
+gem 'sidekiq'
 gem 'figaro'
 # Gemfile
 gem 'letter_opener', group: :development

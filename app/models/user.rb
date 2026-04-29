@@ -36,6 +36,14 @@ class User < ApplicationRecord
   has_many :skills, dependent: :destroy
   accepts_nested_attributes_for :skills, allow_destroy: true
 
+  # Suggested users based on shared careers
+  scope :suggested_for, ->(user) {
+    where(id: UserCareer.where(career_id: user.career_ids).select(:user_id))
+      .where.not(id: user.id)
+      .where.not(id: user.following_ids)
+      .order('RANDOM()')
+  }
+
   # Validations
   validates :username,
             presence: true,
@@ -64,7 +72,6 @@ class User < ApplicationRecord
   validate :avatar_content_type
   validate :career_limit
 
-  # ✅ Ensure jti is always set
   before_create :set_jti
 
   def confirmation_required?

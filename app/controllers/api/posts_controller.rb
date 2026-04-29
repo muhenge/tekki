@@ -16,8 +16,14 @@ class Api::PostsController < ApplicationController
 
     @user_posts = current_user.posts.includes(:user, :careers).most_recent
 
+    @users_with_same_careers = User.suggested_for(current_user)
+                                   .limit(5)
+                                   .includes(:careers)
+                                   .with_attached_avatar
+
     render :index, formats: :json
   end
+
 
   # GET /api/posts/search
   def search
@@ -27,7 +33,7 @@ class Api::PostsController < ApplicationController
 
     @user_posts = [] # Empty for search results
     render :index, formats: :json
-    
+
   end
 
 
