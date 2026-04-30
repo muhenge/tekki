@@ -15,6 +15,10 @@ module Tekki
     config.middleware.use ActionDispatch::Session::CookieStore,
                           key: "_tekki_session"
 
+    config.active_job.queue_adapter = :sidekiq
+
+
+
     # CORS is configured in `config/initializers/cors.rb`
   end
 end

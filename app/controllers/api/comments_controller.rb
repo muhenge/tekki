@@ -1,23 +1,42 @@
 module Api
   class CommentsController < ApplicationController
     before_action :authenticate_user!
-    before_action :set_post, only: [:create]
-    before_action :set_comment, only: [:destroy]
+    before_action :set_post, only: [:create, :index]
+    before_action :set_comment, only: [:update, :destroy]
 
     def create
       comment = @post.comments.build(comment_params)
       comment.user = current_user
 
       if comment.save
-        render json: { comment:, message: 'Comment created successfully.' }, status: :created
+        render json: { 
+          comment: comment.as_json(include: { user: { only: [:id, :username, :slug] } }), 
+          message: 'Comment created successfully.' 
+        }, status: :created
       else
         render json: { error: comment.errors.full_messages.join(', ') }, status: :unprocessable_entity
       end
     end
 
+    def update
+      if @comment.user == current_user
+        if @comment.update(comment_params)
+          render json: { 
+            comment: @comment.as_json(include: { user: { only: [:id, :username, :slug] } }), 
+            message: 'Comment updated successfully.' 
+          }, status: :ok
+        else
+          render json: { error: @comment.errors.full_messages.join(', ') }, status: :unprocessable_entity
+        end
+      else
+        render json: { error: 'Not authorized to edit this comment.' }, status: :forbidden
+      end
+    end
+
     def index
-      comments = Comment.includes(:user).where(post_id: params[:post_id]).order(created_at: :desc)
-      render json: comments, status: :ok
+      comments = @post ? @post.comments.includes(:user) : Comment.includes(:user)
+      comments = comments.order(created_at: :desc)
+      render json: comments, author: comments.map(&:user), status: :ok
     end
 
     def destroy
@@ -32,7 +51,13 @@ module Api
   private
 
     def set_post
-      @post = Post.friendly.find(params[:post_id])
+      post_identifier = params[:post_slug] || params[:post_id]
+
+      if post_identifier
+        @post = Post.friendly.find(post_identifier)
+      elsif action_name == 'create'
+        render json: { error: 'Post not found' }, status: :not_found
+      end
     rescue ActiveRecord::RecordNotFound
       render json: { error: 'Post not found' }, status: :not_found
     end

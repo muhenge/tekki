@@ -133,6 +133,69 @@ RSpec.describe "Comments API", type: :request do
   end
 
   path "/api/comments/{id}" do
+    patch "Update a comment" do
+      tags "Comments", "Protected"
+      security [{ bearerAuth: [] }]
+      consumes "application/json"
+      produces "application/json"
+
+      parameter name: :id, in: :path, type: :integer, description: "Comment ID"
+      parameter name: :comment,
+                in: :body,
+                schema: {
+                  type: :object,
+                  properties: {
+                    comment: {
+                      type: :object,
+                      properties: {
+                        text: {
+                          type: :string,
+                          example: "Updated comment text"
+                        }
+                      },
+                      required: ["text"]
+                    }
+                  }
+                }
+
+      response "200", "Comment updated successfully" do
+        schema type: :object,
+               properties: {
+                 comment: {
+                   type: :object,
+                   properties: {
+                     id: { type: :integer },
+                     text: { type: :string },
+                     user: {
+                       type: :object,
+                       properties: {
+                         id: { type: :integer },
+                         username: { type: :string }
+                       }
+                     }
+                   }
+                 },
+                 message: { type: :string }
+               }
+
+        let(:id) { 1 }
+        let(:comment) { { comment: { text: "Updated text" } } }
+        run_test!
+      end
+
+      response "403", "Not authorized" do
+        let(:id) { 1 }
+        let(:comment) { { comment: { text: "Updated text" } } }
+        run_test!
+      end
+
+      response "404", "Comment not found" do
+        let(:id) { 999 }
+        let(:comment) { { comment: { text: "Updated text" } } }
+        run_test!
+      end
+    end
+
     delete "Delete a comment" do
       tags "Comments", "Protected"
       security [{ bearerAuth: [] }]

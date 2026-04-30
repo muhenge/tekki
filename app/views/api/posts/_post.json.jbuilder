@@ -4,6 +4,9 @@ json.content post.content
 json.created_at post.created_at
 json.updated_at post.updated_at
 json.slug post.slug if post.respond_to?(:slug)
+json.author post.author
+json.author_slug post.user&.slug
+json.can_manage current_user == post.user if current_user
 
 # Author/User object
 if post.user
