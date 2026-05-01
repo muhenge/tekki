@@ -2,10 +2,10 @@ module Api
   class UsersController < ApplicationController
 
     before_action :set_user, only: %i[show update destroy]
-    before_action :authenticate_user!, only: %i[show, update, destroy]
+    before_action :authenticate_user!, only: %i[show update destroy]
 
     def index
-      users = User.includes(:following, :followers, :skills, :career)
+      users = User.includes(:following, :followers, :skills, :careers)
                   .page(params[:page])
                   .per(params[:per_page] || 10)
 
@@ -69,20 +69,20 @@ module Api
   private
 
     def user_response(user)
-      Rails.cache.fetch("user_#{user.id}_response", expires_in: 1.hour) do
-        {
-          user: user,
-          career: user.user_careers,
-          followers_count: user.followers.count,
-          following_count: user.following.count,
-          posts_count: user.posts.count,
-          skills_count: user.skills.count,
-          followers: user.followers,
-          following: user.following,
-          posts: user.posts.limit(5),
-          skills: user.skills.limit(6)
-        }
-      end
+      {
+        user: user.as_json(
+          only: %i[id email username firstname lastname slug bio about created_at updated_at]
+        ),
+        careers: user.careers.map { |career| career.as_json(only: %i[id field]) },
+        followers_count: user.followers.count,
+        following_count: user.following.count,
+        posts_count: user.posts.count,
+        skills_count: user.skills.count,
+        followers: user.followers.as_json(only: %i[id username slug]),
+        following: user.following.as_json(only: %i[id username slug]),
+        posts: user.posts.limit(5).as_json(only: %i[id title content author slug created_at]),
+        skills: user.skills.limit(6).as_json(only: %i[id name user_slug])
+      }
     end
 
     def user_params
@@ -91,9 +91,9 @@ module Api
 
     def set_user
       @user = if params[:id]
-                User.includes(:user_careers, :followers, :following, :posts, :skills).friendly.find(params[:id])
+                User.includes(:careers, :followers, :following, :posts, :skills).friendly.find(params[:id])
               else
-                User.includes(:followers, :following, :posts).friendly.find_by(slug: params[:slug]) || current_user
+                User.includes(:careers, :followers, :following, :posts, :skills).friendly.find_by(slug: params[:slug]) || current_user
               end
     end
 

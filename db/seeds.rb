@@ -9,6 +9,8 @@
 # ============================================================================
 # SEED CAREERS
 # ============================================================================
+MAX_USER_CAREERS = 3
+
 careers = [
   "Data scientist",
   "Software tester",
@@ -67,7 +69,8 @@ users_data = [
     lastname: "Johnson",
     password: "SecurePass123!",
     bio: "Full-stack developer passionate about clean code and user experience",
-    about: "Senior developer with 8 years of experience in web technologies"
+    about: "Senior developer with 8 years of experience in web technologies",
+    career_fields: ["Full-stack web developer", "Software engineer", "Front-end web developer"]
   },
   {
     email: "bob@example.com",
@@ -76,7 +79,8 @@ users_data = [
     lastname: "Smith",
     password: "SecurePass123!",
     bio: "Data scientist exploring the world of ML/AI",
-    about: "PhD in Computer Science, specializing in machine learning"
+    about: "PhD in Computer Science, specializing in machine learning",
+    career_fields: ["Data scientist", "Artificial intelligence and machine learning engineer", "Big Data Developer"]
   },
   {
     email: "carol@example.com",
@@ -85,7 +89,8 @@ users_data = [
     lastname: "Williams",
     password: "SecurePass123!",
     bio: "DevOps engineer automating everything",
-    about: "Cloud infrastructure specialist with focus on scalability"
+    about: "Cloud infrastructure specialist with focus on scalability",
+    career_fields: ["DevOps Engineer", "Cloud computing engineer", "Systems analyst"]
   },
   {
     email: "david@example.com",
@@ -94,7 +99,8 @@ users_data = [
     lastname: "Brown",
     password: "SecurePass123!",
     bio: "Security engineer protecting digital assets",
-    about: "Cybersecurity expert with 10 years in the field"
+    about: "Cybersecurity expert with 10 years in the field",
+    career_fields: ["Security Engineer", "Cybersecurity", "Information security analyst"]
   },
   {
     email: "emma@example.com",
@@ -103,18 +109,36 @@ users_data = [
     lastname: "Davis",
     password: "SecurePass123!",
     bio: "UI/UX designer creating beautiful experiences",
-    about: "Design lead with a passion for accessibility"
+    about: "Design lead with a passion for accessibility",
+    career_fields: ["User interface designer", "Front-end web developer", "Product manager"]
   }
 ]
 
 users_data.each do |user_data|
-  user = User.find_or_create_by!(email: user_data[:email]) do |user|
-    user.assign_attributes(user_data)
+  career_fields = user_data[:career_fields]
 
-    # Assign random careers (up to 3)
-    career_ids = Career.pluck(:id).sample([2, 3].sample)
-    user.career_ids = career_ids
+  if career_fields.size > MAX_USER_CAREERS
+    raise "#{user_data[:email]} has #{career_fields.size} careers; users can select at most #{MAX_USER_CAREERS}"
   end
+
+  user_attributes = user_data.except(:career_fields)
+  careers = Career.where(field: career_fields).to_a
+  missing_careers = career_fields - careers.map(&:field)
+
+  if missing_careers.any?
+    raise "Missing seeded careers for #{user_data[:email]}: #{missing_careers.join(', ')}"
+  end
+
+  user = User.find_or_initialize_by(email: user_attributes[:email])
+  attributes_to_assign = user.new_record? ? user_attributes : user_attributes.except(:password)
+
+  User.transaction do
+    user.careers = careers if user.persisted?
+    user.assign_attributes(attributes_to_assign)
+    user.careers = careers if user.new_record?
+    user.save!
+  end
+
   puts "  ✓ User: #{user.username} (careers: #{user.careers.pluck(:field).join(', ')})"
 end
 

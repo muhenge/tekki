@@ -6,9 +6,12 @@ class Api::PostsController < ApplicationController
 
   #
   def index
-    @posts = if current_user.career_ids.any?
+    career_ids = current_user.career_ids
+    
+    @posts = if career_ids.any?
               Post.includes(:user, :careers, comments: :user)
-                  .for_career_ids(current_user.career_ids)
+                  .for_career_ids(career_ids)
+                  .where.not(user_id: current_user.id) # Exclude own posts from main feed
                   .most_recent
             else
               Post.none
@@ -29,11 +32,12 @@ class Api::PostsController < ApplicationController
   def search
     @posts = Post.includes(:user, :careers, comments: :user).most_recent
     @posts = @posts.search_by_title(params[:query]) if params[:query].present?
-    @posts = @posts.for_career_ids(params[:career_ids]) if params[:career_ids].present?
+    
+    career_ids = params[:career_ids] || params[:career_id]
+    @posts = @posts.for_career_ids(career_ids) if career_ids.present?
 
     @user_posts = [] # Empty for search results
     render :index, formats: :json
-
   end
 
 
@@ -54,18 +58,26 @@ class Api::PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
-      render json: @post.as_json(current_user: current_user)
+    if @post.user == current_user
+      if @post.update(post_params)
+        render json: @post.as_json(current_user: current_user)
+      else
+        render json: { error: @post.errors.full_messages }, status: :unprocessable_entity
+      end
     else
-      render json: { error: @post.errors.full_messages }, status: :unprocessable_entity
+      render json: { error: 'Not authorized' }, status: :forbidden
     end
   end
 
   def destroy
-    if @post.destroy
-      head :no_content
+    if @post.user == current_user
+      if @post.destroy
+        head :no_content
+      else
+        render json: { error: 'Failed to delete post' }, status: :unprocessable_entity
+      end
     else
-      render json: { error: 'Failed to delete post' }, status: :unprocessable_entity
+      render json: { error: 'Not authorized' }, status: :forbidden
     end
   end
 

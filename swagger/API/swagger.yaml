@@ -1346,7 +1346,7 @@ paths:
                             type: string
                           about:
                             type: string
-                      career:
+                      careers:
                         type: array
                         items:
                           type: object
