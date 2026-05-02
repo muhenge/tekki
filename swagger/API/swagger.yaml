@@ -38,6 +38,9 @@ paths:
                         type: string
                       slug:
                         type: string
+                      role:
+                        type: string
+                        enum: [member, guest, admin]
                       created_at:
                         type: string
                       updated_at:
@@ -128,6 +131,9 @@ paths:
                         type: string
                       slug:
                         type: string
+                      role:
+                        type: string
+                        enum: [member, guest, admin]
         "401":
           description: Invalid credentials
           content:
@@ -206,6 +212,9 @@ paths:
                         type: string
                       slug:
                         type: string
+                      role:
+                        type: string
+                        enum: [member, guest, admin]
         "401":
           description: Unauthorized
           content:
@@ -416,6 +425,9 @@ paths:
                           type: string
                         slug:
                           type: string
+                        role:
+                          type: string
+                          enum: [member, guest, admin]
   "/api/comments/{id}":
     delete:
       summary: Delete a comment
@@ -507,6 +519,9 @@ paths:
                           type: string
                         slug:
                           type: string
+                        role:
+                          type: string
+                          enum: [member, guest, admin]
                         created_at:
                           type: string
                         updated_at:
@@ -565,6 +580,9 @@ paths:
                           type: string
                         slug:
                           type: string
+                        role:
+                          type: string
+                          enum: [member, guest, admin]
                         created_at:
                           type: string
                         updated_at:
@@ -588,6 +606,9 @@ paths:
                               type: string
                             slug:
                               type: string
+                            role:
+                              type: string
+                              enum: [member, guest, admin]
                             avatar_url:
                               type: string
                         careers:
@@ -621,6 +642,9 @@ paths:
                                     type: string
                                   slug:
                                     type: string
+                                  role:
+                                    type: string
+                                    enum: [member, guest, admin]
                         votes_count:
                           type: integer
                         liked_by_current_user:
@@ -640,6 +664,9 @@ paths:
                           type: string
                         slug:
                           type: string
+                        role:
+                          type: string
+                          enum: [member, guest, admin]
                         created_at:
                           type: string
                         updated_at:
@@ -664,12 +691,12 @@ paths:
                   error:
                     type: string
     post:
-      summary: Create a new post
+      summary: Create a new post (Supports Guest Posting)
       tags:
         - Posts
-        - Protected
       security:
         - bearerAuth: []
+        - {}
       parameters: []
       responses:
         "201":
@@ -694,6 +721,8 @@ paths:
                         type: string
                   message:
                     type: string
+        "401":
+          description: Unauthorized or Registered email used as guest
         "422":
           description: Validation failed
           content:
@@ -736,6 +765,14 @@ paths:
                   required:
                     - title
                     - content
+                guest_email:
+                  type: string
+                  description: Email for guest posting (if not authenticated)
+                  example: guest@example.com
+                guest_name:
+                  type: string
+                  description: Name for guest posting (if not authenticated)
+                  example: Anonymous Guest
   "/api/posts/{id}":
     get:
       summary: Get post by ID
@@ -788,6 +825,9 @@ paths:
                         type: string
                       slug:
                         type: string
+                      role:
+                        type: string
+                        enum: [member, guest, admin]
                       avatar_url:
                         type: string
                   careers:
@@ -821,6 +861,9 @@ paths:
                               type: string
                             slug:
                               type: string
+                            role:
+                              type: string
+                              enum: [member, guest, admin]
                   votes_count:
                     type: integer
                   liked_by_current_user:
@@ -981,6 +1024,9 @@ paths:
                         type: string
                       slug:
                         type: string
+                      role:
+                        type: string
+                        enum: [member, guest, admin]
         "404":
           description: User not found
           content:
@@ -1045,6 +1091,9 @@ paths:
                         type: string
                       slug:
                         type: string
+                      role:
+                        type: string
+                        enum: [member, guest, admin]
         "404":
           description: Relationship not found
           content:
@@ -1267,6 +1316,9 @@ paths:
                           type: string
                         slug:
                           type: string
+                        role:
+                          type: string
+                          enum: [member, guest, admin]
                         bio:
                           type: string
                         about:
@@ -1342,6 +1394,9 @@ paths:
                             type: string
                           slug:
                             type: string
+                          role:
+                            type: string
+                            enum: [member, guest, admin]
                           bio:
                             type: string
                           about:
@@ -1374,6 +1429,9 @@ paths:
                               type: string
                             slug:
                               type: string
+                            role:
+                              type: string
+                              enum: [member, guest, admin]
                       following:
                         type: array
                         items:
@@ -1385,6 +1443,9 @@ paths:
                               type: string
                             slug:
                               type: string
+                            role:
+                              type: string
+                              enum: [member, guest, admin]
                       posts:
                         type: array
                         items:
@@ -1400,6 +1461,9 @@ paths:
                               type: string
                             slug:
                               type: string
+                            role:
+                              type: string
+                              enum: [member, guest, admin]
                             created_at:
                               type: string
                       skills:
@@ -1534,6 +1598,9 @@ paths:
                         type: string
                       slug:
                         type: string
+                      role:
+                        type: string
+                        enum: [member, guest, admin]
   "/api/users/{slug}/unfollow":
     delete:
       summary: Unfollow a user (Recommended)
@@ -1595,6 +1662,9 @@ paths:
                           type: string
                         slug:
                           type: string
+                        role:
+                          type: string
+                          enum: [member, guest, admin]
                         relationshipId:
                           type: integer
                           nullable: true
@@ -1613,6 +1683,9 @@ paths:
                           type: string
                         slug:
                           type: string
+                        role:
+                          type: string
+                          enum: [member, guest, admin]
                         relationshipId:
                           type: integer
                         isFollowing:

@@ -17,6 +17,8 @@ class User < ApplicationRecord
          jwt_revocation_strategy: JwtDenylist
 
   # Associations
+  enum :role, { member: 0, guest: 1, admin: 2 }, default: :member
+  
   has_many :identities, dependent: :destroy
   has_many :user_careers, dependent: :destroy
   has_many :careers, through: :user_careers
@@ -39,6 +41,7 @@ class User < ApplicationRecord
   # Suggested users based on shared careers
   scope :suggested_for, ->(user) {
     where(id: UserCareer.where(career_id: user.career_ids).select(:user_id))
+      .where(role: :member)
       .where.not(id: user.id)
       .where.not(id: user.following_ids)
       .order('RANDOM()')

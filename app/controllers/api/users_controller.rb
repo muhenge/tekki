@@ -5,7 +5,8 @@ module Api
     before_action :authenticate_user!, only: %i[show update destroy]
 
     def index
-      users = User.includes(:following, :followers, :skills, :careers)
+      users = User.member
+                  .includes(:following, :followers, :skills, :careers)
                   .page(params[:page])
                   .per(params[:per_page] || 10)
 

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="RUBY_MODULE" version="4">
+  <component name="ModuleRunConfigurationManager">
+    <shared />
+  </component>
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$/../../.ruby-lsp">
       <sourceFolder url="file://$MODULE_DIR$/../../.ruby-lsp/features" isTestSource="true" />
@@ -577,6 +580,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.3.1, mise: 3.4.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rbs (v3.10.4, mise: 3.4.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v7.2.0, mise: 3.4.9) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="redis-client (v0.28.0, mise: 3.4.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.12.0, mise: 3.4.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="reline (v0.6.3, mise: 3.4.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v3.2.0, mise: 3.4.9) [gem]" level="application" />
@@ -597,6 +601,7 @@
     <orderEntry type="library" scope="PROVIDED" name="ruby-lsp (v0.0.4, mise: 3.4.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.13.0, mise: 3.4.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-vips (v2.3.0, mise: 3.4.9) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sidekiq (v8.1.3, mise: 3.4.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="snaky_hash (v2.0.3, mise: 3.4.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="solargraph (v0.58.3, mise: 3.4.9) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sorbet-runtime (v0.6.13110, mise: 3.4.9) [gem]" level="application" />

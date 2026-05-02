@@ -1,6 +1,7 @@
 class Api::PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy vote]
-  before_action :authenticate_user!, only: %i[index new create edit update show destroy vote search]
+  before_action :authenticate_user!, only: %i[index new edit update show destroy vote search]
+  before_action :authenticate_user_or_guest!, only: %i[create]
 
   respond_to :json
 
@@ -48,10 +49,10 @@ class Api::PostsController < ApplicationController
 
   # POST /api/posts
   def create
-    @post = current_user.posts.build(post_params)
+    @post = @current_user_or_guest.posts.build(post_params)
 
     if @post.save
-      render json: @post.as_json(current_user: current_user), status: :created
+      render json: @post.as_json(current_user: @current_user_or_guest), status: :created
     else
       render json: { error: @post.errors.full_messages }, status: :unprocessable_entity
     end
@@ -93,6 +94,40 @@ class Api::PostsController < ApplicationController
   end
 
   private
+
+  def authenticate_user_or_guest!
+    if user_signed_in?
+      @current_user_or_guest = current_user
+    elsif params[:guest_email].present?
+      @current_user_or_guest = User.find_by(email: params[:guest_email])
+      
+      if @current_user_or_guest&.member?
+        render json: { error: 'This email is registered. Please log in to post.' }, status: :unauthorized
+        return
+      end
+
+      unless @current_user_or_guest
+        @current_user_or_guest = User.new(
+          email: params[:guest_email],
+          role: :guest,
+          password: SecureRandom.hex(16)
+        )
+        
+        # Split name into first and last if possible, or just use as username
+        guest_name = params[:guest_name] || params[:guest_email].split('@').first
+        @current_user_or_guest.firstname = guest_name.split(' ').first
+        @current_user_or_guest.lastname = guest_name.split(' ', 2).last if guest_name.include?(' ')
+        @current_user_or_guest.username = "guest_#{SecureRandom.hex(4)}"
+        
+        unless @current_user_or_guest.save
+          render json: { error: @current_user_or_guest.errors.full_messages }, status: :unprocessable_entity
+          return
+        end
+      end
+    else
+      authenticate_user!
+    end
+  end
 
   def post_params
     allowed = [:title, :content, :image, :user_slug, :created_at, :skill_id, career_ids: []]
