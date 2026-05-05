@@ -109,8 +109,7 @@ class Api::PostsController < ApplicationController
       unless @current_user_or_guest
         @current_user_or_guest = User.new(
           email: params[:guest_email],
-          role: :guest,
-          password: SecureRandom.hex(16)
+          role: :guest
         )
         
         # Split name into first and last if possible, or just use as username

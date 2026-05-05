@@ -1,4 +1,11 @@
 class User < ApplicationRecord
+  # Indicates whether the user's profile is publicly visible
+  attribute :public_profile, :boolean, default: false
+
+  # Scope for publicly visible profiles
+  scope :publicly_visible, -> { where(public_profile: true) }
+  # Indicates whether the user's profile is publicly visible
+  attribute :public_profile, :boolean, default: false
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   acts_as_voter
@@ -81,6 +88,11 @@ class User < ApplicationRecord
     false
   end
 
+  def password_required?
+    return false if guest?
+    super
+  end
+
   def follow(user)
     active_relationships.create(followed_id: user.id)
   end
@@ -131,7 +143,7 @@ class User < ApplicationRecord
       # Create new user
       user = User.new(
         email: auth.info.email,
-        password: SecureRandom.hex(20),
+        password: generate_compliant_password(20),
         username: generate_username(auth.info),
         first_name: auth.info.first_name,
         last_name: auth.info.last_name
@@ -145,6 +157,22 @@ class User < ApplicationRecord
 
       user
     end
+  end
+
+  def self.generate_compliant_password(length = 20)
+    # Ensure at least one of each required category
+    password = [
+      ('a'..'z').to_a.sample,
+      ('A'..'Z').to_a.sample,
+      ('0'..'9').to_a.sample,
+      %w[@ $ ! % * ? &].sample
+    ]
+
+    # Fill the rest with allowed characters
+    allowed_chars = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a + %w[@ $ ! % * ? &]
+    (length - 4).times { password << allowed_chars.sample }
+
+    password.shuffle.join
   end
 
   private
@@ -162,6 +190,7 @@ class User < ApplicationRecord
   end
 
   def password_complexity
+    return if guest?
     if password.blank? ||
          password =~
            /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}\z/
