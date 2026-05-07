@@ -25,7 +25,7 @@ class User < ApplicationRecord
 
   # Associations
   enum :role, { member: 0, guest: 1, admin: 2 }, default: :member
-  
+
   has_many :identities, dependent: :destroy
   has_many :user_careers, dependent: :destroy
   has_many :careers, through: :user_careers
@@ -112,7 +112,13 @@ class User < ApplicationRecord
 
   def avatar_url
     return unless avatar.attached?
-    Rails.application.routes.url_helpers.url_for(avatar)
+    # Prefer the direct service URL (e.g., Cloudinary) if the blob supports it;
+    # otherwise fall back to the Rails helper which issues a redirect.
+    if avatar.blob.respond_to?(:service_url)
+      avatar.blob.service_url
+    else
+      Rails.application.routes.url_helpers.url_for(avatar)
+    end
   end
 
   def generate_jwt_token

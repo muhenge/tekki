@@ -13,6 +13,9 @@ class Post < ApplicationRecord
   validates :content, presence: true, length: { minimum: 10 }
   validates :author, presence: true
 
+
+
+
   scope :most_recent, -> { order(created_at: :desc) }
   scope :for_career_ids, ->(career_ids) {
     if career_ids.present?
@@ -24,7 +27,7 @@ class Post < ApplicationRecord
   scope :search_by_title, ->(query) { where("title ILIKE ?", "%#{query}%") if query.present? }
 
   # validates :content_length { |post| post.errors.add(:content, "is too long (maximum is #{Post::CONTENT_MAX_LENGTH} characters)") if post.content.length > Post::CONTENT_MAX_LENGTH }
-  has_one_attached :image
+  has_many_attached :images
 
   def self.search(query)
     if query.present?

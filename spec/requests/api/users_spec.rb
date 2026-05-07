@@ -407,6 +407,43 @@ RSpec.describe "Users API", type: :request do
         run_test!
       end
     end
+
+    path "/api/users/{slug}/avatar" do
+      post "Upload user avatar" do
+        tags "Users", "Protected"
+        security [{ bearerAuth: [] }]
+        consumes "multipart/form-data"
+        produces "application/json"
+
+        parameter name: :slug, in: :path, type: :string, description: "User slug"
+        parameter name: :avatar, in: :formData, type: :file, required: true, description: "Avatar image file"
+
+        response "200", "Avatar uploaded successfully" do
+          schema type: :object,
+                 properties: {
+                   success: { type: :boolean },
+                   message: { type: :string },
+                   avatar_url: { type: :string }
+                 }
+
+          let(:slug) { "testuser" }
+          let(:avatar) { Rack::Test::UploadedFile.new(Rails.root.join("spec/fixtures/files/test_image.png"), "image/png") }
+          run_test!
+        end
+
+        response "400", "No avatar provided" do
+          let(:slug) { "testuser" }
+          let(:avatar) { nil }
+          run_test!
+        end
+
+        response "422", "Validation failed" do
+          let(:slug) { "testuser" }
+          let(:avatar) { Rack::Test::UploadedFile.new(Rails.root.join("spec/fixtures/files/test.txt"), "text/plain") }
+          run_test!
+        end
+      end
+    end
   end
 
   path "/api/users/{slug}/connections" do

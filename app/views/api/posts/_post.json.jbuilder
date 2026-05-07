@@ -19,7 +19,7 @@ if post.user
     json.bio post.user.bio
     json.about post.user.about
     json.slug post.user.slug
-    json.avatar_url post.user.avatar_url if post.user.respond_to?(:avatar_url)
+    json.avatar_url post.user.avatar.url if post.user.respond_to?(:avatar) && post.user.avatar.attached?
   end
 else
   json.user nil
@@ -33,6 +33,13 @@ if post.careers.any?
   end
 else
   json.careers []
+end
+
+# Comments
+if post.images.attached?
+  json.images post.images.map { |img| url_for(img) }
+else
+  json.images []
 end
 
 # Comments

@@ -52,6 +52,12 @@ class Api::PostsController < ApplicationController
     @post = @current_user_or_guest.posts.build(post_params)
 
     if @post.save
+      # Attach uploaded images (accepts array or hash of files)
+      if params.dig(:post, :images).present?
+        uploaded = params[:post][:images]
+        files = uploaded.is_a?(Array) ? uploaded : uploaded.values
+        @post.images.attach(files)
+      end
       render json: @post.as_json(current_user: @current_user_or_guest), status: :created
     else
       render json: { error: @post.errors.full_messages }, status: :unprocessable_entity
@@ -129,7 +135,7 @@ class Api::PostsController < ApplicationController
   end
 
   def post_params
-    allowed = [:title, :content, :image, :user_slug, :created_at, :skill_id, career_ids: []]
+    allowed = [:title, :content, :user_slug, :created_at, :skill_id, { images: [] }, career_ids: []]
     source = params[:post].present? ? params.require(:post) : params
     source = source.except(:format)
     source.permit(allowed)

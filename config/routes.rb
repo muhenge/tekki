@@ -46,6 +46,7 @@ Rails.application.routes.draw do
         post :follow, to: "relationships#create"
         delete :unfollow, to: "relationships#destroy"
         get :connections, to: "users#user_connections"
+        post :avatar, to: "users#upload_avatar"
       end
       resources :posts
       resources :skills, only: %i[show]

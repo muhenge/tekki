@@ -41,6 +41,9 @@ paths:
                       role:
                         type: string
                         enum: [member, guest, admin]
+                      avatar_url:
+                        type: string
+                        nullable: true
                       created_at:
                         type: string
                       updated_at:
@@ -134,6 +137,9 @@ paths:
                       role:
                         type: string
                         enum: [member, guest, admin]
+                      avatar_url:
+                        type: string
+                        nullable: true
         "401":
           description: Invalid credentials
           content:
@@ -215,6 +221,9 @@ paths:
                       role:
                         type: string
                         enum: [member, guest, admin]
+                      avatar_url:
+                        type: string
+                        nullable: true
         "401":
           description: Unauthorized
           content:
@@ -1323,6 +1332,9 @@ paths:
                           type: string
                         about:
                           type: string
+                        avatar_url:
+                          type: string
+                          nullable: true
                         created_at:
                           type: string
                         updated_at:
@@ -1401,6 +1413,9 @@ paths:
                             type: string
                           about:
                             type: string
+                          avatar_url:
+                            type: string
+                            nullable: true
                       careers:
                         type: array
                         items:
@@ -1527,6 +1542,8 @@ paths:
                         type: string
                       bio:
                         type: string
+                      public_profile:
+                        type: boolean
         "422":
           description: Validation failed
           content:
@@ -1562,6 +1579,52 @@ paths:
                     avatar:
                       type: string
                       format: binary
+                    public_profile:
+                      type: boolean
+  "/api/users/{slug}/avatar":
+    post:
+      summary: Upload user avatar
+      tags:
+        - Users
+        - Protected
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: slug
+          in: path
+          description: User slug
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Avatar uploaded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  avatar_url:
+                    type: string
+        "400":
+          description: No avatar provided
+        "422":
+          description: Validation failed
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+              required:
+                - avatar
   "/api/users/{slug}/follow":
     post:
       summary: Follow a user (Recommended)

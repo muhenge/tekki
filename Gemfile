@@ -10,6 +10,7 @@ gem 'rails', '~> 8.1.1', '>= 8.1.1'
 # gem 'mysql2'
 gem 'pg', '~> 1.5', '>= 1.5.9'
 
+gem 'cloudinary'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 6.4', '>= 6.4.2'
@@ -58,9 +59,6 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
-
-# Pagination
-gem "kaminari"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 
