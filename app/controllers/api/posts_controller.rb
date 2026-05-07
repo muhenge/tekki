@@ -8,17 +8,18 @@ class Api::PostsController < ApplicationController
   #
   def index
     career_ids = current_user.career_ids
-    
+
     @posts = if career_ids.any?
               Post.includes(:user, :careers, comments: :user)
                   .for_career_ids(career_ids)
-                  .where.not(user_id: current_user.id) # Exclude own posts from main feed
+                  .where.not(user_id: current_user.id)
                   .most_recent
             else
               Post.none
             end
 
-    @user_posts = current_user.posts.includes(:user, :careers).most_recent
+    # Exclude current user's own posts from the feed
+    @user_posts = Post.none
 
     @users_with_same_careers = User.suggested_for(current_user)
                                    .limit(5)
@@ -33,7 +34,7 @@ class Api::PostsController < ApplicationController
   def search
     @posts = Post.includes(:user, :careers, comments: :user).most_recent
     @posts = @posts.search_by_title(params[:query]) if params[:query].present?
-    
+
     career_ids = params[:career_ids] || params[:career_id]
     @posts = @posts.for_career_ids(career_ids) if career_ids.present?
 
@@ -106,7 +107,7 @@ class Api::PostsController < ApplicationController
       @current_user_or_guest = current_user
     elsif params[:guest_email].present?
       @current_user_or_guest = User.find_by(email: params[:guest_email])
-      
+
       if @current_user_or_guest&.member?
         render json: { error: 'This email is registered. Please log in to post.' }, status: :unauthorized
         return
@@ -117,13 +118,13 @@ class Api::PostsController < ApplicationController
           email: params[:guest_email],
           role: :guest
         )
-        
+
         # Split name into first and last if possible, or just use as username
         guest_name = params[:guest_name] || params[:guest_email].split('@').first
         @current_user_or_guest.firstname = guest_name.split(' ').first
         @current_user_or_guest.lastname = guest_name.split(' ', 2).last if guest_name.include?(' ')
         @current_user_or_guest.username = "guest_#{SecureRandom.hex(4)}"
-        
+
         unless @current_user_or_guest.save
           render json: { error: @current_user_or_guest.errors.full_messages }, status: :unprocessable_entity
           return

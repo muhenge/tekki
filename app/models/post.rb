@@ -19,9 +19,9 @@ class Post < ApplicationRecord
   scope :most_recent, -> { order(created_at: :desc) }
   scope :for_career_ids, ->(career_ids) {
     if career_ids.present?
-      left_outer_joins(:post_careers)
-        .where("posts.career_id IN (?) OR post_careers.career_id IN (?)", career_ids, career_ids)
-        .distinct
+      joins(:careers).where(careers: { id: career_ids }).distinct
+    else
+      none
     end
   }
   scope :search_by_title, ->(query) { where("title ILIKE ?", "%#{query}%") if query.present? }
