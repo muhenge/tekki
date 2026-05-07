@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1
 
 # Stage 1: Build environment
-ARG RUBY_VERSION=3.4.8
+ARG RUBY_VERSION=3.4.9
 FROM ruby:$RUBY_VERSION-slim as builder
 
 # Install build dependencies
@@ -26,7 +26,7 @@ ENV BUNDLE_PATH=/usr/local/bundle \
     RAILS_ENV=production
 
 COPY Gemfile Gemfile.lock ./
-RUN bundle install --frozen
+ RUN bundle config set frozen true && bundle install
 
 # Copy application code
 COPY . .

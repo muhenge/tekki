@@ -62,7 +62,6 @@ GEM
       activerecord (= 8.1.3)
       activesupport (= 8.1.3)
       marcel (~> 1.0)
-    activestorage-cloudinary-service (0.2.3)
     activesupport (8.1.3)
       base64
       bigdecimal
@@ -1929,18 +1928,6 @@ GEM
       sshkit (>= 1.23.0, < 2.0)
       thor (~> 1.3)
       zeitwerk (>= 2.6.18, < 3.0)
-    kaminari (1.2.2)
-      activesupport (>= 4.1.0)
-      kaminari-actionview (= 1.2.2)
-      kaminari-activerecord (= 1.2.2)
-      kaminari-core (= 1.2.2)
-    kaminari-actionview (1.2.2)
-      actionview
-      kaminari-core (= 1.2.2)
-    kaminari-activerecord (1.2.2)
-      activerecord
-      kaminari-core (= 1.2.2)
-    kaminari-core (1.2.2)
     kramdown (2.5.2)
       rexml (>= 3.4.4)
     kramdown-parser-gfm (1.1.0)
@@ -2273,7 +2260,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  activestorage-cloudinary-service
   acts_as_votable
   aws-sdk (~> 3.0, >= 3.0.1)
   bootsnap
@@ -2289,7 +2275,6 @@ DEPENDENCIES
   image_processing (~> 1.2)
   jbuilder
   kamal
-  kaminari
   letter_opener
   link_thumbnailer
   mini_magick
