@@ -84,7 +84,7 @@ group :production do
 end
 
 
-gem "ruby-lsp", "~> 0.0.2", :group => :development
+# gem "ruby-lsp", "~> 0.0.2", :group => :development
 
 gem "factory_bot", "~> 6.5"
 
