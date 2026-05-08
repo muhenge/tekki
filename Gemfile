@@ -39,7 +39,7 @@ gem 'omniauth-microsoft-office365'
 gem 'omniauth-apple'
 
 gem 'rack-cors'
-gem 'dotenv-rails', groups: [:development, :test]
+
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'link_thumbnailer'
@@ -75,6 +75,7 @@ end
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'dotenv-rails'
 end
 
 group :production do
