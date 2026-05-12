@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_04_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_12_132010) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -116,22 +116,13 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_04_120000) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.string "author", null: false
-    t.integer "cached_votes_down", default: 0
-    t.integer "cached_votes_score", default: 0
-    t.integer "cached_votes_total", default: 0
-    t.integer "cached_votes_up", default: 0
-    t.float "cached_weighted_average", default: 0.0
-    t.integer "cached_weighted_score", default: 0
-    t.integer "cached_weighted_total", default: 0
-    t.integer "career_id"
+    t.string "author"
     t.text "content"
     t.datetime "created_at", null: false
-    t.integer "skill_id"
     t.string "slug"
     t.string "title"
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -145,6 +136,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_04_120000) do
     t.bigint "user_id", null: false
     t.index ["token"], name: "index_refresh_tokens_on_token", unique: true
     t.index ["user_id"], name: "index_refresh_tokens_on_user_id"
+  end
+
+  create_table "relashionships", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -161,8 +157,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_04_120000) do
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.string "user_slug"
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_skills_on_user_id"
   end
 
@@ -176,24 +171,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_04_120000) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.text "about"
+    t.string "about"
     t.text "bio"
-    t.integer "career_id"
     t.datetime "confirmation_sent_at"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "created_at", null: false
-    t.datetime "current_sign_in_at"
-    t.string "current_sign_in_ip"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.integer "failed_attempts", default: 0, null: false
     t.string "firstname"
     t.string "jti"
-    t.datetime "last_sign_in_at"
-    t.string "last_sign_in_ip"
     t.string "lastname"
-    t.datetime "locked_at"
     t.string "login_token"
     t.datetime "login_token_sent_at"
     t.boolean "public_profile", default: false, null: false
@@ -201,21 +189,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_04_120000) do
     t.datetime "reset_password_sent_at"
     t.string "reset_password_token"
     t.integer "role", default: 0
-    t.integer "sign_in_count", default: 0, null: false
-    t.integer "skill_id"
     t.string "slug"
     t.string "unconfirmed_email"
-    t.string "unlock_token"
     t.datetime "updated_at", null: false
-    t.string "username"
+    t.string "username", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["jti"], name: "index_users_on_jti", unique: true
     t.index ["public_profile"], name: "index_users_on_public_profile"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
-    t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
-    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   create_table "votes", force: :cascade do |t|
@@ -241,7 +224,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_04_120000) do
   add_foreign_key "identities", "users"
   add_foreign_key "post_careers", "careers"
   add_foreign_key "post_careers", "posts"
+  add_foreign_key "posts", "users"
   add_foreign_key "refresh_tokens", "users"
+  add_foreign_key "skills", "users"
   add_foreign_key "user_careers", "careers"
   add_foreign_key "user_careers", "users"
 end
