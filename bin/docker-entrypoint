@@ -6,17 +6,24 @@ echo "🚀 Starting Tekki API..."
 # Remove a potentially pre-existing server.pid for Rails.
 rm -f /app/tmp/pids/server.pid
 
-# Wait for PostgreSQL to be ready
+# Wait for database to be ready
 if [ -z "$SKIP_DATABASE_CHECK" ]; then
   echo "🔍 Checking database connection..."
-  until pg_isready -h "${DATABASE_HOST:-db}" -p "${DATABASE_PORT:-5432}" -U "${DATABASE_USERNAME:-postgres}" -d "${DATABASE_NAME}"; do
-    echo "⏳ Waiting for PostgreSQL to be available..."
-    sleep 2
-  done
+  if [ -n "$DATABASE_URL" ]; then
+    until pg_isready -d "$DATABASE_URL"; do
+      echo "⏳ Waiting for Database (via DATABASE_URL) to be available..."
+      sleep 2
+    done
+  else
+    until pg_isready -h "${DATABASE_HOST:-db}" -p "${DATABASE_PORT:-5432}" -U "${DATABASE_USERNAME:-postgres}"; do
+      echo "⏳ Waiting for Database to be available..."
+      sleep 2
+    done
+  fi
   echo "✅ Database connection established"
 fi
 
-# Run migrations if needed
+# Run migrations if needed (usually handled by fly.toml release_command, but kept for Kamal/Local)
 if [ "$RUN_MIGRATIONS" = "true" ]; then
   echo "🔄 Running database migrations..."
   bundle exec rails db:migrate
@@ -26,9 +33,6 @@ fi
 # Create necessary directories
 mkdir -p /app/tmp/pids
 mkdir -p /app/log
-
-# Set proper permissions
-chown -R app:app /app/tmp /app/log
 
 echo "🎯 Starting Rails server..."
 

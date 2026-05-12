@@ -26,10 +26,13 @@ ENV BUNDLE_PATH=/usr/local/bundle \
     RAILS_ENV=production
 
 COPY Gemfile Gemfile.lock ./
- RUN bundle config set frozen true && bundle install
+RUN bundle config set frozen true && bundle install
 
 # Copy application code
 COPY . .
+
+# Precompile bootsnap for faster boot
+RUN bundle exec bootsnap precompile --gemfile app/ lib/
 
 # Stage 2: Production image
 FROM ruby:$RUBY_VERSION-slim
@@ -53,7 +56,12 @@ COPY --from=builder /app /app
 # Set environment variables
 ENV BUNDLE_PATH=/usr/local/bundle \
     BUNDLE_WITHOUT="development test" \
-    RAILS_ENV=production
+    RAILS_ENV=production \
+    RAILS_LOG_TO_STDOUT=true \
+    RAILS_SERVE_STATIC_FILES=true
+
+# Ensure scripts are executable
+RUN chmod +x /app/bin/*
 
 # Create non-root user
 RUN useradd -m app && \
@@ -63,6 +71,9 @@ USER app
 
 # Expose port
 EXPOSE 3000
+
+# Use entrypoint to handle migrations and startup
+ENTRYPOINT ["/app/bin/docker-entrypoint"]
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \

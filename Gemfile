@@ -52,6 +52,7 @@ gem 'swagger-docs'
 gem 'yaml_db'
 gem 'sidekiq'
 gem 'figaro'
+gem 'kaminari'
 # Gemfile
 gem 'letter_opener', group: :development
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
