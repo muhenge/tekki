@@ -5,7 +5,9 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   # config.cache_classes = true
-  config.hosts << "tekki-f7jp.onrender.com"
+  #config.hosts << "tekki-f7jp.onrender.com"
+  config.hosts << "https://teki-api.fly.dev/"
+  #config.hosts << "tekki.app"
   # config.hosts << /.*\.onrender\.com/
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
