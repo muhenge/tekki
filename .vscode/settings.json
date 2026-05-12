@@ -14,5 +14,6 @@
       "username": "rails",
       "password": "Hello.23"
     }
-  ]
+  ],
+  "postman.settings.dotenv-detection-notification-visibility": false
 }
