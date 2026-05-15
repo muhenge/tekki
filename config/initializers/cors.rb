@@ -12,7 +12,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     # Use CORS_ORIGINS as a comma-separated list, e.g.:
     # CORS_ORIGINS=http://localhost:5173,http://localhost:3000
     allowed_origins =
-      ENV.fetch("CORS_ORIGINS", "http://localhost:5173,http://localhost:3000")
+      ENV.fetch("CORS_ORIGINS", "http://localhost:5173,http://localhost:3000,https://tekki-front.vercel.app")
         .split(",")
         .map(&:strip)
         .reject(&:empty?)
