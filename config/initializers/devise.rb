@@ -12,7 +12,11 @@ Devise.setup do |config|
   config.mailer = "ConfirmationMailer"
 
   config.jwt do |jwt|
-    jwt.dispatch_requests = [["POST", %r{^/api/auth/login$}]]
+    jwt.dispatch_requests = [
+      ["POST", %r{^/api/auth/login$}],
+      ["POST", %r{^/api/auth/signup$}],
+      ["POST", %r{^/api/auth/magic_login$}]
+    ]
     jwt.revocation_requests = [["DELETE", %r{^/api/auth/logout$}]]
 
     # ✅ Use JTIMatcher (you already have jti column on users)

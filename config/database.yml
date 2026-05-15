@@ -25,5 +25,4 @@ test:
 production:
   <<: *default
   database: <%= ENV['DB_PROD'] %>
-  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>  # Commented out - already inherited from default
   timeout: 5000

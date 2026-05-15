@@ -1,8 +1,15 @@
 class ApplicationController < ActionController::API
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_active_storage_url_options
 
   def current_token
     request.env['warden-jwt_auth.token']
+  end
+
+  private
+
+  def set_active_storage_url_options
+    ActiveStorage::Current.url_options = { host: request.base_url }
   end
 
   protected

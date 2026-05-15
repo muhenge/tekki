@@ -11,6 +11,7 @@ primary_region = 'iad'
 
 [deploy]
   release_command = "bin/rails db:migrate"
+  strategy = "immediate"
 
 [env]
   RAILS_ENV = 'production'
