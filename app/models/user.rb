@@ -112,13 +112,14 @@ class User < ApplicationRecord
 
   def avatar_url
     return unless avatar.attached?
-    # Prefer the direct service URL (e.g., Cloudinary) if the blob supports it;
-    # otherwise fall back to the Rails helper which issues a redirect.
-    if avatar.blob.respond_to?(:service_url)
-      avatar.blob.service_url
+
+    if avatar.respond_to?(:url)
+      avatar.url
     else
       Rails.application.routes.url_helpers.url_for(avatar)
     end
+  rescue
+    nil
   end
 
   def generate_jwt_token

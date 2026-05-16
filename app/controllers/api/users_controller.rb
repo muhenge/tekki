@@ -1,8 +1,8 @@
 module Api
   class UsersController < ApplicationController
 
-    before_action :set_user, only: %i[show update destroy upload_avatar]
     before_action :authenticate_user!, only: %i[show update destroy upload_avatar]
+    before_action :set_user, only: %i[show update destroy upload_avatar]
 
     def index
       if current_user
@@ -33,19 +33,32 @@ module Api
     end
 
     def upload_avatar
+      if @user != current_user
+        return render json: { success: false, message: 'Unauthorized' }, status: :unauthorized
+      end
+
       if params[:avatar].present?
-        @user.avatar.attach(params[:avatar])
-        if @user.save
-          render json: {
-            success: true,
-            message: 'Avatar uploaded successfully',
-            avatar_url: @user.avatar.url
-          }, status: :ok
-        else
+        begin
+          @user.avatar.attach(params[:avatar])
+          if @user.save
+            render json: {
+              success: true,
+              message: 'Avatar uploaded successfully',
+              avatar_url: @user.avatar_url
+            }, status: :ok
+          else
+            render json: {
+              success: false,
+              errors: @user.errors.full_messages
+            }, status: :unprocessable_entity
+          end
+        rescue => e
+          Rails.logger.error "Avatar upload error: #{e.message}"
           render json: {
             success: false,
-            errors: @user.errors.full_messages
-          }, status: :unprocessable_entity
+            message: 'An error occurred during upload',
+            error: e.message
+          }, status: :internal_server_error
         end
       else
         render json: {
@@ -56,7 +69,7 @@ module Api
     end
 
     def show
-      Rails.logger.info "User found:  Avatar: #{@user.avatar.attached? ? @user.avatar.url : 'No avatar'}"
+      Rails.logger.info "User found:  Avatar: #{@user.avatar_url || 'No avatar'}"
 
       if @user
         render json: { success: true, message: 'User found', user: user_response(@user) }, status: :ok
@@ -106,7 +119,7 @@ module Api
         user: user.as_json(
           only: %i[id email username firstname lastname slug bio about created_at updated_at]
         ),
-        avatar_url: user.avatar.attached? ? user.avatar.url : nil,
+        avatar_url: user.avatar_url,
         careers: user.careers.map { |career| career.as_json(only: %i[id field]) },
         followers_count: user.followers.count,
         public_profile: user.public_profile,

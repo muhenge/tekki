@@ -8,7 +8,7 @@ module Api
           render json: {
             success: true,
             user: current_user.as_json(only: [:id, :email, :username, :firstname, :lastname, :slug, :role, :bio, :about]).merge(
-              avatar_url: current_user.avatar.attached? ? url_for(current_user.avatar) : nil
+              avatar_url: current_user.avatar_url
             )
           }, status: :ok
         else
